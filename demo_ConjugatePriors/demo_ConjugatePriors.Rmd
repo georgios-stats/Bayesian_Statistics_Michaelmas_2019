@@ -58,8 +58,6 @@ dbetabinom <- function (y, size, m, s, log = FALSE) {
 }
 
 BinomialBeta_pdf<-function(x,a,b,n) {
-#  pdf<- gamma(a+b)/ ( gamma(a)*gamma(b)*gamma(a+b+n) ) *choose(n, x) *gamma(a+x) *gamma(b+n-x)
-#  return (pdf)  
   pdf <- dbetabinom(y=x, size=n, m=a/(a+b), s=a+b) ;
   return (pdf) 
 }
@@ -71,6 +69,13 @@ StudentT_pdf<-function(x,mu,lambda,alpha) {
   y <- (x-mu)/sqrt(1/lambda) ;
   pdf <- dt(y,df=alpha)
   return (pdf)  
+}
+```
+
+
+```{r}
+dinvgamma <- function(x, a, b){
+  return ( exp( a*log(b)-lgamma(a) -(a+1)*log(x) -b/x ) ) ;
 }
 ```
 
@@ -323,12 +328,7 @@ NormalModel_SufStat<-function(x,n) {
 
 NormalModel_PDF_meanvar_prior<-function(mu,vu,mu0,n0,a0,b0) {
   vu0 <- vu/n0 ;
-  pdf <- dnorm( (mu-mu0)/sqrt(vu0),
-                mean=0, 
-                sd=1)*dgamma(
-                  1/vu,
-                  shape=a0,
-                  scale=1/b0) ;
+  pdf <- dnorm( (mu-mu0)/sqrt(vu0), mean=0, sd=1) * dinvgamma(vu, a0, b0) ;
    return (pdf)  
 }
 
@@ -347,27 +347,18 @@ NormalModel_PDF_meanvar_post<-function(mu,vu,n,sufstat,mu0,n0,a0,b0) {
   
   a_hat <-a0+0.5*n ;
   
-  b_hat <- b0+0.5*n*x_var+0.5*n0*n*(mu0-x_mean)/(n0+n) ;
+  b_hat <- b0+0.5*n*x_var+0.5*n0*n*((mu0-x_mean)^2)/(n0+n) ;
   
   mu_hat <- (n0*mu0+n*x_mean)/(n0+n) ;
   
   vu_hat <- vu/n_hat
   
-  pdf <- dnorm( (mu-mu_hat)/sqrt(vu_hat),
-                  mean=0, 
-                    sd=1
-                )*dgamma(
-                  1/vu,
-                  shape=a_hat,
-                  scale=1/b_hat) ;
+  pdf <- dnorm( (mu-mu_hat)/sqrt(vu_hat), mean=0, sd=1 )*dinvgamma(vu,a_hat,b_hat) ;
    return (pdf)  
 }
 
 NormalModel_PDF_var_prior<-function(vu,a0,b0) {
-  pdf <- dgamma(
-                1/vu,
-                shape=a0,
-                scale=1/b0) ;
+  pdf <- dinvgamma(vu,a0,b0) ;
    return (pdf)  
 }
 
@@ -384,12 +375,9 @@ NormalModel_PDF_var_post<-function(vu,n,sufstat,mu0,n0,a0,b0) {
   
   a_hat <-a0+0.5*n ;
   
-  b_hat <- b0+0.5*n*x_var+0.5*n0*n*(mu0-x_mean)/(n0+n) ;
+  b_hat <- b0+0.5*n*x_var+0.5*n0*n*((mu0-x_mean)^2)/(n0+n) ;
   
-  pdf <- dgamma(
-              1/vu,
-              shape=a_hat,
-              scale=1/b_hat) ;
+  pdf <- dinvgamma( vu, a_hat, b_hat) ;
   
   return (pdf)  
 }
@@ -418,7 +406,7 @@ NormalModel_PDF_mean_post<-function(mu,n,sufstat,mu0,n0,a0,b0) {
   
   a_hat <-a0+0.5*n ;
   
-  b_hat <- b0+0.5*n*x_var+0.5*n0*n*(mu0-x_mean)/(n0+n) ;
+  b_hat <- b0+0.5*n*x_var+0.5*n0*n*((mu0-x_mean)^2)/(n0+n) ;
   
   mu_hat <- (n0*mu0+n*x_mean)/(n0+n) ;
   
@@ -447,7 +435,7 @@ NormalModel_PDF_pred<-function(x,n,sufstat,mu0,n0,a0,b0) {
   
   a_hat <-a0+0.5*n ;
   
-  b_hat <- b0+0.5*n*x_var+0.5*n0*n*(mu0-x_mean)/(n0+n) ;
+  b_hat <- b0+0.5*n*x_var+0.5*n0*n*((mu0-x_mean)^2)/(n0+n) ;
   
   mu_hat <- (n0*mu0+n*x_mean)/(n0+n) ;
   
@@ -728,8 +716,8 @@ sliderInput("Normal_mu0",
 sliderInput("Normal_n0",
                  "$$n_0:$$",
                   min = 1.0,
-                  max = 10.0,
-                  step = 0.05,
+                  max = 100.0,
+                  step = 2,
                   value = 1)
 
 sliderInput("Normal_a0",
