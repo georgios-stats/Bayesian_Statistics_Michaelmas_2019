@@ -240,7 +240,7 @@ sliderInput("Bern_b",
 ```
 
 
-Column {data-width=400}
+Column {.tabset}
 -----------------------
 
 
@@ -293,11 +293,8 @@ renderPlot({
   })
 ```
 
-Column
------------------------
+
 ### ***Parametric inferece***
-
-
 
 
 ```{r,echo=FALSE}
@@ -309,12 +306,6 @@ renderPlot({
                   )
   })
 ```
-
-
-
-
-
-
 
 
 
@@ -757,7 +748,7 @@ sliderInput("Normal_b0",
 ```
 
 
-Column {data-width=300}
+Column {.tabset}
 -----------------------
 
 
@@ -827,7 +818,7 @@ b
 +\frac{1}{2}\frac{\lambda_{0}n(\mu_{0}-\bar{x})^{2}}{\lambda_{0}+n} 
 \end{align*}
 
-### ***Predictive dinference***
+### ***Predictive inference***
 
 
 ```{r,echo=FALSE}
@@ -843,8 +834,6 @@ renderPlot({
 ```
 
 
-Column
------------------------
 ### ***Parametric inference***
 
 
