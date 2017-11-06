@@ -123,51 +123,65 @@ $(document).ready(function () {
 <h1>Bayesian Statistics</h1>
 <p>Here is a list of interactive applications related to the course <em>Bayesian Statistics course Level III/IV</em> .</p>
 <p>To use these applications run <em>rstudio</em>, and set your workspace to be <em>Bayesian_Statistics</em> .</p>
-<div id="install-dependences" class="section level2">
-<h2>Install dependences</h2>
-<blockquote>
-<p>install.packages(“rmarkdown”)</p>
-</blockquote>
+<div id="how-to-get-the-files" class="section level2">
+<h2>How to get the files</h2>
+<p>In order to download the applications to your computer, do the following:</p>
+<ol style="list-style-type: decimal">
+<li>Run rstudio</li>
+<li>In the console run
+<ul>
+<li>install.packages(“rmarkdown”)</li>
+</ul></li>
+<li>Go to File&gt;New Project&gt;Version Control&gt;Git<br />
+</li>
+<li>In the section “Repository URL” type:
+<ul>
+<li><a href="https://github.com/georgios-stats/Bayesian_Statistics.git" class="uri">https://github.com/georgios-stats/Bayesian_Statistics.git</a></li>
+</ul></li>
+</ol>
 </div>
-<div id="a-biostatistics-exmple" class="section level2">
-<h2>A Biostatistics exmple</h2>
+<div id="applications" class="section level2">
+<h2>Applications</h2>
+<div id="a-biostatistics-example" class="section level3">
+<h3>A Biostatistics example</h3>
 <p>This is just an simple Bayesian example from Biostatistics (… and Statistics I)</p>
 <p>Execute command</p>
 <blockquote>
 <p>rmarkdown::run(“./demo_Biostatistics_Bayes/demo_Biostatistics_Bayes.Rmd”)</p>
 </blockquote>
 </div>
-<div id="known-distributions" class="section level2">
-<h2>Known distributions</h2>
+<div id="known-distributions" class="section level3">
+<h3>Known distributions</h3>
 <p>Just some known distributions</p>
 <p>Execute command</p>
 <blockquote>
 <p>rmarkdown::run(“./demo_distributions/demo_distributions.Rmd”)</p>
 </blockquote>
 </div>
-<div id="central-limit-theorem" class="section level2">
-<h2>Central limit Theorem</h2>
+<div id="central-limit-theorem" class="section level3">
+<h3>Central limit Theorem</h3>
 <p>A demo about the central limit theorem</p>
 <p>Execute command</p>
 <blockquote>
 <p>rmarkdown::run(“./demo_CLT/demo_CLT.Rmd”)</p>
 </blockquote>
 </div>
-<div id="weak-law-of-large-numbers" class="section level2">
-<h2>Weak law of large numbers</h2>
+<div id="weak-law-of-large-numbers" class="section level3">
+<h3>Weak law of large numbers</h3>
 <p>A demo about the weak law of large number</p>
 <p>Execute command</p>
 <blockquote>
 <p>rmarkdown::run(“./demo_WLLN/demo_WLLN.Rmd”)</p>
 </blockquote>
 </div>
-<div id="conjugate-priors" class="section level2">
-<h2>Conjugate priors</h2>
+<div id="conjugate-priors" class="section level3">
+<h3>Conjugate priors</h3>
 <p>Explore the behaviour of the posterior distribution, with respect to the hyperparameters of the prior distributions, and the number of observables.</p>
 <p>Execute command</p>
 <blockquote>
 <p>rmarkdown::run(“./demo_WLLN/demo_ConjugatePriors.Rmd”)</p>
 </blockquote>
+</div>
 </div>
 </div>
 
