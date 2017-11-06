@@ -1,7 +1,7 @@
 ---
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 # Bayesian Statistics
 
@@ -21,14 +21,6 @@ In order to download the applications to your computer, do the following:
       * https://github.com/georgios-stats/Bayesian_Statistics.git
 
 ## Applications
-
-### A Biostatistics example
-
-This is just an simple Bayesian example from Biostatistics (... and Statistics I)
-
-Execute command
-
-  > rmarkdown::run("./demo_Biostatistics_Bayes/demo_Biostatistics_Bayes.Rmd")
 
 ### Known distributions
 
