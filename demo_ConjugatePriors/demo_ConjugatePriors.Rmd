@@ -65,9 +65,11 @@ BinomialBeta_pdf<-function(x,a,b,n) {
 
 
 ```{r}
-StudentT_pdf<-function(x,mu,lambda,alpha) {
-  y <- (x-mu)/sqrt(1/lambda) ;
-  pdf <- dt(y,df=alpha)
+StudentT_pdf<-function(x,mu,lam,al) {
+  pdf <- 0.5*log(lam) -0.5*log(al) -0.5*log(pi) ;
+  pdf <- pdf +lgamma(0.5*(al+1)) -lgamma(0.5*al) ;
+  pdf <- pdf -0.5*(al+1)*log(1+lam/al*(x-mu)^2) ;
+  pdf <- exp(pdf) ;
   return (pdf)  
 }
 ```
@@ -286,21 +288,8 @@ Where
  n-\sum_{i=1}^{n}x_{i}+b
 \end{align*}
 
-### ***Predictive inference***
-
-```{r,echo=FALSE}
-renderPlot({
-   plot_Bernoulli_pred(theta=input$Bern_theta, 
-                  n=input$Bern_n, 
-                  a=input$Bern_a, 
-                  b=input$Bern_b
-                  )
-  })
-```
-
 
 ### ***Parametric inferece***
-
 
 ```{r,echo=FALSE}
 renderPlot({
@@ -312,6 +301,17 @@ renderPlot({
   })
 ```
 
+### ***Predictive inference***
+
+```{r,echo=FALSE}
+renderPlot({
+   plot_Bernoulli_pred(theta=input$Bern_theta, 
+                  n=input$Bern_n, 
+                  a=input$Bern_a, 
+                  b=input$Bern_b
+                  )
+  })
+```
 
 
 
@@ -328,7 +328,7 @@ NormalModel_SufStat<-function(x,n) {
 
 NormalModel_PDF_meanvar_prior<-function(mu,vu,mu0,n0,a0,b0) {
   vu0 <- vu/n0 ;
-  pdf <- dnorm( (mu-mu0)/sqrt(vu0), mean=0, sd=1) * dinvgamma(vu, a0, b0) ;
+  pdf <- dnorm( mu, mean=mu0, sd=sqrt(vu0)) * dinvgamma(vu, a0, b0) ;
    return (pdf)  
 }
 
@@ -353,7 +353,7 @@ NormalModel_PDF_meanvar_post<-function(mu,vu,n,sufstat,mu0,n0,a0,b0) {
   
   vu_hat <- vu/n_hat
   
-  pdf <- dnorm( (mu-mu_hat)/sqrt(vu_hat), mean=0, sd=1 )*dinvgamma(vu,a_hat,b_hat) ;
+  pdf <- dnorm( mu, mean=mu_hat, sd=sqrt(vu_hat) )*dinvgamma(vu,a_hat,b_hat) ;
    return (pdf)  
 }
 
@@ -383,11 +383,7 @@ NormalModel_PDF_var_post<-function(vu,n,sufstat,mu0,n0,a0,b0) {
 }
 
 NormalModel_PDF_mean_prior<-function(mu,mu0,n0,a0,b0) {
-  
-  pdf <- StudentT_pdf(mu,
-                      mu0,
-                      n0*a0/b0,
-                      2*a0) ;
+  pdf <- StudentT_pdf(mu, mu0, n0*a0/b0, 2*a0) ;
    return (pdf)  
 }
 
@@ -410,20 +406,14 @@ NormalModel_PDF_mean_post<-function(mu,n,sufstat,mu0,n0,a0,b0) {
   
   mu_hat <- (n0*mu0+n*x_mean)/(n0+n) ;
   
-  pdf <- StudentT_pdf(mu,
-                      mu_hat,
-                      (n+n0)*a_hat/b_hat,
-                      2*a_hat) ;
+  pdf <- StudentT_pdf(mu, mu_hat, (n+n0)*a_hat/b_hat, 2*a_hat) ;
    return (pdf)  
 }
 
 NormalModel_PDF_pred<-function(x,n,sufstat,mu0,n0,a0,b0) {
   
     if (n==0) {
-      pdf <- StudentT_pdf(x,
-                      mu0,
-                      n0*a0/b0,
-                      2*a0) ;    
+      pdf <- StudentT_pdf(x, mu0, n0/(n0+1)*a0/b0, 2*a0) ;    
       return (pdf) ;
     } 
   
@@ -439,10 +429,7 @@ NormalModel_PDF_pred<-function(x,n,sufstat,mu0,n0,a0,b0) {
   
   mu_hat <- (n0*mu0+n*x_mean)/(n0+n) ;
   
-  pdf <- StudentT_pdf(x,
-                      mu_hat,
-                      (n+n0)/(n+n0+1)*a_hat/b_hat,
-                      2*a_hat) ;
+  pdf <- StudentT_pdf(x, mu_hat, (n+n0)/(n+n0+1)*a_hat/b_hat, 2*a_hat) ;
    return (pdf)  
 }
 
@@ -472,7 +459,7 @@ plot_Normal_param <- function(mu=0.0,
   vu_prior_pdf <- NormalModel_PDF_var_prior(x_vu,a0,b0) ;
   vu_post_pdf <- NormalModel_PDF_var_post(x_vu,n,sufstat,mu0,n0,a0,b0) ;
   
-  x_mu <- seq(from = -3, to = 3, length.out = 50) ;
+  x_mu <- seq(from = -6, to = 6, length.out = 50) ;
   mu_prior_pdf <- NormalModel_PDF_mean_prior(x_mu,mu0,n0,a0,b0) ;
   mu_post_pdf <- NormalModel_PDF_mean_post(x_mu,n,sufstat,mu0,n0,a0,b0) ;
   
@@ -500,7 +487,7 @@ plot_Normal_param <- function(mu=0.0,
        type = "l",  
        main='Posterior vs Prior PDF', 
        xlab = expression(mu),
-       ylab = expression(paste(pi(mu,x[1:n]), " and " ,pi(mu))), 
+       ylab = expression(paste(pi,"(",mu,"|",x[1:n],")", " and " ,pi,"(",mu,")")), 
        col="blue" ,
       cex.lab=fntsz, 
       cex.axis=fntsz, 
@@ -512,7 +499,7 @@ plot_Normal_param <- function(mu=0.0,
        type = "l",  
        main='Posterior vs Prior PDF', 
        xlab = expression(mu),
-       ylab = expression(paste(pi(mu,"|",x[1:n]), " and " ,pi(mu))), 
+       ylab = expression(paste(pi,"(",mu,"|",x[1:n],")", " and " ,pi,"(",mu,")")), 
        col="green" ,
       cex.lab=fntsz, 
       cex.axis=fntsz, 
@@ -531,16 +518,14 @@ plot_Normal_param <- function(mu=0.0,
         cex=fntsz
     )
 
-
-  
   # about sigma
   
   plot(x_vu, 
        vu_post_pdf, 
        type = "l",  
        main='Marginal Posterior vs Prior PDF', 
-       xlab = expression(sigma),
-       ylab = expression(paste(pi(sigma,x[1:n]), " and " ,pi(sigma))), 
+       xlab = expression(sigma^2),
+       ylab = expression(paste(pi,"(",sigma^2,x[1:n],")", " and ",pi,"(",sigma^2,")")), 
        col="blue" ,
       cex.lab=fntsz, 
       cex.axis=fntsz, 
@@ -660,8 +645,8 @@ plot_Normal_pred <- function(mu=0.0,
   plot(x_pred, 
        xnew_pred_pdf, 
        type = "l",  
-       main='Marginal Posterior vs Prior PDF', 
-       xlab = expression(sigma^2),
+       main='Predictive PDF', 
+       xlab = expression( x[n+1] ),
        ylab = expression(paste(p(x[n+1], "|",x[1:n]))), 
        col="blue" ,
       cex.lab=fntsz, 
@@ -806,8 +791,22 @@ b
 +\frac{1}{2}\frac{\lambda_{0}n(\mu_{0}-\bar{x})^{2}}{\lambda_{0}+n} 
 \end{align*}
 
-### ***Predictive inference***
 
+### ***Parametric inference***
+
+```{r,echo=FALSE}
+renderPlot({
+  plot_Normal_param(mu=input$Normal_mu,
+              vu=input$Normal_vu,
+              n=input$Normal_n,
+              mu0=input$Normal_mu0,
+              n0=input$Normal_n0,
+              a0=input$Normal_a0,
+              b0=input$Normal_b0)
+  })
+```
+
+### ***Predictive inference***
 
 ```{r,echo=FALSE}
 renderPlot({
@@ -822,22 +821,6 @@ renderPlot({
 ```
 
 
-### ***Parametric inference***
-
-
-
-
-```{r,echo=FALSE}
-renderPlot({
-  plot_Normal_param(mu=input$Normal_mu,
-              vu=input$Normal_vu,
-              n=input$Normal_n,
-              mu0=input$Normal_mu0,
-              n0=input$Normal_n0,
-              a0=input$Normal_a0,
-              b0=input$Normal_b0)
-  })
-```
 
 
 
