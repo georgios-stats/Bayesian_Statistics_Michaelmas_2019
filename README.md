@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 # Bayesian Statistics
 
@@ -52,10 +52,16 @@ Explore the behaviour of the posterior distribution, with respect to the hyperpa
 
 Execute command
 
-  > rmarkdown::run("./demo_WLLN/demo_ConjugatePriors.Rmd")
+  > rmarkdown::run("./demo_ConjugatePriors/demo_ConjugatePriors.Rmd")
 
 
+### Compare priors
 
+Explore the behaviour of the posterior distribution, with respect to different priors (and their hyperparameters), and the number of observables. 
+
+Execute command
+
+  > rmarkdown::run("./demo_ConjugateJeffreysLaplacePriors/demo_ConjugateJeffreysLaplacePriors.Rmd")
 
 
   

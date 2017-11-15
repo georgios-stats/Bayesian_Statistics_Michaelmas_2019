@@ -129,6 +129,8 @@ plot_Bernoulli_param <- function(theta=0.5, n=10, a=1, b=1) {
 
   #layout( cbind( matrix(1,4,4), matrix(2,4,4), matrix(3,4,4) , matrix(4,4,4) ) )
   
+    y_max <- max(theta_post_pdf, theta_prior_pdf)
+  
   par(mfrow=c(1,1))
   
   plot(x_theta, 
@@ -139,6 +141,7 @@ plot_Bernoulli_param <- function(theta=0.5, n=10, a=1, b=1) {
        ylab = expression(paste(pi(theta,"|",x[1:n]), " and " ,pi(theta))), 
        col="blue" ,
       xlim=c(0,1),
+      ylim=c(0,y_max+1),
       cex.lab=fntsz, 
       cex.axis=fntsz, 
       cex.main=fntsz, 
@@ -440,13 +443,13 @@ plot_Normal_param <- function(mu=0.0,
                         n0=1.0,
                         a0=1.5,
                         b0=1.5) {
-#  mu=0.0;
-#  vu=1.0;
-#  n=10;
-#  mu0=0.0;
-#  n0=1.0;
-#  a0=1.5;
-#  b0=1.5;
+ # mu=0.0;
+ # vu=1.0;
+ # n=10;
+ # mu0=0.0;
+ # n0=1.0;
+ # a0=1.5;
+ # b0=1.5;
   
   fntsz <- 1.5;
   op <- par(cex = fntsz)
@@ -477,10 +480,15 @@ plot_Normal_param <- function(mu=0.0,
   
 
   #layout( cbind( matrix(1,4,4), matrix(2,4,4), matrix(3,4,4) , matrix(4,4,4) ) )
+
   
   par(mfrow = c(2 , 2) )
   
   # about mu
+  
+       y_max <- c(mu_post_pdf, mu_prior_pdf) ;
+  y_max <- y_max[is.finite(y_max)]
+    y_max <- max(y_max)
   
   plot(x_mu, 
        mu_post_pdf, 
@@ -489,6 +497,7 @@ plot_Normal_param <- function(mu=0.0,
        xlab = expression(mu),
        ylab = expression(paste(pi,"(",mu,"|",x[1:n],")", " and " ,pi,"(",mu,")")), 
        col="blue" ,
+       ylim = c(0,y_max+0.3) ,
       cex.lab=fntsz, 
       cex.axis=fntsz, 
       cex.main=fntsz, 
@@ -519,6 +528,12 @@ plot_Normal_param <- function(mu=0.0,
 
   # about sigma
   
+  
+     y_max <- c(vu_post_pdf, vu_prior_pdf) ;
+  y_max <- y_max[is.finite(y_max)]
+    y_max <- max(y_max)
+
+  
   plot(x_vu, 
        vu_post_pdf, 
        type = "l",  
@@ -526,6 +541,7 @@ plot_Normal_param <- function(mu=0.0,
        xlab = expression(sigma^2),
        ylab = expression(paste(pi,"(",sigma^2,"|",x[1:n],")", " and ",pi,"(",sigma^2,")")), 
        col="blue" ,
+       ylim = c(0,y_max+0.3) ,
       cex.lab=fntsz, 
       cex.axis=fntsz, 
       cex.main=fntsz, 
@@ -707,7 +723,7 @@ sliderInput("Normal_n0",
 sliderInput("Normal_a0",
                  "$$a:$$",
                   min = 0.0,
-                  max = 10.0,
+                  max = 5.0,
                   step = 0.05,
                   value = 1)
 
