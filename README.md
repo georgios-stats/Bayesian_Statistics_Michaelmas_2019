@@ -1,7 +1,7 @@
 ---
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 # Bayesian Statistics
 
@@ -63,5 +63,13 @@ Execute command
 
   > rmarkdown::run("./demo_ConjugateJeffreysLaplacePriors/demo_ConjugateJeffreysLaplacePriors.Rmd")
 
+### Mixture priors
 
+Explore the behaviour of the mixture posterior distribution, with respect to mixture priors (and their hyperparameters). 
+
+Execute command
+
+  > rmarkdown::run("./demo_ConjugatePriors/demo_ConjugatePriors.Rmd")
+  
+  
   
