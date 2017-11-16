@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 # Bayesian Statistics
 
@@ -69,7 +69,7 @@ Explore the behaviour of the mixture posterior distribution, with respect to mix
 
 Execute command
 
-  > rmarkdown::run("./demo_ConjugatePriors/demo_ConjugatePriors.Rmd")
+  > rmarkdown::run("./demo_MixturePriors/demo_MixturePriors.Rmd")
   
   
   

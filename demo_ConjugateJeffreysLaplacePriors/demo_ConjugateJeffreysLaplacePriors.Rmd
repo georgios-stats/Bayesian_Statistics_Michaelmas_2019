@@ -345,7 +345,7 @@ Inputs {.sidebar}
 
 ```{r,echo=FALSE}
 sliderInput("Bern_theta",
-                 "$$p:$$",
+                 "$$\\theta:$$",
                   min = 0.0001,
                   max = 0.9999,
                   step = 0.05,
