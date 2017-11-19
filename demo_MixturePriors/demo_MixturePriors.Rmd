@@ -572,8 +572,6 @@ b2 = tau_20-tau_21+1
 }  
   
   
-
-
 ```
 
 
@@ -607,30 +605,18 @@ sliderInput("Bern2_w1",
                   max = 1.0,
                   step = 0.01,
                   value = 0.25)
-sliderInput("Bern2_tau10",
-                 "$$\\tau_{1,0}:$$",
+sliderInput("Bern2_tau1",
+                 "$$\\tau_{1}=(\\tau_{1,1},\\tau_{1,0}):$$",
                   min = 0.00,
                   max = 70,
                   step = 0.05,
-                  value = 27)
-sliderInput("Bern2_tau11",
-                 "$$\\tau_{1,1}:$$",
+                  value = c(17,27))
+sliderInput("Bern2_tau2",
+                 "$$\\tau_{2}=(\\tau_{2,1},\\tau_{2,0}):$$",
                   min = 0.00,
-                  max = 35.0,
+                  max = 70,
                   step = 0.05,
-                  value = 17)
-sliderInput("Bern2_tau20",
-                 "$$\\tau_{2,0}:$$",
-                  min = 0.00,
-                  max = 70.0,
-                  step = 0.05,
-                  value = 26)
-sliderInput("Bern2_tau21",
-                 "$$\\tau_{2,1}:$$",
-                  min = 0.00,
-                  max = 35.0,
-                  step = 0.05,
-                  value = 9)
+                  value = c(9,26))
 ```
 
 
@@ -673,7 +659,7 @@ and
  n+\tau_{l,0} \\
  \tau^{*}_{l,1}
  &=
- \sum_{i=1}^{n}x_{i}+\tau_{l,0} \\
+ \sum_{i=1}^{n}x_{i}+\tau_{l,1} \\
  \varpi_{l}^{*}
  &=
  \frac
@@ -720,10 +706,10 @@ renderPlot({
    plot_Bernoulli2_param(theta=input$Bern2_theta, 
                   n=input$Bern2_n, 
                   w1=input$Bern2_w1, 
-                  tau_10=input$Bern2_tau10, 
-                  tau_11=input$Bern2_tau11, 
-                  tau_20=input$Bern2_tau20, 
-                  tau_21=input$Bern2_tau21
+                  tau_10=input$Bern2_tau1[2], 
+                  tau_11=input$Bern2_tau1[1], 
+                  tau_20=input$Bern2_tau2[2], 
+                  tau_21=input$Bern2_tau2[1]
                   )
   })
 ```
@@ -735,10 +721,10 @@ renderPlot({
    plot_Bernoulli2_pred(theta=input$Bern2_theta, 
                   n=input$Bern2_n, 
                   w1=input$Bern2_w1, 
-                  tau_10=input$Bern2_tau10, 
-                  tau_11=input$Bern2_tau11, 
-                  tau_20=input$Bern2_tau20, 
-                  tau_21=input$Bern2_tau21
+                  tau_10=input$Bern2_tau1[2], 
+                  tau_11=input$Bern2_tau1[1], 
+                  tau_20=input$Bern2_tau2[2], 
+                  tau_21=input$Bern2_tau2[1]
                   )
   })
 ```
