@@ -559,12 +559,9 @@ renderPlot({
 ```{r,echo=FALSE}
 renderPlot({
    plot_Bernoulli2_pred(theta=input$Bern2_theta, 
-                  n=input$Bern2_n, 
-                  w1=input$Bern2_w1, 
-                  tau_10=input$Bern2_tau1[2], 
-                  tau_11=input$Bern2_tau1[1], 
-                  tau_20=input$Bern2_tau2[2], 
-                  tau_21=input$Bern2_tau2[1]
+                  n=input$Bern2_n,
+                  tau_0=input$Bern2_tau[2], 
+                  tau_1=input$Bern2_tau[1]
                   )
   })
 ```
