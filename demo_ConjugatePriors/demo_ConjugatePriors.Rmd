@@ -4,7 +4,21 @@ output: flexdashboard::flex_dashboard
 runtime: shiny
 ---
 
+<!-- Conjugate prior Applet -->
+<!-- Copyright (C) 2027  Georgios Karagiannis -->
 
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <http://www.gnu.org/licenses/>. -->
 
 ```{r}
 get_randnumb <-function(n) {
@@ -1084,6 +1098,208 @@ renderPlot({
 
 
 
+
+
+
+<!-- # Normal  model (parametrisation 2) -->
+
+
+<!-- ```{r,echo=FALSE} -->
+
+<!-- plot_Normal2_param <- function(mu=0.0, -->
+<!--                         vu=1.0, -->
+<!--                         n=10, -->
+<!--                         tau0=1.0, -->
+<!--                         tau1=0.0, -->
+<!--                         tau2=2) { -->
+<!--  # mu=0.0; -->
+<!--  # vu=1.0; -->
+<!--  # n=10; -->
+<!--  # mu0=0.0; -->
+<!--  # n0=1.0; -->
+<!--  # a0=1.5; -->
+<!--  # b0=1.5; -->
+
+<!--   mu0 <- tau1/tau0 ; -->
+<!--   n0 <- tau0 ; -->
+<!--   a0 <- 0.5*(tau0+1); -->
+<!--   b0 <- 0.5*tau2- tau1*tau1/tau0 ; -->
+
+<!--  plot_Normal_param(mu,vu,n,mu0,n0,a0,b0) -->
+
+<!-- } -->
+
+
+<!-- plot_Normal2_pred <- function(mu=0.0, -->
+<!--                         vu=1.0, -->
+<!--                         n=10, -->
+<!--                         tau0=1.0, -->
+<!--                         tau1=0.0, -->
+<!--                         tau2=2) { -->
+<!--   mu0 <- tau1/tau0 ; -->
+<!--   n0 <- tau0 ; -->
+<!--   a0 <- 0.5*(tau0+1); -->
+<!--   b0 <- 0.5*tau2- tau1*tau1/tau0 ; -->
+<!--   plot_Normal_pred(mu,vu,n,mu0,n0,a0,b0) -->
+<!--   } -->
+
+
+<!-- ``` -->
+
+
+<!-- Inputs {.sidebar}  -->
+<!-- ----------------------- -->
+
+<!-- ***Parametric model parameters*** -->
+
+<!-- ```{r,echo=FALSE} -->
+<!-- sliderInput("Normal2_n", -->
+<!--                  "$$n:$$", -->
+<!--                   min = 0, -->
+<!--                   max = 100, -->
+<!--                   step = 2, -->
+<!--                   value = 5.0) -->
+
+<!-- sliderInput("Normal2_mu", -->
+<!--                  "$$\\mu:$$", -->
+<!--                   min = -3.0, -->
+<!--                   max = 3.0, -->
+<!--                   step = 0.05, -->
+<!--                   value = 0.0) -->
+
+<!-- sliderInput("Normal2_vu", -->
+<!--                  "$$\\sigma^2:$$", -->
+<!--                   min = 0.01, -->
+<!--                   max = 3.0, -->
+<!--                   step = 0.05, -->
+<!--                   value = 0.1) -->
+<!-- ``` -->
+
+<!-- ***Prior hyper-parameters*** -->
+
+<!-- Note that it should be $2\tau_1^2<\tau_2+\tau_0$. -->
+
+<!-- ```{r,echo=FALSE} -->
+
+<!-- sliderInput("Normal2_tau0", -->
+<!--                  "$$\\tau_0:$$", -->
+<!--                   min = 1.0, -->
+<!--                   max = 100.0, -->
+<!--                   step = 0.05, -->
+<!--                   value = 1.0) -->
+
+<!-- sliderInput("Normal2_tau1", -->
+<!--                  "$$\\tau_1:$$", -->
+<!--                   min = -300, -->
+<!--                   max = 300.0, -->
+<!--                   step = 2, -->
+<!--                   value = 0.0) -->
+
+<!-- sliderInput("Normal2_tau2", -->
+<!--                  "$$\\tau_2:$$", -->
+<!--                   min = 0.0, -->
+<!--                   max = 150.0, -->
+<!--                   step = 0.1, -->
+<!--                   value = 100) -->
+<!-- ``` -->
+
+
+<!-- Column {.tabset} -->
+<!-- ----------------------- -->
+
+
+<!-- ### ***Description***  -->
+
+<!-- We consider the Bayesian model -->
+
+<!-- \[ -->
+<!-- \begin{cases} -->
+<!-- x_{i}|\mu,\sigma^2  -->
+<!-- & \overset{\text{iid}}{\sim}\text{N}(\mu,\sigma^{2}),\,\,\forall i=1:n\\ -->
+<!-- \mu|\sigma^2  -->
+<!-- &\sim \text{N}(\mu_{0},\frac{\lambda_0}{\sigma^{2}}) \\ -->
+<!-- \sigma^2  -->
+<!-- & \sim \text{IG}(a_0,b_0) -->
+<!-- \end{cases} -->
+<!-- \] -->
+
+<!-- The joint posterior distribution for $(\mu,\sigma^2)|x_{1:n}$ is:  -->
+<!-- \begin{align*} -->
+<!-- \begin{cases} -->
+<!-- \mu|x_{1:n},\sigma^2  -->
+<!-- &\sim \text{N}(\mu^{*},\frac{\lambda^{*}}{\sigma^{2}}) \\ -->
+<!-- \sigma^2|x_{1:n}  -->
+<!-- & \sim \text{IG}(a^{*},b^{*}) -->
+<!-- \end{cases} -->
+<!-- \end{align*} -->
+
+<!-- The marginal posterior distribution for $\mu|x_{1:n}$ is:  -->
+<!-- \begin{align*} -->
+<!-- \mu|x_{1:n}  -->
+<!-- &\sim -->
+<!-- \text{St}(\mu^{*},\frac{\lambda^{*}a^{*}}{b^{*}},2a^{*}) -->
+<!-- \end{align*} -->
+
+<!-- The marginal posterior distribution for $\sigma^2|x_{1:n}$ is:  -->
+<!-- \begin{align*} -->
+<!-- \sigma^2|x_{1:n}  -->
+<!-- & \sim  -->
+<!-- \text{IG}(a^{*},b^{*}) -->
+<!-- \end{align*} -->
+
+<!-- The predictive distribution for a future observation $x_{\text{new}}|x_{1:n}$ is -->
+
+<!-- \begin{align*} -->
+<!-- x_{\text{new}}|x_{1:n}  -->
+<!-- &\sim -->
+<!-- \text{St}(\mu^{*},\frac{\lambda^{*}a^{*}}{(\lambda^{*}+1)b^{*}},2a^{*}) -->
+<!-- \end{align*} -->
+
+<!-- Where: -->
+
+<!-- \begin{align*} -->
+<!-- \mu^{*}  -->
+<!-- &=  -->
+<!-- \frac{\lambda_{0}\mu_{0}+n\bar{x}}{\lambda_{0}+n} \\ -->
+<!-- \lambda^{*}  -->
+<!-- &= -->
+<!-- \lambda_{0}+n \\ -->
+<!-- a^{*} -->
+<!-- &= -->
+<!-- a+\frac{1}{2}n \\ -->
+<!-- b^{*} -->
+<!-- &= -->
+<!-- b -->
+<!-- +\frac{1}{2}ns^{2} -->
+<!-- +\frac{1}{2}\frac{\lambda_{0}n(\mu_{0}-\bar{x})^{2}}{\lambda_{0}+n}  -->
+<!-- \end{align*} -->
+
+
+<!-- ### ***Parametric inference*** -->
+
+<!-- ```{r,echo=FALSE} -->
+<!-- renderPlot({ -->
+<!--   plot_Normal2_param(mu=input$Normal2_mu, -->
+<!--               vu=input$Normal2_vu, -->
+<!--               n=input$Normal2_n, -->
+<!--             tau0=input$Normal2_tau0, -->
+<!--               tau1=input$Normal2_tau1, -->
+<!--               tau2=input$Normal2_tau2) -->
+<!--   }) -->
+<!-- ``` -->
+
+<!-- ### ***Predictive inference*** -->
+
+<!-- ```{r,echo=FALSE} -->
+<!-- renderPlot({ -->
+<!--   plot_Normal2_pred(mu=input$Normal2_mu, -->
+<!--               vu=input$Normal2_vu, -->
+<!--               n=input$Normal2_n, -->
+<!--             tau0=input$Normal2_tau0, -->
+<!--               tau1=input$Normal2_tau1, -->
+<!--               tau2=input$Normal2_tau2) -->
+<!--   }) -->
+<!-- ``` -->
 
 
 
