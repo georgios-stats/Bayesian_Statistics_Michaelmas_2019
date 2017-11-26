@@ -6,7 +6,8 @@ output:
 
 
 <!-- Weak law of large numbers Applet -->
-<!-- Copyright (C) 2027  Georgios Karagiannis -->
+<!-- Copyright (C) 2017  Georgios Karagiannis -->
+<!-- georgios.karagiannis@durham.ac.uk -->
 
 <!-- This program is free software: you can redistribute it and/or modify -->
 <!-- it under the terms of the GNU General Public License as published by -->
