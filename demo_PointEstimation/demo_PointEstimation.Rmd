@@ -442,6 +442,12 @@ The posterior distribution for $\theta|x_{1:n}$ is:
 \text{Be}(a^{*},b^{*})
 \end{align*}
 
+The predictive distribution for $x_{n+1}|x_{1:n}$ is: 
+\begin{align*}
+x_{n+1}|x_{1:n}
+&\sim
+\text{Bb}(a^{*},b^{*},1)
+\end{align*}
 
 Where
 
@@ -459,17 +465,17 @@ Where
 
 If $\mathcal{D}=\Theta\subset\mathbb{R}^{k}$, the Bayesian predictive point estimate $\delta(x_{1:n})$ of $\theta$ with respect to 
 
-1. the quadratic loss function  $\ell(\theta,\delta)=(\theta-\delta)^{T}H(\theta-\delta)$, where $H^{-1}$ exists, is the posterior mean $$\delta(x_{1:n})=E(\theta|x_{1:n})$$
+1. the quadratic loss function  $\ell(\theta,\delta)=(\theta-\delta)^{T}H(\theta-\delta)$, where $H^{-1}$ exists, is the posterior mean $$\delta(x_{1:n})=E^{\pi(d\theta|x_{1;n})}(\theta|x_{1:n})$$
 
-2. the weighted quadratic loss function $\ell(\theta,\delta)=w(\theta)(\theta-\delta)^{2}$, where $w(\theta)$ is a non negative function, is $$\delta(x_{1:n})=\frac{E(w(\theta)\theta|x_{1:n})}{E(w(\theta)|x_{1:n})}$$
+2. the weighted quadratic loss function $\ell(\theta,\delta)=w(\theta)(\theta-\delta)^{2}$, where $w(\theta)$ is a non negative function, is $$\delta(x_{1:n})=\frac{E^{\pi(d\theta|x_{1:n})}(w(\theta)\theta|x_{1:n})}{E^{\pi(d\theta|x_{1:n})}(w(\theta)|x_{1:n})}$$
 
 3. the  linear loss function $\ell(\theta,\delta)=c_{1}(\delta-\theta)I_{\theta\le\delta}(\delta)+c_{2}(\theta-\delta)I_{\theta>\delta}(\delta)$ is the posterior $\frac{c_{2}}{c_{1}+c_{2}}$-th quantile $$\pi(\theta\in(-\infty,\delta(x_{1:n}))|x_{1:n})=\frac{c_{2}}{c_{1}+c_{2}}$$
 
-    * the  absolute loss function $\ell(\theta,\delta)=|\theta-\delta|$ is the posterior median $$\delta(x_{1:n})=median(\theta|x_{1:n})$$.
+    * the  absolute loss function $\ell(\theta,\delta)=|\theta-\delta|$ is the posterior median $$\delta(x_{1:n})=\text{median}^{\pi(d\theta|x_{1:n})}(\theta|x_{1:n})$$.
 
 4. the  zero-one loss function $\ell(\theta,\delta)=1-I_{B_{\epsilon}(\delta)}(\theta)$, where $B_{\epsilon}(\delta)=(\theta\in\Theta\,|\,\text{dist}(\theta,\delta)<\epsilon)$ and $\text{dist}(\cdot,\cdot)$ is a distance (e.g. the Euclidean), is $$\delta(x_{1:n})=\arg\max_{\forall\delta}\pi(\theta\in B_{\epsilon}(\delta)|x_{1:n})$$
 
-    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=mode(\theta|x_{1:n})$$.
+    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=\text{mode}^{\pi(d\theta|x_{1:n})}(\theta|x_{1:n})$$.
 
 
 ***Point predictive estimation***
@@ -482,11 +488,11 @@ If $\mathcal{D}=\mathcal{X}\subset\mathbb{R}$, the Bayesian predictive point est
 
 3. the  linear loss function $\ell(y,\delta)=c_{1}(\delta-\theta)I_{y\le\delta}(\delta)+c_{2}(y-\delta)I_{y>\delta}(\delta)$ is the posterior $\frac{c_{2}}{c_{1}+c_{2}}$-th quantile $$p(y\in(-\infty,\delta(x_{1:n}))|x_{1:n})=\frac{c_{2}}{c_{1}+c_{2}}$$
 
-    * the  absolute loss function $\ell(y,\delta)=|y-\delta|$ is the posterior median $$\delta(x_{1:n})=median^{p(dy|x_{1;n})}(y|x_{1:n})$$.
+    * the  absolute loss function $\ell(y,\delta)=|y-\delta|$ is the posterior median $$\delta(x_{1:n})=\text{median}^{p(dy|x_{1;n})}(y|x_{1:n})$$.
 
 4. the  zero-one loss function $\ell(y,\delta)=1-I_{B_{\epsilon}(\delta)}(y)$, where $B_{\epsilon}(\delta)=(y\in\Theta\,|\,\text{dist}(y,\delta)<\epsilon)$ and $\text{dist}(\cdot,\cdot)$ is a distance (e.g. the Euclidean), is $$\delta(x_{1:n})=\arg\max_{\forall\delta}p(y\in B_{\epsilon}(\delta)|x_{1:n})$$
 
-    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=mode^{p(dy|x_{1;n})}(p|x_{1:n})$$.
+    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=\text{mode}^{p(dy|x_{1;n})}(p|x_{1:n})$$.
 
 
 
@@ -719,6 +725,13 @@ The posterior distribution for $\theta|x_{1:n}$ is:
 \text{Be}(\tau^{*}_{1}+1,\tau^{*}_{0}-\tau^{*}_{1}+1)
 \end{align*}
 
+The predictive distribution for $x_{n+1}|x_{1:n}$ is: 
+\begin{align*}
+x_{n+1}|x_{1:n}
+&\sim
+\text{Bb}(\tau^{*}_{1}+1,\tau^{*}_{0}-\tau^{*}_{1}+1,1)
+\end{align*}
+
 Where
 
 \begin{align*}
@@ -734,17 +747,17 @@ Where
 
 If $\mathcal{D}=\Theta\subset\mathbb{R}^{k}$, the Bayesian predictive point estimate $\delta(x_{1:n})$ of $\theta$ with respect to 
 
-1. the quadratic loss function  $\ell(\theta,\delta)=(\theta-\delta)^{T}H(\theta-\delta)$, where $H^{-1}$ exists, is the posterior mean $$\delta(x_{1:n})=E(\theta|x_{1:n})$$
+1. the quadratic loss function  $\ell(\theta,\delta)=(\theta-\delta)^{T}H(\theta-\delta)$, where $H^{-1}$ exists, is the posterior mean $$\delta(x_{1:n})=E^{\pi(d\theta|x_{1;n})}(\theta|x_{1:n})$$
 
-2. the weighted quadratic loss function $\ell(\theta,\delta)=w(\theta)(\theta-\delta)^{2}$, where $w(\theta)$ is a non negative function, is $$\delta(x_{1:n})=\frac{E(w(\theta)\theta|x_{1:n})}{E(w(\theta)|x_{1:n})}$$
+2. the weighted quadratic loss function $\ell(\theta,\delta)=w(\theta)(\theta-\delta)^{2}$, where $w(\theta)$ is a non negative function, is $$\delta(x_{1:n})=\frac{E^{\pi(d\theta|x_{1:n})}(w(\theta)\theta|x_{1:n})}{E^{\pi(d\theta|x_{1:n})}(w(\theta)|x_{1:n})}$$
 
 3. the  linear loss function $\ell(\theta,\delta)=c_{1}(\delta-\theta)I_{\theta\le\delta}(\delta)+c_{2}(\theta-\delta)I_{\theta>\delta}(\delta)$ is the posterior $\frac{c_{2}}{c_{1}+c_{2}}$-th quantile $$\pi(\theta\in(-\infty,\delta(x_{1:n}))|x_{1:n})=\frac{c_{2}}{c_{1}+c_{2}}$$
 
-    * the  absolute loss function $\ell(\theta,\delta)=|\theta-\delta|$ is the posterior median $$\delta(x_{1:n})=median(\theta|x_{1:n})$$.
+    * the  absolute loss function $\ell(\theta,\delta)=|\theta-\delta|$ is the posterior median $$\delta(x_{1:n})=\text{median}^{\pi(d\theta|x_{1:n})}(\theta|x_{1:n})$$.
 
 4. the  zero-one loss function $\ell(\theta,\delta)=1-I_{B_{\epsilon}(\delta)}(\theta)$, where $B_{\epsilon}(\delta)=(\theta\in\Theta\,|\,\text{dist}(\theta,\delta)<\epsilon)$ and $\text{dist}(\cdot,\cdot)$ is a distance (e.g. the Euclidean), is $$\delta(x_{1:n})=\arg\max_{\forall\delta}\pi(\theta\in B_{\epsilon}(\delta)|x_{1:n})$$
 
-    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=mode(\theta|x_{1:n})$$.
+    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=\text{mode}^{\pi(d\theta|x_{1:n})}(\theta|x_{1:n})$$.
 
 
 ***Point predictive estimation***
@@ -757,11 +770,11 @@ If $\mathcal{D}=\mathcal{X}\subset\mathbb{R}$, the Bayesian predictive point est
 
 3. the  linear loss function $\ell(y,\delta)=c_{1}(\delta-\theta)I_{y\le\delta}(\delta)+c_{2}(y-\delta)I_{y>\delta}(\delta)$ is the posterior $\frac{c_{2}}{c_{1}+c_{2}}$-th quantile $$p(y\in(-\infty,\delta(x_{1:n}))|x_{1:n})=\frac{c_{2}}{c_{1}+c_{2}}$$
 
-    * the  absolute loss function $\ell(y,\delta)=|y-\delta|$ is the posterior median $$\delta(x_{1:n})=median^{p(dy|x_{1;n})}(y|x_{1:n})$$.
+    * the  absolute loss function $\ell(y,\delta)=|y-\delta|$ is the posterior median $$\delta(x_{1:n})=\text{median}^{p(dy|x_{1;n})}(y|x_{1:n})$$.
 
 4. the  zero-one loss function $\ell(y,\delta)=1-I_{B_{\epsilon}(\delta)}(y)$, where $B_{\epsilon}(\delta)=(y\in\Theta\,|\,\text{dist}(y,\delta)<\epsilon)$ and $\text{dist}(\cdot,\cdot)$ is a distance (e.g. the Euclidean), is $$\delta(x_{1:n})=\arg\max_{\forall\delta}p(y\in B_{\epsilon}(\delta)|x_{1:n})$$
 
-    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=mode^{p(dy|x_{1;n})}(p|x_{1:n})$$.
+    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=\text{mode}^{p(dy|x_{1;n})}(p|x_{1:n})$$.
 
 
 
@@ -1087,8 +1100,8 @@ We consider the Bayesian model
 
 \[
 \begin{cases}
-x_{i}|\theta & \overset{\text{iid}}{\sim}\text{Br}(\theta),\,\,\forall i=1:n\\
-\theta & \sim \text{Be}(a,b)
+x_{i}|\theta & \overset{\text{iid}}{\sim}\text{Ex}(\theta),\,\,\forall i=1:n\\
+\theta & \sim \text{Ga}(a,b)
 \end{cases}
 \]
 
@@ -1096,7 +1109,14 @@ The posterior distribution for $\theta|x_{1:n}$ is:
 \begin{align*}
 \theta|x_{1:n}
 &\sim
-\text{Be}(a^{*},b^{*})
+\text{Ga}(a^{*},b^{*})
+\end{align*}
+
+The predictive distribution for $x_{n+1}|x_{1:n}$ is: 
+\begin{align*}
+x_{n+1}|x_{1:n}
+&\sim
+\text{Gg}(a^{*},b^{*},1)
 \end{align*}
 
 
@@ -1105,27 +1125,27 @@ Where
 \begin{align*}
  a^{*} 
  &=
- \sum_{i=1}^{n}x_{i}+a \\
+ a+n \\
  b^{*}
  &=
- n-\sum_{i=1}^{n}x_{i}+b
+b+\sum_{i=1}^{n}x_{i}
 \end{align*}
 
 ***Point parametric estimation***
 
 If $\mathcal{D}=\Theta\subset\mathbb{R}^{k}$, the Bayesian predictive point estimate $\delta(x_{1:n})$ of $\theta$ with respect to 
 
-1. the quadratic loss function  $\ell(\theta,\delta)=(\theta-\delta)^{T}H(\theta-\delta)$, where $H^{-1}$ exists, is the posterior mean $$\delta(x_{1:n})=E(\theta|x_{1:n})$$
+1. the quadratic loss function  $\ell(\theta,\delta)=(\theta-\delta)^{T}H(\theta-\delta)$, where $H^{-1}$ exists, is the posterior mean $$\delta(x_{1:n})=E^{\pi(d\theta|x_{1;n})}(\theta|x_{1:n})$$
 
-2. the weighted quadratic loss function $\ell(\theta,\delta)=w(\theta)(\theta-\delta)^{2}$, where $w(\theta)$ is a non negative function, is $$\delta(x_{1:n})=\frac{E(w(\theta)\theta|x_{1:n})}{E(w(\theta)|x_{1:n})}$$
+2. the weighted quadratic loss function $\ell(\theta,\delta)=w(\theta)(\theta-\delta)^{2}$, where $w(\theta)$ is a non negative function, is $$\delta(x_{1:n})=\frac{E^{\pi(d\theta|x_{1:n})}(w(\theta)\theta|x_{1:n})}{E^{\pi(d\theta|x_{1:n})}(w(\theta)|x_{1:n})}$$
 
 3. the  linear loss function $\ell(\theta,\delta)=c_{1}(\delta-\theta)I_{\theta\le\delta}(\delta)+c_{2}(\theta-\delta)I_{\theta>\delta}(\delta)$ is the posterior $\frac{c_{2}}{c_{1}+c_{2}}$-th quantile $$\pi(\theta\in(-\infty,\delta(x_{1:n}))|x_{1:n})=\frac{c_{2}}{c_{1}+c_{2}}$$
 
-    * the  absolute loss function $\ell(\theta,\delta)=|\theta-\delta|$ is the posterior median $$\delta(x_{1:n})=median(\theta|x_{1:n})$$.
+    * the  absolute loss function $\ell(\theta,\delta)=|\theta-\delta|$ is the posterior median $$\delta(x_{1:n})=\text{median}^{\pi(d\theta|x_{1:n})}(\theta|x_{1:n})$$.
 
 4. the  zero-one loss function $\ell(\theta,\delta)=1-I_{B_{\epsilon}(\delta)}(\theta)$, where $B_{\epsilon}(\delta)=(\theta\in\Theta\,|\,\text{dist}(\theta,\delta)<\epsilon)$ and $\text{dist}(\cdot,\cdot)$ is a distance (e.g. the Euclidean), is $$\delta(x_{1:n})=\arg\max_{\forall\delta}\pi(\theta\in B_{\epsilon}(\delta)|x_{1:n})$$
 
-    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=mode(\theta|x_{1:n})$$.
+    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=\text{mode}^{\pi(d\theta|x_{1:n})}(\theta|x_{1:n})$$.
 
 
 ***Point predictive estimation***
@@ -1138,11 +1158,11 @@ If $\mathcal{D}=\mathcal{X}\subset\mathbb{R}$, the Bayesian predictive point est
 
 3. the  linear loss function $\ell(y,\delta)=c_{1}(\delta-\theta)I_{y\le\delta}(\delta)+c_{2}(y-\delta)I_{y>\delta}(\delta)$ is the posterior $\frac{c_{2}}{c_{1}+c_{2}}$-th quantile $$p(y\in(-\infty,\delta(x_{1:n}))|x_{1:n})=\frac{c_{2}}{c_{1}+c_{2}}$$
 
-    * the  absolute loss function $\ell(y,\delta)=|y-\delta|$ is the posterior median $$\delta(x_{1:n})=median^{p(dy|x_{1;n})}(y|x_{1:n})$$.
+    * the  absolute loss function $\ell(y,\delta)=|y-\delta|$ is the posterior median $$\delta(x_{1:n})=\text{median}^{p(dy|x_{1;n})}(y|x_{1:n})$$.
 
 4. the  zero-one loss function $\ell(y,\delta)=1-I_{B_{\epsilon}(\delta)}(y)$, where $B_{\epsilon}(\delta)=(y\in\Theta\,|\,\text{dist}(y,\delta)<\epsilon)$ and $\text{dist}(\cdot,\cdot)$ is a distance (e.g. the Euclidean), is $$\delta(x_{1:n})=\arg\max_{\forall\delta}p(y\in B_{\epsilon}(\delta)|x_{1:n})$$
 
-    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=mode^{p(dy|x_{1;n})}(p|x_{1:n})$$.
+    * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=\text{mode}^{p(dy|x_{1;n})}(p|x_{1:n})$$.
 
 
 ### ***Parametric & predictive point estimation***
