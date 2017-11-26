@@ -36,17 +36,17 @@ You can click on the following links:
 
 
 + For the demo presenting standard distributions  
-      * <https://georgios-stats.shinyapps.io/demo_distributions/>  
+    * <https://georgios-stats.shinyapps.io/demo_distributions/>  
 + For the demo presenting Central Limit Theorem  
-      * <https://georgios-stats.shinyapps.io/demo_clt/>  
+    * <https://georgios-stats.shinyapps.io/demo_clt/>  
 + For the demo presenting the Weak Law of Large Numbers  
-      * <https://georgios-stats.shinyapps.io/demo_wlln/>  
+    * <https://georgios-stats.shinyapps.io/demo_wlln/>  
 + For the demo presenting the conjugate priors  
-      * <https://georgios-stats-1.shinyapps.io/demo_conjugatepriors/>  
+    * <https://georgios-stats-1.shinyapps.io/demo_conjugatepriors/>  
 + For the demo comparing Conjugate Jeffreys and Laplace priors  
-      * <https://georgios-stats-1.shinyapps.io/demo_conjugatejeffreyslaplacepriors/>  
+    * <https://georgios-stats-1.shinyapps.io/demo_conjugatejeffreyslaplacepriors/>  
 + For the demo presenting the Mixture priors  
-      * <https://georgios-stats-1.shinyapps.io/demo_mixturepriors/>  
+    * <https://georgios-stats-1.shinyapps.io/demo_mixturepriors/>  
 * For the demo presenting standard parametric/predictive Bayes point estimators  
     * <https://georgios-stats-1.shinyapps.io/demo_PointEstimation/> 
 
