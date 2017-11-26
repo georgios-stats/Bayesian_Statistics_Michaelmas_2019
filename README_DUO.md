@@ -1,7 +1,7 @@
 ---
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 # Bayesian Statistics
 
@@ -26,6 +26,8 @@ You can click on the following links:
       * <https://georgios-stats-1.shinyapps.io/demo_conjugatejeffreyslaplacepriors/>  
 + For the demo presenting the Mixture priors  
       * <https://georgios-stats-1.shinyapps.io/demo_mixturepriors/>  
+  * For the demo presenting standard parametric/predictive Bayes point estimators
+      * <https://georgios-stats-1.shinyapps.io/demo_PointEstimation/> 
 
 These applications are currently uploaded on non-Durham Univertity server, which means that we have only 25 active hours per mounth. If we exceed this limit, you will be able to run these applications localy on your computer by dowlnoaded them. (see below.)
 
@@ -52,5 +54,7 @@ In order to download, edit, run the Web Applets to your computer, do the followi
           * rmarkdown::run("./demo_ConjugateJeffreysLaplacePriors/demo_ConjugateJeffreysLaplacePriors.Rmd")
       * For the demo presenting the Mixture priors
           * rmarkdown::run("./demo_MixturePriors/demo_MixturePriors.Rmd")
+      * For the demo presenting standard parametric/predictive Bayes point estimators
+          * rmarkdown::run("./demo_PointEstimation/demo_PointEstimation.Rmd")
           
           
