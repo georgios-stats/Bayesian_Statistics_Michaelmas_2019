@@ -161,7 +161,7 @@ gammagamma_cdf<-function(q,a,b,n){
 }
 gammagamma_inv<-function(p,a,b,n){
   if (n==1) {
-     q <- b*(a*a/(a*a-p))^(1/a) ;
+     q <- b*( 1/(1-p) -1) ;
   } else {
    f1 <- function(x,a=a,b=b,n=n) gammagamma_cdf(x,a,b,n)
    f <- function(x) f1(x)
@@ -890,8 +890,7 @@ plot_Exponential_parampred <- function(theta=0.5, n=10, a=1, b=1, c1=1, c2=2) {
   y_max <- max(theta_post_pdf, theta_prior_pdf)
   y_max <- max(theta_post_pdf)
   
-  # par(mfrow=c(1,1))
-  layout( cbind( matrix(1,4,4), matrix(2,4,4) ) )
+  # layout( cbind( matrix(1,4,4), matrix(2,4,4) ) )
   
   # POSTERIOR
   
@@ -947,40 +946,40 @@ plot_Exponential_parampred <- function(theta=0.5, n=10, a=1, b=1, c1=1, c2=2) {
     
 
   
- # PREDICTION
-  
-    plot(x_pred, 
-       xnew_pred_pdf, 
-       type = "l",  
-       main='Predictive PDF', 
-       xlab = expression(x[new]),
-       ylab = expression(paste(p(x[new],"|",x[1:n]))), 
-       col="blue" ,
-      xlim=c(0,x_max),
-      ylim=c(0,y_max+0.2),
-      cex.lab=fntsz, 
-      cex.axis=fntsz, 
-      cex.main=fntsz, 
-      cex.sub=fntsz) ;
-
-  
-
-    
-  abline(v=xnew_mean, col="blue",lwd=3) ;
-  abline(v=xnew_median, col="palegreen4",lwd=3) ;
-  abline(v=xnew_quantile, col="black",lwd=3) ;
-
-  legend('topleft',
-        c(
-          'Pred. mean','Pred. median',
-          eval(expression(paste(c2/(c2+c1), " -th Quantile")))),
-        bg="transparent",
-        lty=c(1,1,1),
-        lwd=c(3,3,3),
-        col=c('blue','palegreen4','black'),
-        cex=fntsz
-    )
-    
+ # # PREDICTION
+ #  
+ #    plot(x_pred, 
+ #       xnew_pred_pdf, 
+ #       type = "l",  
+ #       main='Predictive PDF', 
+ #       xlab = expression(x[new]),
+ #       ylab = expression(paste(p(x[new],"|",x[1:n]))), 
+ #       col="blue" ,
+ #      xlim=c(0,x_max),
+ #      ylim=c(0,y_max+0.2),
+ #      cex.lab=fntsz, 
+ #      cex.axis=fntsz, 
+ #      cex.main=fntsz, 
+ #      cex.sub=fntsz) ;
+ # 
+ #  
+ # 
+ #    
+ #  abline(v=xnew_mean, col="blue",lwd=3) ;
+ #  abline(v=xnew_median, col="palegreen4",lwd=3) ;
+ #  abline(v=xnew_quantile, col="black",lwd=3) ;
+ # 
+ #  legend('topleft',
+ #        c(
+ #          'Pred. mean','Pred. median',
+ #          eval(expression(paste(c2/(c2+c1), " -th Quantile")))),
+ #        bg="transparent",
+ #        lty=c(1,1,1),
+ #        lwd=c(3,3,3),
+ #        col=c('blue','palegreen4','black'),
+ #        cex=fntsz
+ #    )
+ #    
   
 }
 
@@ -1121,7 +1120,7 @@ If $\mathcal{D}=\mathcal{X}\subset\mathbb{R}$, the Bayesian predictive point est
     * For small $\epsilon\rightarrow0$, it is the mode of the predictive distribution $$\delta(x_{1:n})=\text{mode}^{p(dy|x_{1;n})}(p|x_{1:n})$$.
 
 
-### ***Parametric & predictive point estimation***
+### ***Parametric point estimation***
 
 ```{r,echo=FALSE}
 renderPlot({
