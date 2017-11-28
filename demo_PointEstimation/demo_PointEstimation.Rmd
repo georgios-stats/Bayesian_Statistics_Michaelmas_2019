@@ -169,17 +169,14 @@ gammagamma_inv<-function(p,a,b,n){
   }
   return(q)
 }
-gammagamma.mean<-function(a,b,n) {
+gammagamma_mean<-function(a,b,n) {
   if(a<=1) return(-1) ;
   return(n*b/(a-1))
 }
-gammagamma.mode<-function(a,b,n) {
+gammagamma_mode<-function(a,b,n) {
   return((n-1)*b/(a+1))
 }
 ```
-
-
-
 
 
 ```{r}
@@ -778,7 +775,7 @@ If $\mathcal{D}=\mathcal{X}\subset\mathbb{R}$, the Bayesian predictive point est
 
 
 
-### ***Parametric & predictive point estimation***
+### ***Parametric point estimation***
 
 ```{r,echo=FALSE}
 renderPlot({
@@ -837,11 +834,11 @@ Exponential.post.quantile <- function(p,r,n,a,b){
 }
 
 Exponential.pred.mean <- function(r,n,a,b){
-  return(  gammagamma.mean(a+n,b+r,1)  )
+  return(  gammagamma_mean(a+n,b+r,1)  )
 }
-Exponential.pred.mode <- function(r,n,a,b){
-  return( gammagamma.mode(a+n,b+r,1)  )  ;
-}
+#Exponential.pred.mode <- function(r,n,a,b){
+#  return( gammagamma.mode(a+n,b+r,1)  )  ;
+#}
 Exponential.pred.median <- function(r,n,a,b){
   return( gammagamma_inv(0.5,a+n,b+r,1)  )  ;
 }
@@ -885,7 +882,7 @@ plot_Exponential_parampred <- function(theta=0.5, n=10, a=1, b=1, c1=1, c2=2) {
   theta_quantile <- Exponential.post.quantile(c1/(c1+c2),r,n,a,b) ;
   
   xnew_mean <- Exponential.pred.mean(r,n,a,b) ;
-  xnew_mode <- Exponential.pred.mode(r,n,a,b) ;
+  #xnew_mode <- Exponential.pred.mode(r,n,a,b) ;
   xnew_median <- Exponential.pred.median(r,n,a,b) ;
   xnew_quantile <- Exponential.pred.quantile(c1/(c1+c2),r,n,a,b) ;
   
@@ -930,47 +927,25 @@ plot_Exponential_parampred <- function(theta=0.5, n=10, a=1, b=1, c1=1, c2=2) {
         col=c('blue','green'),
         cex=fntsz
     )
-  
-  if (theta_mode < 0) {
     
   abline(v=theta_mean, col="blue",lwd=3) ;
   abline(v=theta_median, col="palegreen4",lwd=3) ;
-  abline(v=0.5, col="white",lwd=3) ;
   abline(v=theta_quantile, col="black",lwd=3) ;
   abline(v=theta, col="red",lwd=3)
   
   legend('topleft',
         c(
           expression(paste(theta, " real value")),
-          'Post. mean','Post. median','Post. mode',
+          'Post. mean','Post. median',
           eval(expression(paste(c2/(c2+c1), " -th Quantile")))),
         bg="transparent",
-        lty=c(1,1,1,1,1),
-        lwd=c(3,3,3,3,3),
-        col=c('red','blue','palegreen4','white','black'),
+        lty=c(1,1,1,1),
+        lwd=c(3,3,3,3),
+        col=c('red','blue','palegreen4','black'),
         cex=fntsz
     )
     
-  } else {
-  
-  abline(v=theta_mean, col="blue",lwd=3) ;
-  abline(v=theta_median, col="palegreen4",lwd=3) ;
-  abline(v=theta_mode, col="sienna",lwd=3) ;
-  abline(v=theta_quantile, col="black",lwd=3) ;
-  abline(v=theta, col="red",lwd=3)
-  
-  legend('topleft',
-        c(
-          expression(paste(theta, " real value")),
-          'Post. mean','Post. median','Post. mode',
-          eval(expression(paste(c2/(c2+c1), " -th Quantile")))),
-        bg="transparent",
-        lty=c(1,1,1,1,1),
-        lwd=c(3,3,3,3,3),
-        col=c('red','blue','palegreen4','sienna','black'),
-        cex=fntsz
-    )
-  }
+
   
  # PREDICTION
   
@@ -989,42 +964,23 @@ plot_Exponential_parampred <- function(theta=0.5, n=10, a=1, b=1, c1=1, c2=2) {
       cex.sub=fntsz) ;
 
   
-  if (xnew_mode < 0) {
+
     
   abline(v=xnew_mean, col="blue",lwd=3) ;
   abline(v=xnew_median, col="palegreen4",lwd=3) ;
-  abline(v=0.5, col="white",lwd=3) ;
   abline(v=xnew_quantile, col="black",lwd=3) ;
 
   legend('topleft',
         c(
-          'Pred. mean','Pred. median','Pred. mode',
+          'Pred. mean','Pred. median',
           eval(expression(paste(c2/(c2+c1), " -th Quantile")))),
         bg="transparent",
-        lty=c(1,1,1,1),
-        lwd=c(3,3,3,3),
-        col=c('blue','palegreen4','white','black'),
+        lty=c(1,1,1),
+        lwd=c(3,3,3),
+        col=c('blue','palegreen4','black'),
         cex=fntsz
     )
     
-  } else {
-  
-  abline(v=xnew_mean, col="blue",lwd=3) ;
-  abline(v=xnew_median, col="palegreen4",lwd=3) ;
-  abline(v=xnew_mode, col="sienna",lwd=3) ;
-  abline(v=xnew_quantile, col="white",lwd=3) ;
-
-  legend('topleft',
-        c(
-          'Pred. mean','Pred. median','Pred. mode',
-          eval(expression(paste(c2/(c2+c1), " -th Quantile")))),
-        bg="transparent",
-        lty=c(1,1,1,1),
-        lwd=c(3,3,3,3),
-        col=c('blue','palegreen4','sienna','black'),
-        cex=fntsz
-    )
-  }
   
 }
 
