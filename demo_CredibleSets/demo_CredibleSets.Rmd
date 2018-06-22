@@ -153,10 +153,6 @@ plot_cr_uni <- function(
   
   # compute the CI mass
   
-  text( x_min+0.3, k_cut, 
-        paste('k = ',toString(format(k_cut,digits=4) )),
-        cex=fntsz)
-  
   # check if it is a CI
   alpha_cr <- 1-comp_mass_uni(crint, a, b)
   if ( 1-alpha_cr>=1-alpha   )
@@ -165,6 +161,13 @@ plot_cr_uni <- function(
   else
     text( 0.5, 0.5, 
           'NOT BINGO!!!'  ,
+        cex=fntsz)
+  
+    text( x_min+0.1, k_cut+0.05, 
+        paste('k = ',toString(format(k_cut,digits=4) )),
+        cex=fntsz)
+    text( x_min+0.3, k_cut+0.05, 
+        paste('mass=',toString(format(1-alpha_cr,digits=4) )),
         cex=fntsz)
   
   # plot shaded area of the CI
@@ -185,9 +188,9 @@ plot_cr_uni <- function(
   legend('topright',
          bg="transparent",
          c( 
-           paste('Credible interval mass..: ', toString(format(1-alpha_cr,digits=4)), sep=''), 
+           paste('Interval mass..: ', toString(format(1-alpha_cr,digits=4)), sep=''), 
            'Bounbaries', 
-           paste( 'k ........................................:',toString(format(k_cut,digits=4) ) ) 
+           paste( 'k .....................:',toString(format(k_cut,digits=4) ) ) 
          ),
          lty=c(1),
          lwd=c(2.5),
@@ -501,11 +504,6 @@ plot_cr_mult <- function(
   
   # compute the CI mass
   
-  text( x_min+10, k_cut, 
-        paste('k = ',toString(format(k_cut,digits=4) )),
-          cex=fntsz
-        )
-  
   # check if it is a CI
   alpha_cr <- 1-comp_mass_mult(crint)
   if ( 1-alpha_cr>=1-alpha   )
@@ -513,6 +511,13 @@ plot_cr_mult <- function(
   else
     text( 0, 0.02, 'NOT BINGO!!!' , cex=fntsz )
     
+      text( x_min+10, k_cut+0.001, 
+        paste('k = ',toString(format(k_cut,digits=4) )),
+        cex=fntsz)
+    text( x_min+30, k_cut+0.001, 
+        paste('mass=',toString(format(1-alpha_cr,digits=4) )),
+        cex=fntsz)
+  
   # plot shaded area of the CI
  
   n <- dim(crint)[1]
@@ -531,14 +536,14 @@ plot_cr_mult <- function(
   legend('topright',
          bg="transparent",
          c( 
-           paste('Credible interval mass..: ', toString(format(1-alpha_cr,digits=4)), sep=''), 
+           paste('Interval mass..: ', toString(format(1-alpha_cr,digits=4)), sep=''), 
            'Bounbaries', 
-           paste( 'k ........................................:',toString(format(k_cut,digits=4) ) ) 
-           ),
+           paste( 'k .....................:',toString(format(k_cut,digits=4) ) ) 
+         ),
          lty=c(1),
          lwd=c(2.5),
          col=c('blue', 'green', 'red'),
-          cex=fntsz
+        cex=fntsz
   ) 
   
 }
