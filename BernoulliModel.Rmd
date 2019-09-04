@@ -1,0 +1,888 @@
+---
+title: "Bernoulli model with conjugate priors"
+subtitle: "Case study: Space shuttle Challenger disaster"
+author: "Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)"
+output:
+  html_document:
+    df_print: paged
+    number_sections: true
+  word_document: default
+  html_notebook: 
+    number_sections: true
+  pdf_document: default
+---
+[Back to the main document](./main.nb.html)
+
+```{r, results="hide"}
+rm(list=ls())
+```
+
+
+---
+
+***Aim***
+
+Students will become able to:  
+
++ produce Monte Carlo approximations of posterior quantities required for Bayesian analysis with the RJAGS R package  
+
++ implement Bayesian posterior analysis in R with RJAGS package  
+
+Students are not required to learn by heart any of the concepts discussed
+
+---
+
+***Reference list***
+
+*The material about RJAGS package is not examinable material, but it is provided for the interested student. It contains references that students can follow if they want to further explore the concepts introdced.*
+
++ Lecture notes:  
+    + the examples and exercises related to the Bernoulli model with conjugate prior  
+    
++ Application (optional):
+    + [Dalal, S. R., Fowlkes, E. B., & Hoadley, B. (1989). Risk analysis of the space shuttle: Pre-Challenger prediction of failure. Journal of the American Statistical Association, 84(408), 945-957.](https://www.tandfonline.com/doi/abs/10.1080/01621459.1989.10478858)    
+
++ References for *RJAGS*:  
+    + [JAGS homepage](http://mcmc-jags.sourceforge.net)  
+    + [JAGS R CRAN Repository](https://cran.r-project.org/web/packages/rjags/index.html)  
+    + [JAGS Reference Manual](https://cran.r-project.org/web/packages/rjags/rjags.pdf)  
+    + [JAGS user manual](https://sourceforge.net/projects/mcmc-jags/files/Manuals/4.x/jags_user_manual.pdf/download) 
+
++ Reference for *R*:  
+    + [Cheat sheet with basic commands](https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf)   
+
++ Reference of *rmarkdown* (optional):  
+    + [R Markdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)  
+    + [R Markdown Reference Guide](http://442r58kc8ke1y38f62ssb208-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)  
+    + [knitr options](https://yihui.name/knitr/options)
+
++ Reference for *Latex* (optional):  
+    + [Latex Cheat Sheet](https://wch.github.io/latexsheet/latexsheet-a4.pdf)  
+
+---
+
+***New software***   
+
++ R package `rjags` functions:    
+    + `jags.model{rjags}`  
+    + `jags.samples{rjags}` 
+    + `update{rjags}`
+
+---
+
+
+# Application: Challenger O-ring {-}
+
+On January 28, 1986, a routine launch was anticipated for the Challenger space shuttle. Seventy-three seconds into the flight, disaster happened: the shuttle broke apart, killing all seven crew members on board. [Here is the video](https://youtu.be/fSTrmJtHLFU?t=99). The Rogers commission concluded that the Challenger accident was caused by gas leak through the 6 O-ring joints of the shuttle. Essentially the presence of distressed O-ring joints was the crusial factor that caused the explosion. 
+
+[Dalal, Fowlkes and Hoadley (1989)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1989.10478858) analysed a dataset that contains the presence of   distressed O-rings, the temperature in the platform, and the leal check pressure  for 23 previous shuttle flights. The the data-set is provided below, where in column *Defective.O.rings*, (1) stands for presence of distressed O-rings, and (0) for absence, while the rest columns are self explained. 
+
+
+```{r, results="hide"}
+# Load R package for printing
+library(knitr)
+library(kableExtra)
+```
+
+```{r, results="hide"}
+# load the data
+mydata <- read.csv("./challenger_data.csv")
+# print data 
+## (that's a sophisticated command with fancy output, feel free to ignore it)
+kable(mydata)%>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+Here,  
+
++ we will use only the observations in variable *Defective.O.rings* (so ignore the temperature and pressure measurements) from *04/12/1981* to *01/12/1986* ($23$ flights), with purpose to:  
+
++ learn the (limiting relative) frequency of having defective O-rings? 
+
++ predict the outcome in the $24$th flight on	*1/28/86*, given the information from the previous $23$ flights considered.
+
+---
+
+# The model: Bernoulli model {-}
+
+Let $y_{i}$ denote the presence of a defective O-ring in the $i$th flight ($0$ for absence, and $1$ for presence).
+
+Regarding the statistical model, we assume that $y_{i}$ can be modeled as observations generated independently from  a Bernoulli distribution with with common parameter $p$. Here, $p$ denotes the relative frequency of defective O-rings at any flight.  
+
+Regarding the prior model, we assign a Beta prior distribution with fixed hyper-parameters $a_0=1.0$, $b_0=1.0$ on $p$ to account for its uncertainty. 
+
+The Bayesian hierarchical model under consideration is:  
+\[
+\begin{cases}
+y_{i}|p\sim & \text{Bernoulli}(p),\quad\text{for, }i=1,...,n\\
+p\sim & \text{Beta}(a_0,b_0) ,
+\end{cases}
+\]
+with hyper-parameter values $a_0=1.0$, $b_0=1.0$.  
+
+# Task
+
+Write the RJAGS program implementing the hierarchical model above, in order a sample of size $N=100000$ from the posterior distribution  $$p^{(j)}\sim\pi(p|y_{1:n})\  ,\  \  j=1,...,N.$$
+
+Analysis using the rjags package proceeds in steps: 
+
+1. Load the library `rjags`  
+
+2. Create an input script, for rjags, containing the Bayesian hierarchical model  
+
+3. Create an input list, for jags, containing the data and fixed  parameters of the model  
+
+    + use `list {base}`
+
+4. Creates an object of class “jags”. To do this you need to read the model file by using the `jags.model{rjags}` function.
+
+    + use `jags.model{rjags}`
+
+5. Generate a posterior sample. To do this you need to  extract samples from the model object using the jags.samples function. 
+
+    + use `update{rjags}`  ;  `jags.samples{rjags}`
+
+
+## ... addressing {-}
+
+***step 1***
+
+Load the library
+
+```{r, results="hide"}
+# Load rjags
+library("rjags") 
+```
+
+***step 2***
+
+Create an input script, for rjags, containing the Bayesian hierarchical model  
+
+```{r}
+# Input parameters  : n, y, a_0, b_0
+# output parameters : p
+hierarhicalmodel <- "
+
+  model {
+
+  # this is related tot he sampling distribution
+    
+    for ( i in 1 : n ) {
+      y[ i ] ~ dbern( p )
+    }
+    
+   # this is related to the prior distributions
+    
+    p ~ dbeta( a_0 , b_0 )
+    
+  }
+
+"
+```
+
+***step 3***
+
+Create an input list, for jags, containing the data and fixed  parameters of the model  
+
+```{r}
+
+y_obs <- mydata[ -nrow(mydata) , 4 ] # exclude the last row, and use only the 4th column
+
+y_obs <- as.numeric( y_obs == 1 )    # make it numeric 
+
+n_obs <- length( y_obs )
+
+a_0 <- 1.0
+
+b_0 <- 1.0
+
+data.bayes <- list(y = y_obs,
+                    n = n_obs,
+                    a_0 = a_0,
+                    b_0 = b_0)
+```
+
+***step 4***
+
+Create an input list, for jags, containing the data and fixed  parameters of the model 
+
+```{r, results="hide"}
+model.smpl <- jags.model( file = textConnection(hierarhicalmodel),
+                          data = data.bayes)
+
+```
+
+For further reading: 
+
+Alternatively we could have used the routine `coda.samples{rjags}` returning the same information but with an object of type `mcmc.list` that can be analysed by the tools provided in the R packages `coda` and `boa`. We do not discuss about these packages as the are not in stable release yet, and they may contain bugs. Pls keep an eye on them.
+
+
+
+***step 5***
+
+Initialize the sampler with $N_{\text{adapt}}=1000$ iterations.   
+
++ This is a warming-up procedure (used as a black-box), where the sampler is automatically tuned and calibated before it starts generatign your samples.   
+
++ Regarding $N_{\text{adapt}}=1000$, the larger the better.
+
+```{r}
+adapt( object = model.smpl,
+       n.iter = 1000 )
+```
+
+***step 6***
+
+Generate a posterior sample of size $N=10000$.
+
+Use  
+
++ `jags.samples{rjags}`  
+
+<!-- Function jags.samples initially generates a sample sequence of `n.iter` values, but it returns as a sample only every  `thin` sample value from the initial sample sequence. Hence the sample that it returns has size $N = $ `n.iter` $\times$ `thin`.  -->
+
+We need to pay attention on two flaqs:  
+
++ the `n.iter`: the total size of the total sample sequence.   
+
+<!-- + the `thin`: the thining interval -->
+
++ the `variable.names`: it specifies the names of the random variables correspondign to the posterior samples I am interested in generating   
+
+
+
+```{r, results="hide"}
+N = 10000      # the size of the sample we ll gonna get
+output = jags.samples( model= model.smpl,          # the model
+                       variable.names= c("p"),    # names of variables to be sampled
+                       n.iter = N                # size of sample
+                       )
+```
+
+Check the names of the variables sampled  
+
++ use `names {base}`
+
+```{r}
+names(output)
+```
+
+Check the dimensions of each of the variables sampled  
+
++ use `dim {base}`
+
+```{r}
+dim( output$p )
+# the first dimension is the numbers of columns of the variable
+# the second dimention is the size of the sample drawn
+# the thirs dimention is the number of the sub-samples drawn (in our case it is just 1)
+```
+
+Copy the sample of each variable in a vector with a more friendly name...
+
+```{r}
+pr.smpl <-output$p
+```
+
+
+---
+
+# Task 
+
+Extract the sample drawn from the posterior distribution $$p^{(j)}\sim\pi(p|y_{1:n})\  \  j=1,...,N$$ and print the trace plot of the sample. 
+
+Use functions:  
+    
++ `plot {graphics}`.
+
+Snapshot from Tem 2:  
+
++ A good quality sample for the purposes of Monte Carlo integration is the one whose trace plot looks completely uncorelated.  
+    + e.g. like the independence assumption in the siple linear regression in SC2.  
+
++ To improve the quality of the sample, you can go back to the sampling stem and play with the flaq values of `n.iter` and `thin` in `jags.samples{rjags}`.  
+
+### ... addressing {-}
+
+```{r}
+# extract the sample from the jags object
+pr.smpl <-pr.smpl[1,,]
+```
+
+
+```{r}
+# draw the trace plots
+z <- pr.smpl
+plot(z,
+     type = "l",
+     main = "Trace plot of p",
+     xlab = "iteration",
+     ylab = "p",
+     ylim = c(-0.1,1.1)
+     )
+```
+
+Well, they all look prety random. That's cool!
+
+---
+
+
+
+# Task
+
++ Compute and plot the MC approximation for the posterior distribution cumulative function (CDF) of $p$, by computing the empirical CDF as 
+\begin{align*}
+F_{\pi}(p\le c|y_{1:n}) 
+&=   E_{\pi}(\text{1}(p\le c)|y_{1:n}) \\
+&\approx \frac{1}{N}\sum_{i=1}^{N}\text{1}(p^{(i)}\le c)
+\end{align*}
+for $c\in (0,1)$
+
+
++ Compute and plot the exact posterior CDF  of $p$,  which is the CDF of the distribution 
+\[
+p|y_{1:n}\sim\text{Beta}(a_{n},b_{n})
+\]
+where  
+\begin{align*}
+a_{n}= & a_{0}+n\bar{y}\\
+b_{n}= & b_{0}+n-n\bar{y}.
+\end{align*} 
+
+
+
+<!-- which is  -->
+<!-- $$ -->
+<!-- F_{\pi}(p\le c|y_{1:n}) -->
+<!-- = -->
+<!-- \int_0^c\frac{1}{B(a_n,b_n)} p^{a_n-1}(1-p)^{a_n-1} \text{1}(p\in [0,1])\text{d}p -->
+<!-- $$ -->
+by printing them on the same plot.  
+
+
+Use functions:  
+
++ `lines {graphics}`  
+
+### ... addressing {-}
+
+Regarding the posterior CDF ...
+
+```{r}
+# Draw the histogram as the MC approximate of the CDF
+z <- pr.smpl
+x_plot <- seq( from = 0.001, to = 0.999, length.out = 100)
+y_plot <- rep(NaN, 100)
+for (i in 1:100) y_plot[i] <- mean(z<=x_plot[i])
+plot(x_plot,
+     y_plot,
+     type = "l",
+     main = "CDF of p",
+     xlab = "p",
+     ylab = "CDF")
+# Draw the Exact CDF
+a_n = a_0+n_obs*mean(y_obs)
+b_n = b_0+n_obs-n_obs*mean(y_obs)
+x_plot <- seq( from = 0.001, to = 0.999, length.out = 100)
+y_plot <- pbeta(x_plot, a_n, b_n )
+lines( x_plot, 
+       y_plot,
+       col = 'red'
+       )
+# Create a legend
+legend("topright",
+       legend=c("MC approx.", "Exact"),
+       lty = c(1,1),
+       col=c("black", "red"))
+```
+
+Well, we can observe a perfect match!!!
+
+---
+
+
+# Task
+
++ Compute and plot the MC approximation for the posterior distribution density of $p|y_{1:n}$ as a histogram
+$$
+\pi(p|y_{1:n}) \approx \frac{1}{2\epsilon}\frac{1}{N}\sum_{j=1}^{N} \text{1}\left(p^{(j)}\in (p-\epsilon,p+\epsilon]\right) \  \text{for small }\epsilon
+$$ 
+for $p\in (0,1)$,   
+
+    + use the function `hist {graphics}` provided from R, instead... no need for you to choose the optimal $\epsilon$ value.  
+
++ Compute and plot the exact the posterior distribution density of $p|y_{1:n}$ which is the PDF of 
+\[
+p|y_{1:n}\sim\text{Beta}(a_{n},b_{n})
+\]
+where  
+\begin{align*}
+a_{n}= & a_{0}+n\bar{y}\\
+b_{n}= & b_{0}+n-n\bar{y}.
+\end{align*}
+
+
+Use functions:  
+
++ `hist {graphics}` 
+
+### ... addressing {-}
+
+Regarding the posterior PDF...
+
+```{r}
+# Draw the histogram as the MC approximate of the PDF
+z <- pr.smpl
+hist(z,
+     probability = TRUE,
+     main = "Density of p",
+     xlab = "p",
+     ylab = "PDF")
+# Draw the Exact PDF
+a_n = a_0+n_obs*mean(y_obs)
+b_n = b_0+n_obs-n_obs*mean(y_obs)
+x_plot <- seq( from = 0.001, to = 0.999, length.out = 100)
+y_plot <- dbeta(x_plot, a_n, b_n )
+lines( x_plot, 
+       y_plot,
+       col = 'red'
+       )
+# Create a legend
+legend("topright",
+       legend=c("MC approx.", "Exact"),
+       lty = c(1,1),
+       col=c("black", "red"))
+```  
+Well, we can observe a perfect match!!!
+
+---
+
+# Task  
+
++ Compute the MC approximate of the   posterior probability that the frequence parameter $p$ is greater than or equal to $0.5$ as     
+\begin{align}
+\text{Pr}_\pi (p\ge 0.5|y_{1:n}) =& 1-\text{Pr}_\pi (p < 0.5|y_{1:n})\\
+=& 1-\text{E}_\pi (\text{1}(p < 0.5)|y_{1:n})\\
+\approx & \frac{1}{N}\sum_{i=1}^{N} (\text{1}(p^{(i)} < 0.5))
+\end{align}  
+
++ Compute its exact value of as   
+\begin{align}
+\text{Pr}_\pi (p\ge 0.5|y_{1:n}) =& 1-\text{Pr}_\pi (p< 0.5|y_{1:n}) \\
+& 1-\text{Pr}_{\text{Beta}(a_{n},b_{n})} (p < 0.5|y_{1:n}) \\
+& 1-\int_{-\infty}^{0.5} \text{Beta}(p|a_{n},b_{n}) \text{d}p
+\end{align} 
+where
+\begin{align*}
+a_{n}= & a_{0}+n\bar{y}\\
+b_{n}= & b_{0}+n-n\bar{y}
+\end{align*}
+ 
+
+
+### ... addressing {-}
+
+The MC approximate is 
+
+```{r}
+# Draw the histogram as the MC approximate of the PDF
+z <- pr.smpl
+Pr.p.mc <- 1-mean(z<=0.5)
+Pr.p.mc 
+```
+
+The exact value is 
+```{r}
+a_n = a_0+n_obs*mean(y_obs)
+b_n = b_0+n_obs-n_obs*mean(y_obs)
+Pr.p.ex <- 1- pbeta(0.5, a_n, b_n)
+Pr.p.ex
+```
+
+The MC approximate is close to the exact values.  
+
+---
+
+# Task  
+
++ compute the MC approximate of the  $95$% posterior equal tail credible interval of the frequency parameter $p$ is   
+$$
+[
+Q_{0.025}(p|y_{1:n})\  ,\  Q_{0.975}(p|y_{1:n})
+]
+$$
+where $Q_{\alpha}(p|y_{1:n})$ 
+<!-- $$ -->
+<!-- Q_{\alpha}(p|y_{1:n}) = F_{p}^{-1}(\alpha|y_{1:n}) -->
+<!-- $$ -->
+is the $\alpha$-th quantile of the posterior distribution of $p$  
+
++ compute the exact $95$% posterior equal tail credible interval of the frequency parameter $p$ is   
+$$
+[
+Q_{0.025}(p|y_{1:n})\  ,\  Q_{0.975}(p|y_{1:n})
+]
+$$
+where $Q_{\alpha}(p|y_{1:n})$ 
+<!-- $$ -->
+<!-- Q_{\alpha}(p|y_{1:n}) = F_{p}^{-1}(\alpha|y_{1:n}) -->
+<!-- $$ -->
+is the $\alpha$-th quantile of the posterior distribution of $p$ which is   
+$$
+p\sim \text{Beta}(a_{n},b_{n})
+$$
+where
+\begin{align*}
+a_{n}= & a_{0}+n\bar{y}\\
+b_{n}= & b_{0}+n-n\bar{y}
+\end{align*}
+
+
+
+
+Use:  
+
++ `quantile{stats}`  
++ `qbeta{stats}`  
+
+
+### ... addressing {-}
+
+The MC approximate $95$% credible interval for $p$ is 
+```{r}
+z <- pr.smpl
+CI.mc <- quantile(z, probs = c(0.025, 0.0975))
+CI.mc
+```
+
+and the exact  
+$95$% credible interval for $p$ is 
+```{r}
+a_n <- a_0+n_obs*mean(y_obs)
+b_n <- b_0+n_obs-n_obs*mean(y_obs)
+CI.exact <- qbeta(c(0.025, 0.0975),
+                  shape1 = a_n,
+                  shape2 = b_n)
+CI.exact
+```
+
+---
+
+# Task 
+
+
++ Compute the MC approximate of the posterior expected value of $p$,  $\text{E}_{\pi}(p|y_{1:n})$, as
+$$
+\text{E}_{\pi}(p|y_{1:n}) \approx \frac{1}{N}\sum_{i=1}^{N}p^{(i)}
+$$
+
++ Compute exact value of $\text{E}(p|y_{1:n})$  which is
+\[
+\text{E}_{\pi}(p|y_{1:n})=\frac{a_{n}}{a_{n}+b_{n}}
+\]
+where
+\begin{align*}
+a_{n}= & a_{0}+n\bar{y}\\
+b_{n}= & b_{0}+n-n\bar{y}
+\end{align*}
+
+### ... addressing {-}
+
+Regarding the MC approximate of  $\text{E}(p|y_{1:n})$  it is   
+```{r}
+# Draw the histogram as the MC approximate of the PDF
+z <- pr.smpl
+E_mc <- mean(z)
+print(E_mc)
+```
+
+Regarding the exact value of  $\text{E}(p|y_{1:n})$  it is   
+```{r}
+a_n <- a_0+n_obs*mean(y_obs)
+b_n <- b_0+n_obs-n_obs*mean(y_obs)
+E_exact <- a_n / (a_n+b_n)
+print(E_exact)
+```
+
+We observe that the two values are prety close each other:  
+
++ I observe that the MC approximation is `r E_mc`, while the Exact value is `r E_exact`. 
+
++ So their absolute different is `r abs(E_mc-E_exact)`.
+
++ So the MC approximation provides a good approximation!!!
+
+---
+
+# Task  
+
++ Compute the MC approximate of the posterior expected value of the odds parameter $\theta=\frac{p}{1-p}$ which is denoted as $\text{E}_{\pi}(\theta|y_{1:n})$.  
+$$
+\text{E}_{\pi}(\theta|y_{1:n})=\text{E}_{\pi}(\frac{p}{1-p}|y_{1:n})\approx \frac{1}{N}\sum_{i=1}^{N}\frac{p^{(i)}}{1-p^{(i)}}
+$$
+
++ Compute the MC approximation of $\text{E}_{\pi}(\theta|y_{1:n})$ with its exact value   which is 
+\[
+\text{E}_{\pi}(\theta|y_{1:n})=\text{E}_{\pi}(\frac{p}{1-p}|y_{1:n})=\frac{a_{n}}{b_{n}-1}
+\]
+where
+\begin{align*}
+a_{n}= & a_{0}+n\bar{y}\\
+b_{n}= & b_{0}+n-n\bar{y}
+\end{align*}
+
+
+
+### ... addressing {-}
+
+Regarding the MC approximate of  $\text{E}(\theta|y_{1:n})$  it is   
+```{r}
+# Draw the histogram as the MC approximate of the PDF
+z <- pr.smpl
+theta <- z/(1-z)
+E_mc <- mean(z)
+print(E_mc)
+```
+
+Regarding the exact value of  $\text{E}(\theta|y_{1:n})$  it is   
+```{r}
+a_n <- a_0+n_obs*mean(y_obs)
+b_n <- b_0+n_obs-n_obs*mean(y_obs)
+E_exact <-a_n/(b_n-1)
+print(E_exact)
+```
+
+We observe that the two values are prety close each other:  
+
++ I observe that the MC approximation is `r E_mc`, while the Exact value is `r E_exact`. 
+
++ So their absolute different is `r abs(E_mc-E_exact)`.
+
++ So the MC approximation provides a good approximation!!!
+
+---
+
+
+# Task
+
+<!-- The predictive distribution of $y_{n+1}$ given the observations $y_{1:n}$ is   -->
+<!-- \begin{align*} -->
+<!-- y_{n+1}|y_{1:n} & \sim\text{Binomial-Beta}(a_{n},b_{n},1) -->
+<!-- \end{align*}  -->
+
+<!-- where   -->
+
+<!-- \begin{align*} -->
+<!-- a_{n}= & a_{0}+n\bar{y}\\ -->
+<!-- b_{n}= & b_{0}+n-n\bar{y} -->
+<!-- \end{align*} -->
+
+
+<!-- + Produce MC approximation for the predictive distribution mass function of $y_{n+1}|y_{1:n}$, as -->
+<!-- $$ -->
+<!-- f(y_{n+1}=c|y_{1:n}) \approx \frac{1}{N}\sum_{j=1}^{N} \text{1}(y_{n+1}^{(j)}=c),\  \  \text{for } c=0,1  -->
+<!-- $$  -->
+<!-- by using a barplot.   -->
+
++ Compute the MC approximation of the predictive distribution mass function of $y_{n+1}|y_{1:n}$, as
+\begin{align*}
+f_{\pi}(y_{n+1}=c|y_{1:n}) 
+=& \int_{0}^{1} f(y_{n+1}=c|p) \pi(p|y_{1:n}) \text{d}p, \  \    c\in \{0,1\}   \\
+&\\
+=& \int_{0}^{1} p^{c} (1-p)^{1-c} \pi(p|y_{1:n}) \text{d}p, \  \  c\in \{0,1\}  \\
+&\\
+=& 
+\begin{cases}
+\int_{0}^{1} (1-p)         \pi(p|y_{1:n}) \text{d}p & \  \text{, c}=0 \\
+&\\
+\int_{0}^{1}p    \pi(p|y_{1:n}) \text{d}p & \  \text{, c}=1
+\end{cases} \\
+=& 
+\begin{cases}
+1-\text{E}(p|y_{1:n}) & \  \text{, c}=0 \\
+&\\
+\text{E}(p|y_{1:n}) \text{d}p & \  \text{, c}=1
+\end{cases} \\
+&\\
+\approx& 
+\begin{cases}
+1-  \frac{1}{N}\sum_{j=1}^{N} p^{(j)} & \  \text{, c}=0 \\
+  &\\
+\frac{1}{N}\sum_{j=1}^{N} p^{(j)} & \  \text{, c}=1
+\end{cases}
+\end{align*}
+by using a barplot. 
+
++ Compute the  exact predictive distribution mass function of $y_{n+1}|y_{1:n}$, as
+\begin{align*}
+f(y_{n+1}=c|y_{1:n})
+=&
+\frac{B(a_{n}+c,b_{n}+1-c)}{B(a_{n},b_{n})}\text{1}(c\in \{0,1\}) \\
+=& 
+\begin{cases}
+\frac{B(a_{n},b_{n}+1)}{B(a_{n},b_{n})} & \text{, c}=0 \\
+  &\\
+\frac{B(a_{n}+1,b_{n})}{B(a_{n},b_{n})} & \text{, c}=1
+\end{cases}
+\end{align*}
+
+where  
+
+\begin{align*}
+a_{n}= & a_{0}+n\bar{y}\\
+b_{n}= & b_{0}+n-n\bar{y}
+\end{align*}
+
+by using a barplot. 
+
+<!-- + Produce MC approximation for the predictive distribution cummulative function of $y_{n+1}|y_{1:n}$, as  -->
+<!-- $$ -->
+<!-- \text{Pr}_{\pi}(y_{n+1}\le c|y_{1:n}) \approx \frac{1}{n}\sum_{i=1}^{n} \text{1}(y_{n+1}^{(i)}\le c) -->
+<!-- $$  -->
+<!-- Compare the MC approximation of the predictive CMF of $y_{n+1}|y_{1:n}$ with the exact one which is  -->
+<!-- $$ -->
+<!-- \text{Pr}_{\pi}(y_{n+1}\le c|y_{1:n}) = \sum_{t=0}^c \text{Pr}_{\pi}(y_{n+1}=t|y_{1:n}) -->
+<!-- $$   -->
+<!--  by printing them on the same plot..  -->
+
+
+Use functions:  
+
++ `barplot {graphics}`,  
+
+### ...addressing {-}
+
+
+<!-- ```{r} -->
+<!-- par(mfrow=c(1,2)) -->
+<!-- # Draw the histogram as the MC approximate of the PDF -->
+<!-- ## extract the sample, and copy it to smple -->
+<!-- smple <- extract( fit.stan , pars=c("y_new") ) -->
+<!-- z <- smple$y_new -->
+<!-- pmf_y_new_0 <- mean(z==0) -->
+<!-- pmf_y_new_1 <- mean(z==1) -->
+<!-- ## draw -->
+<!-- barplot( c(pmf_y_new_0,pmf_y_new_1), -->
+<!--          names.arg= c('0','1'), -->
+<!--          main = "MC approx. PMF of y_new", -->
+<!--          xlab = "y_new", -->
+<!--          ylab = "P(y_new|y_{1:n})", -->
+<!--          ylim = c(0,1)) -->
+<!-- # Draw the histogram as the Exact of the PDF -->
+<!-- ## compute -->
+<!-- a_n = a_0+n_obs*mean(y_obs) -->
+<!-- b_n = b_0+n_obs-n_obs*mean(y_obs) -->
+<!-- pmf_y_new_0 <- beta(a_n+0,b_n+1-0) / beta(a_n,b_n) -->
+<!-- pmf_y_new_1 <- beta(a_n+1,b_n+1-1) / beta(a_n,b_n) -->
+<!-- ## draw -->
+<!-- barplot( c(pmf_y_new_0,pmf_y_new_1), -->
+<!--          names.arg= c('0','1'), -->
+<!--          main = "Exact PMF of y_new", -->
+<!--          xlab = "y_new", -->
+<!--          ylab = "P(y_new|y_{1:n})", -->
+<!--          ylim = c(0,1)) -->
+<!-- ``` -->
+
+
+```{r}
+par(mfrow=c(1,2))
+# Draw the histogram as the MC approximate of the PDF
+z <- pr.smpl
+pmf_y_new_0.mc <- 1-mean(z)  
+pmf_y_new_1.mc <- mean(z)  
+## draw
+barplot( c(pmf_y_new_0.mc , pmf_y_new_1.mc),
+         names.arg= c('0','1'),
+         main = "MC approx. PMF of y_new",
+         xlab = "y_new",
+         ylab = "P(y_new|y_{1:n})",
+         ylim = c(0,1))
+# Draw the histogram as the Exact of the PDF
+## compute
+a_n = a_0+n_obs*mean(y_obs)
+b_n = b_0+n_obs-n_obs*mean(y_obs)
+pmf_y_new_0 <- beta(a_n+0,b_n+1-0) / beta(a_n,b_n)
+pmf_y_new_1 <- beta(a_n+1,b_n+1-1) / beta(a_n,b_n)
+## draw
+barplot( c(pmf_y_new_0,pmf_y_new_1),
+         names.arg= c('0','1'),
+         main = "Exact PMF of y_new",
+         xlab = "y_new",
+         ylab = "P(y_new|y_{1:n})",
+         ylim = c(0,1))
+```
+
+
+We observe that the two plots are   close each other, and the MC approximation is good!
+
+
+
+<!-- ```{r} -->
+<!-- par(mfrow=c(1,2)) -->
+<!-- # Draw the histogram as the MC approximate of the PDF -->
+<!-- ## extract the sample, and copy it to smple -->
+<!-- smple <- extract( fit.stan , pars=c("y_new") ) -->
+<!-- smple <- smple$y_new -->
+<!-- cmf_y_new_0 <- mean(smple<=0) -->
+<!-- cmf_y_new_1 <- mean(smple<=1) -->
+<!-- ## draw -->
+<!-- barplot( c(cmf_y_new_0,cmf_y_new_1), -->
+<!--          names.arg= c('0','1'), -->
+<!--          main = "MC approx. CMF of y_new", -->
+<!--          xlab = "y_new", -->
+<!--          ylab = "F(y_new|y_{1:n})", -->
+<!--          ylim = c(0,1)) -->
+<!-- # Draw the histogram as the Exact of the PDF -->
+<!-- ## compute -->
+<!-- a_n = a_0+n_obs*mean(y_obs) -->
+<!-- b_n = b_0+n_obs-n_obs*mean(y_obs) -->
+<!-- cmf_y_new_0 <- beta(a_n+0,b_n+1-0) / beta(a_n,b_n) -->
+<!-- cmf_y_new_1 <- cmf_y_new_0+ beta(a_n+1,b_n+1-1) / beta(a_n,b_n) -->
+<!-- ## draw -->
+<!-- barplot( c(cmf_y_new_0,cmf_y_new_1), -->
+<!--          names.arg= c('0','1'), -->
+<!--          main = "Exact CMF of y_new", -->
+<!--          xlab = "y_new", -->
+<!--          ylab = "F(y_new|y_{1:n})", -->
+<!--          ylim = c(0,1)) -->
+<!-- ``` -->
+
+<!-- We observe that the two plots are   close each other, and the MC approximation is good! -->
+
+
+<!-- # Conclusions and discussion. -->
+
+<!-- Now, it is January 27, 1986, and you take part in the 3-hour teleconference with people from Morton Thiokol, Marshall space flight center, and Kennedy space center.   -->
+
+<!-- The forcast says that tommorrow the temperature too frosty. This is a bit unusual in the area and NASA people wonder if temperature can cause problems.   -->
+
+<!-- An engeneer presents the plot below where each point represents a shuttle flight that experience thermal distress O-rings. Y-axis is the number of defective O-rings (each shuttle has 6 O-rings in total), and X-axis is the temperature int he platform.  -->
+
+<!-- ```{r} -->
+<!-- yy <- c(0, 1, 0 ,0, 0, 0, 0 ,0 ,1 ,1 ,1 ,0 ,0 ,3 ,0 ,0 ,0, 0, 0, 0, 2, 0, 1) -->
+<!-- tt <- c(66,70,69,68,67,72,73,70,57,63,70,78,67,53,67,75,70,81,76,79,75,76,58) -->
+<!-- plot( tt, -->
+<!--       yy, -->
+<!--       col=(yy>0) , -->
+<!--       xlab = "Temperature", -->
+<!--       ylab="# of defective O-rings" -->
+<!--       ) -->
+<!-- ``` -->
+
+
+
+<!-- Based on this he supports that ther temperature is not associated with the presence of defective O-rings; and hence we can possibly perform the lunch on January 28, 1986.   -->
+
+<!-- That person is above your pay grade. -->
+
+<!-- Would you object? If yes, what arguments would you use against him?  -->
+
+
+
+
+
+
+
+
+
+    
