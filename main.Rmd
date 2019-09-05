@@ -5,9 +5,9 @@ author: "Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (pra
 output:
   html_notebook: default
   word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 [Back to the main document](./main.nb.html)
 
@@ -134,19 +134,30 @@ To download this handout, run rstudio, and do the following
     
 # Practical handouts:
 
-+ [Monte Carlo approximation: An intoduction  for practical use in R](./MCapproximators.nb.html)  
++ [Main](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/main.nb.html)
 
-+ Case study: Space shuttle Challenger disaster  
++ [Monte Carlo approximation: An intoduction  for practical use in R](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/MCapproximators.nb.html)  
 
-  + [Bernoulli model with conjugate priors](./BernoulliModel.nb.html)
++ Case study: Space shuttle Challenger disaster   
 
-  + [Bernoulli regression model](./BernouliRegressionModel.nb.html)  
+  + [Bernoulli model with conjugate priors (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/BernoulliModel_practical.nb.html)
+
+  + [Bernoulli model with conjugate priors (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/BernoulliModel_full.nb.html)
+
+  + [Bernoulli regression model (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/BernoulliRegressionModel_practical.nb.html)  
+
+  + [Bernoulli regression model (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/BernoulliRegressionModel_full.nb.html) 
   
-  + [Bernoulli regression model -variable selection](./BernouliRegressionModelVS.nb.html)  
+  + [Bernoulli regression model -variable selection (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/BernoulliRegressionModelVS_practical.nb.html)  
   
-+ Exercises for pracise:  
+  + [Bernoulli regression model -variable selection (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/BernoulliRegressionModelVS_full.nb.html)  
+  
++ Exercises for practise   :  
 
-  + [Normal model](./NormalModel.nb.html) 
+
+  + [Normal model (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/NormalModel_practical.nb.html) 
+
+  + [Normal model (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/NormalModel_full.nb.html) 
   
 
 
