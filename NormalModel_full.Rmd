@@ -6,10 +6,10 @@ output:
   html_notebook: 
     number_sections: true
   word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
     number_sections: true
-  pdf_document: default
 ---
 [Back to the main document](./main.nb.html)
 
@@ -94,7 +94,7 @@ Examine graphically whether there is any substantial evidence that the above dat
 
 Are there any substaintial evivence against Normality?
 
-### ...addressing  
+### ... your answer {-}
 
 We can assume that the data-set generating prodedure can be represented by a Normal distribution family. This is based on the preliminary examination below.
 
@@ -154,8 +154,7 @@ Here, we just set:
 
 3. Draw trace plots of the samples desived
 
-## ... addressing {-}
-
+### ... your answer {-}
 
 Load the library
 
@@ -386,7 +385,8 @@ invgamma_cdf <- function (x,a,b) {
 
 
 
-## ... addressing {-}   
+### ... your answer {-}
+
 
 ```{r}
 library(gplots)
@@ -431,8 +431,7 @@ persp(x_plot, y_plot,  z_plot,
 ## plot
 contour(x_plot, y_plot,  z_plot, 
       xlab = 'mu',
-      ylab='sigma2',
-      zlab='pdf')
+      ylab='sigma2')
 
 
 ```
@@ -455,7 +454,8 @@ To draw histograms of 2D samples like required by the MC approximation of the PD
     contour( h2d$x, h2d$y, h2d$counts, ticktype="detailed", theta=30, phi=30,expand=0.5, shade=0.5, col="cyan", ltheta=-30)
 
 
-## ... addressing {-}   
+### ... your answer {-}
+
 
 ```{r}
 library(gplots)
@@ -489,8 +489,7 @@ persp(h2d$x, h2d$y, h2d$counts,
 ## plot
 contour(h2d$x, h2d$y, h2d$counts, 
       xlab = 'mu',
-      ylab='sigma2',
-      zlab='pdf')
+      ylab='sigma2')
 
 
 ```
@@ -541,7 +540,8 @@ studentT_cdf <- function(x,m,s,v) {
 ```
 
 
-## ... addressing {-}
+### ... your answer {-}
+
 
 For the marginal posterior PDF of $\mu$
 
@@ -667,7 +667,9 @@ invgamma_cdf <- function (x,a,b) {
 ```
 
 
-## ... addressing {-}
+
+### ... your answer {-}
+
 
 For the marginal posterior PDF of $\sigma^2$
 
@@ -767,7 +769,9 @@ and
 $$\text{E}_\pi (\sigma^2|y_{1:n}) = \frac{b_n}{a_n-1}$$  
 
 
-### ... addressing {-}   
+
+### ... your answer {-}
+
 
 The Monte Carlo approximation for $\text{E}_\pi (\mu|y_{1:n})$ is  
 
@@ -838,7 +842,9 @@ studentT_cdf <- function(x,m,s,v) {
 }
 ```
 
-### ... addressing {-}  
+
+### ... your answer {-}
+
 
 The MC approximate is  
 
@@ -906,7 +912,9 @@ studentT_inv <- function(prob,m,s,v) {
 ```
 
 
-### addressing...
+
+### ... your answer {-}
+
 
 The exact CI is 
 ```{r}
@@ -968,7 +976,9 @@ invgamma_inv <- function (prob, a, b){
 ```
 
 
-### addressing...
+
+### ... your answer {-}
+
 
 The exact CI is 
 ```{r}
@@ -1037,7 +1047,9 @@ studentT_cdf <- function(x,m,s,v) {
 ```
 
 
-### ... addressing {-}
+
+### ... your answer {-}
+
 
 
 The MC approximation is such as 
@@ -1127,7 +1139,9 @@ legend("topright",
 \end{align*}
  
 
-### ... addressing {-}
+
+### ... your answer {-}
+
 
 
 Regarding the MC approximate value:  
@@ -1193,7 +1207,9 @@ y_{n+1}|y_{1:n}\sim\text{St}(\mu_n,\frac{\lambda_n b_n}{(\lambda_n+1)a_n},2a_n)
 
 
 
-### ... addressing {-}
+
+### ... your answer {-}
+
 
 
 Regarding the MC approximate value:  

@@ -3,13 +3,13 @@ title: "Bernoulli model with conjugate priors"
 subtitle: "Case study: Space shuttle Challenger disaster"
 author: "Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)"
 output:
-  html_document:
-    df_print: paged
-    number_sections: true
+  pdf_document: default
   word_document: default
   html_notebook: 
     number_sections: true
-  pdf_document: default
+  html_document:
+    df_print: paged
+    number_sections: true
 ---
 [Back to the main document](./main.nb.html)
 
@@ -143,7 +143,8 @@ Analysis using the rjags package proceeds in steps:
     + use `update{rjags}`  ;  `jags.samples{rjags}`
 
 
-## ... addressing {-}
+### ... your answer {-}
+
 
 ***step 1***
 
@@ -302,7 +303,8 @@ Snapshot from Tem 2:
 
 + To improve the quality of the sample, you can go back to the sampling stem and play with the flaq values of `n.iter` and `thin` in `jags.samples{rjags}`.  
 
-### ... addressing {-}
+### ... your answer {-}
+
 
 ```{r}
 # extract the sample from the jags object
@@ -364,7 +366,8 @@ Use functions:
 
 + `lines {graphics}`  
 
-### ... addressing {-}
+### ... your answer {-}
+
 
 Regarding the posterior CDF ...
 
@@ -426,7 +429,8 @@ Use functions:
 
 + `hist {graphics}` 
 
-### ... addressing {-}
+### ... your answer {-}
+
 
 Regarding the posterior PDF...
 
@@ -480,7 +484,8 @@ b_{n}= & b_{0}+n-n\bar{y}
  
 
 
-### ... addressing {-}
+### ... your answer {-}
+
 
 The MC approximate is 
 
@@ -546,7 +551,8 @@ Use:
 + `qbeta{stats}`  
 
 
-### ... addressing {-}
+### ... your answer {-}
+
 
 The MC approximate $95$% credible interval for $p$ is 
 ```{r}
@@ -586,7 +592,8 @@ a_{n}= & a_{0}+n\bar{y}\\
 b_{n}= & b_{0}+n-n\bar{y}
 \end{align*}
 
-### ... addressing {-}
+### ... your answer {-}
+
 
 Regarding the MC approximate of  $\text{E}(p|y_{1:n})$  it is   
 ```{r}
@@ -608,7 +615,7 @@ We observe that the two values are prety close each other:
 
 + I observe that the MC approximation is `r E_mc`, while the Exact value is `r E_exact`. 
 
-+ So their absolute different is `r abs(E_mc-E_exact)`.
++ So their absolute different is `r abs(E_mc-E_exact)` .
 
 + So the MC approximation provides a good approximation!!!
 
@@ -633,7 +640,8 @@ b_{n}= & b_{0}+n-n\bar{y}
 
 
 
-### ... addressing {-}
+### ... your answer {-}
+
 
 Regarding the MC approximate of  $\text{E}(\theta|y_{1:n})$  it is   
 ```{r}
@@ -750,7 +758,8 @@ Use functions:
 
 + `barplot {graphics}`,  
 
-### ...addressing {-}
+### ... your answer {-}
+
 
 
 <!-- ```{r} -->

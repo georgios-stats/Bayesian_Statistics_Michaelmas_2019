@@ -2,6 +2,8 @@
 title: "Bernoulli regression model (Variable Selection)"
 subtitle: "Case study: Space shuttle Challenger disaster"
 author: "Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)"
+header-includes:
+   - \usepackage{mathrsfs}
 output:
   html_notebook: 
     number_sections: true
@@ -123,36 +125,36 @@ Let $s_{i}$ denote the Leak check pressure (in PSI).
 Here are some possible models of interest:
 
 \begin{align*}
-\text{Model-I}:\ \ 
-p(t;\beta) 
+\mathscr{M}^{I}:\ \ 
+p(t;\beta_{\mathscr{M}^{I}},\mathscr{M}^{I}) 
 =&
 \frac{\exp(\beta_{0})}{1+\exp(\beta_{0})} 
 \end{align*}
 
 \begin{align*}
-\text{Model-II}:\ \ 
-p(t;\beta) 
+\mathscr{M}^{II}:\ \ 
+p(t;\beta_{\mathscr{M}^{II}},\mathscr{M}^{II}) 
 =&
 \frac{\exp(\beta_0+\beta_1 t)}{1+\exp(\beta_0+\beta_1 t)} 
 \end{align*}
 
 \begin{align*}
-\text{Model-III}:\ \ 
-p(t;\beta) 
+\mathscr{M}^{III}:\ \ 
+p(t;\beta_{\mathscr{M}^{III}},\mathscr{M}^{III}) 
 =&
 \frac{\exp(\beta_0+\beta_2 s)}{1+\exp(\beta_0+\beta_2 s)} 
 \end{align*}
 
 \begin{align*}
-\text{Model-IV}:\ \ 
-p(t;\beta) 
+\mathscr{M}^{IV}:\ \ 
+p(t;\beta_{\mathscr{M}^{IV}},\mathscr{M}^{IV}) 
 =&
 \frac{\exp(\beta_0+\beta_1 t+\beta_2 s)}{1+\exp(\beta_0+\beta_1 t+\beta_2 s)} 
 \end{align*}
 
 \begin{align*}
-\text{Model-V}:\ \ 
-p(t;\beta) 
+\mathscr{M}^{V}:\ \ 
+p(t;\beta_{\mathscr{M}^{V}},\mathscr{M}^{V}) 
 =&
 \frac{\exp(\beta_0+\beta_1 t+\beta_2 s+\beta_3 ts)}{1+\exp(\beta_0+\beta_1 t+\beta_2 s+\beta_3 ts)}
 \end{align*}
@@ -192,10 +194,10 @@ with hyper-parameter values $\mu_0=0.0$, $\sigma_0^2=100.0$, and $\varpi_0=0.5$.
 
 # Task
 
-Write the RJAGS program implementing the hierarchical model above, in order a sample of size $N=100000$ from the posterior distribution  $$(\mathscr{M}^{(j)},p^{(j)})\sim\pi(\mathscr{M},p|y_{1:n})\  ,\  \  j=1,...,N.$$
+Write the RJAGS program implementing the hierarchical model above, in order a sample of size $N=100000$ from the posterior distribution  $$(\mathscr{M}^{(j)},\beta_{\mathscr{M}^{(j)}}^{(j)})\sim\pi(\mathscr{M},\beta_{\mathscr{M}}|y_{1:n})\  ,\  \  j=1,...,N.$$
 
 
-### ... addressing {-}
+### ... your answer {-}
 
 Load the library
 
@@ -233,130 +235,193 @@ hierarhicalmodel="
 
 Create an input list, for jags, containing the data and fixed  parameters of the model 
 
+
+
+
 ```{r}
-y_obs <- mydata[ -nrow(mydata) , 4 ] # exclude the last row, and use only the 4th column
-y_obs <- as.numeric(y_obs==1)        # make it numeric 
-n_obs <- length( y_obs )
-X_obs <- cbind( rep(1,n_obs), 
-                as.numeric(mydata[ -nrow(mydata),3]), 
-                as.numeric(mydata[ -nrow(mydata),5])  )
+# write your R code
 
-# Units correction
-X_obs[,2] <- (X_obs[,2]-mean(X_obs[,2])) / sd(X_obs[,2])
-X_obs[,3] <- (X_obs[,3]-mean(X_obs[,3])) / sd(X_obs[,3])
 
-dmax = dim(X_obs)[2]
-
-data.bayes <- list(y = y_obs,
-          X = X_obs,
-          n = n_obs,
-          dmax = dmax)
 ```
+
+
+
 
 
 Create an input list, for jags, containing the data and fixed  parameters of the model 
 
-```{r, results="hide"}
-model.smpl <- jags.model( file = textConnection(hierarhicalmodel),
-                          data = data.bayes)
+ 
+
+```{r}
+# write your R code
+
+
 ```
+
+
 
 Initialize the sampler with $N_{\text{adapt}}=1000$ iterations.   
+ 
+
+```{r}
+# write your R code
 
 
-```{r, results="hide"}
-adapt(object = model.smpl, 
-      n.iter = 10^5)
 ```
+
 
 
 Generate a posterior sample of size $N=10000$.
 
 
-```{r, results="hide"}
-N = 10^5      
-n.thin = 10^1     
-n.iter = N * n.thin  
-output = jags.samples( model = model.smpl,    
-                       variable.names = c("ind","beta"),    
-                       n.iter = n.iter, 
-                       thin = n.thin,
-                       )
+ 
+
+```{r}
+# write your R code
+
+
 ```
+
+
+
+
 
 Check the names of the variables sampled  
+ 
 
 ```{r}
-names(output)
+# write your R code
+
+
 ```
+
+
+
 
 Check the dimensions of each of the variables sampled  
-
+ 
 ```{r}
-dim( output$beta )
-dim( output$ind )
-# the first dimension is the numbers of columns of the variable
-# the second dimention is the size of the sample drawn
-# the thirs dimention is the number of the sub-samples drawn (in our case it is just 1)
+# write your R code
+
+
 ```
+
+
+
 
 Copy the sample of each variable in a vector with a more friendly name...
-
+ 
 ```{r}
-ind.smpl <-output$ind
-beta.smpl <-output$beta
+# write your R code
+
+
 ```
+
+
+
+
+
 
 # Task
 
-Calculate the posterior marginal model model probabilities
+Calculate the marginal posterior model probabilities of models $\mathscr{M}^{I}=(0,0,0)$, $\mathscr{M}^{II}=(1,0,0)$, $\mathscr{M}^{III}=(0,1,0)$,  $\mathscr{M}^{IV}=(1,1,0)$, $\mathscr{M}^{V}=(1,1,1)$ $\mathscr{M}^{VI}=(0,0,1)$,  $\mathscr{M}^{VII}=(1,0,1)$, and $\mathscr{M}^{VIII}=(0,1,1)$  :
 
 $$
-\Pi(\text{Model-I}|y_{1:n})=
-\Pi(\mathscr{M}=(0,0)|y_{1:n})
-$$
-
-$$
-\Pi(\text{Model-II}|y_{1:n})=
-\Pi(\mathscr{M}=(1,0)|y_{1:n})
+\Pi(\mathscr{M}^{I}|y_{1:n})=
+\Pi(\mathscr{M}^{I}=(0,0,0)|y_{1:n})
 $$
 
 $$
-\Pi(\text{Model-III}|y_{1:n})=
-\Pi(\mathscr{M}=(0,1)|y_{1:n})
-$$
-$$
-\Pi(\text{Model-IV}|y_{1:n})=
-\Pi(\mathscr{M}=(1,1)|y_{1:n})
+\Pi(\mathscr{M}^{II}|y_{1:n})=
+\Pi(\mathscr{M}^{II}=(1,0,0)|y_{1:n})
 $$
 
-### addressing {-}
+$$
+\Pi(\mathscr{M}^{III}|y_{1:n})=
+\Pi(\mathscr{M}^{III}=(0,1,0)|y_{1:n})
+$$
+$$
+\Pi(\mathscr{M}^{IV}|y_{1:n})=
+\Pi(\mathscr{M}^{IV}=(1,1,0)|y_{1:n})
+$$
+$$
+\Pi(\mathscr{M}^{V}|y_{1:n})=
+\Pi(\mathscr{M}^{V}=(1,1,1)|y_{1:n})
+$$
+
+$$
+\Pi(\mathscr{M}^{VI}|y_{1:n})=
+\Pi(\mathscr{M}^{VI}=(0,0,1)|y_{1:n})
+$$
+$$
+\Pi(\mathscr{M}^{VII}|y_{1:n})=
+\Pi(\mathscr{M}^{VII}=(1,0,1)|y_{1:n})
+$$
+
+$$
+\Pi(\mathscr{M}^{VII}|y_{1:n})=
+\Pi(\mathscr{M}^{VII}=(0,1,1)|y_{1:n})
+$$
 
 
-It is 
+### ... your answer {-}
+
+Below try to address the task by creating R chunks, and running them, and adding comments to the document.
+
 ```{r}
-# Compute the marginal distributions
-pr_1 = mean(as.numeric(ind.smpl[1,,]==0) * as.numeric(ind.smpl[2,,]==0))
-pr_2 = mean(as.numeric(ind.smpl[1,,]==1) * as.numeric(ind.smpl[2,,]==0))
-pr_3 = mean(as.numeric(ind.smpl[1,,]==0) * as.numeric(ind.smpl[2,,]==1))
-pr_4 = mean(as.numeric(ind.smpl[1,,]==1) * as.numeric(ind.smpl[2,,]==1))
-pr_1234 = pr_1+pr_2+pr_3+pr_4
-# Compute the conditional distributions
-pr_1 = pr_1/pr_1234
-pr_2 = pr_2/pr_1234
-pr_3 = pr_3/pr_1234
-pr_4 = pr_4/pr_1234
-# Print the conditional distributions
-pr_1
-pr_2
-pr_3
-pr_4
+# write your R code
+
+
 ```
 
-The most model with the highest marginal model posterior probability is  
-\begin{align*}
-\text{Model-II}:\ \ 
-p(t;\beta) 
-=&
-\frac{\exp(\beta_0+\beta_1 t)}{1+\exp(\beta_0+\beta_1 t)} 
-\end{align*}
+
+
+
+# Task
+
+Assume that only one of the model in the set $$\mathcal{M}=\{\mathscr{M}^{I}, \mathscr{M}^{II}, \mathscr{M}^{III}, \mathscr{M}^{IV}, \mathscr{M}^{V}\}$$ is of interest. This is because it is 
+
+Calculate the posterior model probabilities of models $\mathscr{M}^{I}=(0,0,0)$, $\mathscr{M}^{II}=(1,0,0)$, $\mathscr{M}^{III}=(0,1,0)$,  $\mathscr{M}^{IV}=(1,1,0)$, $\mathscr{M}^{V}=(1,1,1)$, given the model collection $\mathcal{M}$.
+
+
+
+$$
+\Pi(\mathscr{M}^{I}|y_{1:n},\mathcal{M})=
+\Pi(\mathscr{M}^{I}=(0,0,0)|y_{1:n},\mathcal{M})
+$$
+
+$$
+\Pi(\mathscr{M}^{II}|y_{1:n},\mathcal{M})=
+\Pi(\mathscr{M}^{II}=(1,0,0)|y_{1:n},\mathcal{M})
+$$
+
+$$
+\Pi(\mathscr{M}^{III}|y_{1:n},\mathcal{M})=
+\Pi(\mathscr{M}^{III}=(0,1,0)|y_{1:n},\mathcal{M})
+$$
+$$
+\Pi(\mathscr{M}^{IV}|y_{1:n},\mathcal{M})=
+\Pi(\mathscr{M}^{IV}=(1,1,0)|y_{1:n},\mathcal{M})
+$$
+$$
+\Pi(\mathscr{M}^{V}|y_{1:n},\mathcal{M})=
+\Pi(\mathscr{M}^{V}=(1,1,1)|y_{1:n},\mathcal{M})
+$$
+
+
+
+Which model is a posteriori the most probabile?
+
+### ... your answer {-}
+
+Below try to address the task by creating R chunks, and running them, and adding comments to the document.
+
+```{r}
+# write your R code
+
+
+```
+
+
+
+

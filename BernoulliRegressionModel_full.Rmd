@@ -182,7 +182,7 @@ Analysis using the rjags package proceeds in steps:
     + use `update{rjags}`  ;  `coda.samples{rjags}`
 
 
-### ... addressing {-}
+### ... your answer {-}
 
 We actually extend what we did in the handout [BernoulliModel.Rmd](./BernoulliModel.nb.html).  
 
@@ -347,7 +347,7 @@ Snapshot from Tem 2:
 + To improve the quality of the sample, you can go back to the sampling stem and play with the flaq values of `n.iter` and `thin` in `jags.samples{rjags}`.  
 
 
-## ... addressing {-}
+### ... your answer {-}
 
 
 
@@ -417,7 +417,7 @@ So:
 Compute the MC approximation of the posterior probability density function, and the cumulative distribution function of $\beta_1$ as    
 
 
-### addressing ... {-}
+### ... your answer {-}
 
 
 The MC approximate of the posterior PDF and CDF of $\beta_{1}$ are  
@@ -456,7 +456,7 @@ $$
 \frac{1}{N}\sum_{j=1}^{N}\beta_1^{(j)}
 $$   
 
-### addressing... {-}
+### ... your answer {-}
 
 The MC approximate of the $\text{E}_{\pi}(\beta_1|y_{1:n})$  is  
 ```{r}
@@ -479,7 +479,7 @@ Compute the MC approximate of the posterior standard deviation of $\beta_1$ as
 =&s_{\beta_1}^{2}
 \end{align*}   
 
-### addressing... {-}
+### ... your answer {-}
 
 
 The MC approximate of the $\text{SD}_{\pi}(\beta_1|y_{1:n})$  is  
@@ -502,7 +502,7 @@ Compute the MC approximate of the posterior probability that the rate $\beta_1$ 
 \frac{1}{N}\sum_{j=1}^{N}\text{1}(\beta_1^{(j)}<0)
 \end{align*} 
 
-### ... addressing {-}
+### ... your answer {-}
 
 The MC approximate of $\text{Pr}_\pi(\beta_1<0|y_{1:n})$  is  
 ```{r}
@@ -533,7 +533,7 @@ $$
 is the $\alpha$-th quantile of the posterior distribution of $\beta_1$  
 
 
-### ... addressing {-}
+### ... your answer {-}
 
 The MC approximate $95$% credible interval for $\beta_1$ is 
 ```{r}
@@ -592,7 +592,7 @@ and plot them against the temperature $t\in(30,82)$ in the same plot.
 
 Can we infer anything about flight 61-I on	1/28/86. 
 
-### ... addressing {-}  
+### ... your answer {-}
 
 
 
@@ -719,7 +719,7 @@ f(y_{n+1}=c|y_{1:n};t=31)
 \end{align*}
 
 
-### ... addressing {-}  
+### ... your answer {-}
 
 Well... we actually have already done this ...
 
@@ -814,7 +814,7 @@ The forcast says that tommorrow the temperature will be $31$F at lunch time. Thi
 Would you cancel the lunch of the Space Shuttle 61-I on 1/28/86?
 
 
-### addressing ... {-}
+### ... your answer {-}
 
 Based on our analysis the posterior relative frequency parameter that at least a defected O-ring occur at temperature $31$F is equal to $1$.  
 

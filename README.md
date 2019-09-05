@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 
@@ -132,5 +132,9 @@ To download this handout, run rstudio, and do the following
 
 
   
+
+
+
+
 
 
