@@ -79,8 +79,8 @@ Richard DeVeaux owned a Nissan Maxima for 8 years. Being a statistician, He reco
 
 ```{r, results='hold'}
 # load the data
-mydata <- read.csv("./nissan.csv")
-#mydata$mpg <- rnorm(100, 20, 5)
+#mydata <- read.csv("./nissan.csv")
+mydata <- read.csv("https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/nissan.csv")
 # print data 
 cat(mydata$mpg)
 
