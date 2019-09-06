@@ -1,0 +1,3 @@
+[submodule "Shiny_applets"]
+	path = Shiny_applets
+	url = https://github.com/georgios-stats/Shiny_applets.git
