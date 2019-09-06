@@ -1,15 +1,7 @@
----
-title: "Practical implementation in Bayesian statistics"
-subtitle: 
-author: "Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)"
-output:
-  html_notebook: default
-  word_document: default
-  pdf_document: default
-  html_document:
-    df_print: paged
----
-[Back to the main document](./main.nb.html)
+# READ ME: Practical implementation in Bayesian statistics
+
+### Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV 
+
 
 ---
 
