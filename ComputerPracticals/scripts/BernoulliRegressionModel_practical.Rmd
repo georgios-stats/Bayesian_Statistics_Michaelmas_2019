@@ -3,15 +3,15 @@ title: "Bernoulli regression model"
 subtitle: "Case study: Space shuttle Challenger disaster"
 author: "Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)"
 output:
-  pdf_document: default
+  html_notebook: 
+    number_sections: true
   word_document: default
   html_document:
     df_print: paged
     number_sections: true
-  html_notebook: 
-    number_sections: true
+  pdf_document: default
 ---
-[Back to the main document](./main.nb.html)
+[Back to README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
 
 ```{r, results="hide"}
 rm(list=ls())
@@ -300,6 +300,7 @@ output = jags.samples( model = model.smpl,          # the model
                        n.iter = n.iter,               # size of sample
                        thin = n.thin,
                        )
+save.image(file="BernoulliRegressionModel.RData") 
 ```
  
 Check the names of the variables sampled  
@@ -627,5 +628,17 @@ Would you cancel the lunch of the Space Shuttle 61-I on 1/28/86?
 Below try to address the task by creating R chunks, and running them, and adding comments to the document.
 
 
+##  Comments... {-}
 
+In the analysis above, we judged that the temperature affects the occurance of a defective O-ring. Actually, does this happen?
+
+It would be interesting to actually infer if the occurance of a defective O-ring is affected by the leak check pressure as well. How could you possibly address this?
+
+It would be interesting to actually infer if the effect of temperature on the occurance of a defective O-ring changes at different values of leak check pressure (aka if temperature and  leak check pressure interact in a manner). How could you possibly address this?
+
+If you have finished this handout, you can proceed to the next [Bernoulli regression model -variable selection].
+
+### ... your answer {-}
+
+Below try to address the task by creating R chunks, and running them, and adding comments to the document.
 

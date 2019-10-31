@@ -1584,7 +1584,7 @@ $(document).ready(function () {
 </div>
 
 
-<p><a href="./main.nb.html">Back to the main document</a></p>
+<p><a href="http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html">Back to README</a></p>
 <pre class="r"><code>rm(list=ls())</code></pre>
 <hr />
 <p><strong><em>Aim</em></strong></p>
@@ -1652,8 +1652,8 @@ $(document).ready(function () {
 <p>Richard DeVeaux owned a Nissan Maxima for 8 years. Being a statistician, He recorded the car’s fuel efficiency (in mpg) each time he filled the tank. He wanted to know what fuel efficiency to expect as “ordinary” for his car. Knowing this, he was able to predict when he’d need to fill the tank again and to notice if the fuel efficiency suddenly got worse, which could be a sign of trouble.</p>
 <p><strong>General scientific question:</strong></p>
 <pre class="r"><code># load the data
-mydata &lt;- read.csv(&quot;./nissan.csv&quot;)
-#mydata$mpg &lt;- rnorm(100, 20, 5)
+#mydata &lt;- read.csv(&quot;./nissan.csv&quot;)
+mydata &lt;- read.csv(&quot;https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/nissan.csv&quot;)
 # print data 
 cat(mydata$mpg)</code></pre>
 <pre><code>## 21.964 23.694 18.824 20.851 26.37 22.81 25.785 24.353 23.385 23.381 28.175 21.232 25.603 21.064 22.067 23.867 24.226 19.512 22.147 19.948 22.65 21.197 20.748 20.351 26.54 25.385 21.613 21.4 22.035 21.81 23.806 23.678 26.462 21.514 19.7 18.362 25.403 23.158 22.091 23.768 20.201 21.111 20.573 27.434 20.256 22.687 25.206 21.169 22.747 24 19.375 26.113 20.625 21.511 21.441 21.98 21.667 20.26 19.125 23.652 18.693 18.374 24.885 21.405 21.806 25.111 20.903 19.343 23.235 25.088 20.9 28.037 19.789 22.576 21.374 26.894 20.139 21.399 16.767 14.684 21.739 23.803 20.563 25.188 25.794 24.122 23.356 24.632 23.407 22.958 20.815 20.762 21.194 21.667 23.979 24.514 24.5 22.344 22.847 19.551</code></pre>
@@ -2099,97 +2099,6 @@ y_{n+1}|y_{1:n}\sim\text{St}(\mu_n,\frac{\lambda_n b_n}{(\lambda_n+1)a_n},2a_n)
 <h3>… your answer</h3>
 <p>Below try to address the task by creating R chunks, and running them, and adding comments tot he document.</p>
 <pre class="r"><code># write your R code</code></pre>
-<!-- # Task -->
-<!-- Compute the MC approximate of the predictive PDF and CDF and compare it with the exact ones.   -->
-<!-- The exact predictive distribution is  -->
-<!-- \[ -->
-<!-- y_{n+1}|y_{1:n}\sim\text{St}(\mu_n,\frac{\lambda_n b_n}{(\lambda_n+1)a_n},2a_n) -->
-<!-- \] -->
-<!-- Compute the MC approximate of $\text{E}(y_{n+1}|y_{1:n})$, and compare it with the exact one which is   -->
-<!-- \[ -->
-<!-- \text{E}(y_{n+1}|y_{1:n} ) = \mu_n -->
-<!-- \] -->
-<!-- ### ... addressing {-}   -->
-<!-- ```{r} -->
-<!-- # Posterior parameters -->
-<!-- a_n <- a_0 +0.5*n_obs -->
-<!-- b_n <- b_0 +0.5*n_obs*var(y_obs) +0.5*lam_0*n_obs*(mu_0-mean(y_obs))^2/(lam_0+n_obs) -->
-<!-- lam_n <- lam_0 + n_obs  -->
-<!-- mu_n <- (lam_0*mu_0+n_obs*mean(y_obs)) / (lam_0+n_obs) -->
-<!-- ## extract the sample, and copy it to smple -->
-<!-- smple <- extract( fit.stan , pars=c("y_new") ) -->
-<!-- par(mfrow=c(1,2)) -->
-<!-- # Draw the histogram as the MC approximate of the PDF -->
-<!-- ## draw y_new PDF -->
-<!-- z <- smple$y_new -->
-<!-- hist(z, -->
-<!--      probability = TRUE, -->
-<!--      main = "Post PDF of y_new", -->
-<!--      xlab = "y_new", -->
-<!--      ylab = "PDF") -->
-<!-- x_plot <- seq( from = min(z), to = max(z), length.out = 100) -->
-<!-- y_plot <- studentT_pdf(x_plot , mu_n , (lam_n+1)*b_n/((lam_n)*a_n), 2*a_n) -->
-<!-- lines(x_plot,  -->
-<!--       y_plot, -->
-<!--       type = 'l', -->
-<!--       col = 'red') -->
-<!-- legend("topright", -->
-<!--        legend=c("MC approx.", "Exact"), -->
-<!--        lty = c(1,1), -->
-<!--        col=c("black", "red")) -->
-<!-- ## draw y_new PDF -->
-<!-- z <- smple$y_new -->
-<!-- x_plot <- seq( from = mean(z)-4*sd(z), to = mean(z)+4*sd(z), length.out = 100) -->
-<!-- y_plot <- rep(NaN, 100) -->
-<!-- for (i in 1:100) y_plot[i] <- mean(z<=x_plot[i]) -->
-<!-- plot(x_plot, -->
-<!--      y_plot, -->
-<!--      type = "l", -->
-<!--      main = "CDF of y_new", -->
-<!--      xlab = "y_new", -->
-<!--      ylab = "CDF") -->
-<!-- x_plot <- seq( from = min(z), to = max(z), length.out = 100) -->
-<!-- y_plot <- studentT_cdf(x_plot , mu_n , lam_n*a_n/b_n, 2*a_n) -->
-<!-- x_plot <- seq( from = min(z), to = max(z), length.out = 100) -->
-<!-- y_plot <- studentT_cdf(x_plot , mu_n , lam_n*b_n/((lam_n+1)*a_n), 2*a_n) -->
-<!-- lines(x_plot,  -->
-<!--       y_plot, -->
-<!--       type = 'l', -->
-<!--       col = 'red') -->
-<!-- legend("topleft", -->
-<!--        legend=c("MC approx.", "Exact"), -->
-<!--        lty = c(1,1), -->
-<!--        col=c("black", "red")) -->
-<!-- ``` -->
-<!-- # Task  -->
-<!-- Compute the MC approximate of the posterior mean and variace of $y_{n+1}$, decoted as  $\text{E}_p (y_{n+1}|y_{1:n})$, and $$\text{Var}_p (y_{n+1}|y_{1:n})$$ and compare it with the exact ones which are    -->
-<!-- + $\text{E}_p (y_{n+1}|y_{1:n}) = \mu_n$ -->
-<!-- + $\text{Var}_p (y_{n+1}|y_{1:n}) = \lambda_{n}  b_{n} / a_{n}$ -->
-<!-- ### ... addressing {-}    -->
-<!-- The Monte Carlo approximation for $\text{E}_p (y_{n+1}|y_{1:n})$ is   -->
-<!-- ```{r} -->
-<!-- smple <- extract( fit.stan , pars=c("y_new") ) -->
-<!-- z <- smple$y_new -->
-<!-- mc.approx <- mean(z) -->
-<!-- mc.approx -->
-<!-- ``` -->
-<!-- The exact value for $\text{E}_p (y_{n+1}|y_{1:n})$ is   -->
-<!-- ```{r} -->
-<!-- # Posterior parameters -->
-<!-- mu_n <- (lam_0*mu_0+n_obs*mean(y_obs)) / (lam_0+n_obs) -->
-<!-- mu_n  -->
-<!-- ``` -->
-<!-- The Monte Carlo approximation for $\text{Var}_p (y_{n+1}|y_{1:n})$ is   -->
-<!-- ```{r} -->
-<!-- smple <- extract( fit.stan , pars=c("y_new") ) -->
-<!-- z <- smple$y_new -->
-<!-- mc.approx <- var(z) -->
-<!-- mc.approx -->
-<!-- ``` -->
-<!-- The exact value for $\text{Var}_p (y_{n+1}|y_{1:n})$ is   -->
-<!-- ```{r} -->
-<!-- lam_n /(lam_n+1)* b_n / a_n *  ( (2*a_n) / (2*a_n-2) ) -->
-<!-- ``` -->
 </div>
 </div>
 

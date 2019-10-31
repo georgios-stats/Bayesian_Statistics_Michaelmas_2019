@@ -13,7 +13,7 @@ output:
     number_sections: true
   pdf_document: default
 ---
-[Back to the main document](./main.nb.html)
+[Back to README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
 
 ```{r, results="hide"}
 rm(list=ls())

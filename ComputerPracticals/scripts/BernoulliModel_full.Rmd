@@ -3,15 +3,15 @@ title: "Bernoulli model with conjugate priors"
 subtitle: "Case study: Space shuttle Challenger disaster"
 author: "Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)"
 output:
-  pdf_document: default
-  word_document: default
   html_notebook: 
     number_sections: true
+  word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
     number_sections: true
 ---
-[Back to the main document](./main.nb.html)
+[Back to README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
 
 ```{r, results="hide"}
 rm(list=ls())
@@ -259,6 +259,7 @@ output = jags.samples( model= model.smpl,          # the model
                        variable.names= c("p"),    # names of variables to be sampled
                        n.iter = N                # size of sample
                        )
+save.image(file="BernoulliModel.RData") 
 ```
 
 Check the names of the variables sampled  
@@ -827,69 +828,25 @@ We observe that the two plots are   close each other, and the MC approximation i
 
 
 
-<!-- ```{r} -->
-<!-- par(mfrow=c(1,2)) -->
-<!-- # Draw the histogram as the MC approximate of the PDF -->
-<!-- ## extract the sample, and copy it to smple -->
-<!-- smple <- extract( fit.stan , pars=c("y_new") ) -->
-<!-- smple <- smple$y_new -->
-<!-- cmf_y_new_0 <- mean(smple<=0) -->
-<!-- cmf_y_new_1 <- mean(smple<=1) -->
-<!-- ## draw -->
-<!-- barplot( c(cmf_y_new_0,cmf_y_new_1), -->
-<!--          names.arg= c('0','1'), -->
-<!--          main = "MC approx. CMF of y_new", -->
-<!--          xlab = "y_new", -->
-<!--          ylab = "F(y_new|y_{1:n})", -->
-<!--          ylim = c(0,1)) -->
-<!-- # Draw the histogram as the Exact of the PDF -->
-<!-- ## compute -->
-<!-- a_n = a_0+n_obs*mean(y_obs) -->
-<!-- b_n = b_0+n_obs-n_obs*mean(y_obs) -->
-<!-- cmf_y_new_0 <- beta(a_n+0,b_n+1-0) / beta(a_n,b_n) -->
-<!-- cmf_y_new_1 <- cmf_y_new_0+ beta(a_n+1,b_n+1-1) / beta(a_n,b_n) -->
-<!-- ## draw -->
-<!-- barplot( c(cmf_y_new_0,cmf_y_new_1), -->
-<!--          names.arg= c('0','1'), -->
-<!--          main = "Exact CMF of y_new", -->
-<!--          xlab = "y_new", -->
-<!--          ylab = "F(y_new|y_{1:n})", -->
-<!--          ylim = c(0,1)) -->
-<!-- ``` -->
 
-<!-- We observe that the two plots are   close each other, and the MC approximation is good! -->
+# Discussion
+
+ 
+ Now, it is January 27, 1986, and you take part in the 3-hour teleconference with people from Morton Thiokol, Marshall space flight center, and Kennedy space center.
 
 
-<!-- # Conclusions and discussion. -->
+The forcast says that tommorrow the temperature too frosty. This is a bit unusual in the area and NASA people wonder if temperature can cause problems. 
 
-<!-- Now, it is January 27, 1986, and you take part in the 3-hour teleconference with people from Morton Thiokol, Marshall space flight center, and Kennedy space center.   -->
+You perform the aforesaid statistical analysis and you find that the predictive probability in the next flight that there will be at least a defective O ring is less than $0.5$. 
 
-<!-- The forcast says that tommorrow the temperature too frosty. This is a bit unusual in the area and NASA people wonder if temperature can cause problems.   -->
+You report your findinds, and the next day, January 28, 1986 explodes due to the presence of a defective O-ring component.
 
-<!-- An engeneer presents the plot below where each point represents a shuttle flight that experience thermal distress O-rings. Y-axis is the number of defective O-rings (each shuttle has 6 O-rings in total), and X-axis is the temperature int he platform.  -->
+What did it go wrong with your aforesaid analysis?
 
-<!-- ```{r} -->
-<!-- yy <- c(0, 1, 0 ,0, 0, 0, 0 ,0 ,1 ,1 ,1 ,0 ,0 ,3 ,0 ,0 ,0, 0, 0, 0, 2, 0, 1) -->
-<!-- tt <- c(66,70,69,68,67,72,73,70,57,63,70,78,67,53,67,75,70,81,76,79,75,76,58) -->
-<!-- plot( tt, -->
-<!--       yy, -->
-<!--       col=(yy>0) , -->
-<!--       xlab = "Temperature", -->
-<!--       ylab="# of defective O-rings" -->
-<!--       ) -->
-<!-- ``` -->
+How could you possibly do your analysis so that it can succesfully sugest you that the next flight (the one on January 28, 1986) will be a disaster if it is preformed?
 
 
-
-<!-- Based on this he supports that ther temperature is not associated with the presence of defective O-rings; and hence we can possibly perform the lunch on January 28, 1986.   -->
-
-<!-- That person is above your pay grade. -->
-
-<!-- Would you object? If yes, what arguments would you use against him?  -->
-
-
-
-
+If you have finished this handout, you can proceed tot he next [Bernoulli regression model].
 
 
 

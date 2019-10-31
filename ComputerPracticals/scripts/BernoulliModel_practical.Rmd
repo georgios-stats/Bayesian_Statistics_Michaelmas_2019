@@ -11,7 +11,7 @@ output:
     number_sections: true
   pdf_document: default
 ---
-[Back to the main document](./main.nb.html)
+[Back to README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
 
 ```{r, results="hide"}
 rm(list=ls())
@@ -260,6 +260,7 @@ output = jags.samples( model= model.smpl,          # the model
                        variable.names= c("p"),    # names of variables to be sampled
                        n.iter = N                # size of sample
                        )
+save.image(file="BernoulliModel.RData") 
 ```
 
 Check the names of the variables sampled  
@@ -642,6 +643,25 @@ Below try to address the task by creating R chunks, and running them, and adding
 
 ```
 
+
+# Discussion
+
+ 
+ Now, it is January 27, 1986, and you take part in the 3-hour teleconference with people from Morton Thiokol, Marshall space flight center, and Kennedy space center.
+
+
+The forcast says that tommorrow the temperature too frosty. This is a bit unusual in the area and NASA people wonder if temperature can cause problems. 
+
+You perform the aforesaid statistical analysis and you find that the predictive probability in the next flight that there will be at least a defective O ring is less than $0.5$. 
+
+You report your findinds, and the next day, January 28, 1986 explodes due to the presence of a defective O-ring component.
+
+What did it go wrong with your aforesaid analysis?
+
+How could you possibly do your analysis so that it can succesfully sugest you that the next flight (the one on January 28, 1986) will be a disaster if it is preformed?
+
+
+If you have finished this handout, you can proceed tot he next [Bernoulli regression model].
 
 
 

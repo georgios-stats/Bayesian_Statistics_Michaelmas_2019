@@ -13,7 +13,7 @@ output:
     df_print: paged
     number_sections: true
 ---
-[Back to the main document](./main.nb.html)
+[Back to README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
 
 ```{r, results="hide"}
 rm(list=ls())
@@ -239,31 +239,6 @@ Create an input list, for jags, containing the data and fixed  parameters of the
 
 
 
-<!-- ```{r} -->
-<!-- y_obs <- mydata[ -nrow(mydata) , 4 ] # exclude the last row, and use only the 4th column -->
-<!-- y_obs <- as.numeric(y_obs==1)        # make it numeric  -->
-<!-- n_obs <- length( y_obs ) -->
-<!-- X_obs <- cbind( rep(1,n_obs),  -->
-<!--                 as.numeric(mydata[ -nrow(mydata),3]),  -->
-<!--                 as.numeric(mydata[ -nrow(mydata),5])  ) -->
-
-<!-- # Units correction -->
-<!-- X_obs[,2] <- (X_obs[,2]-mean(X_obs[,2])) / sd(X_obs[,2]) -->
-<!-- X_obs[,3] <- (X_obs[,3]-mean(X_obs[,3])) / sd(X_obs[,3]) -->
-
-<!-- dmax = dim(X_obs)[2] -->
-
-<!-- data.bayes <- list(y = y_obs, -->
-<!--           X = X_obs, -->
-<!--           n = n_obs, -->
-<!--           dmax = dmax) -->
-<!-- ``` -->
-
-
-
-
-
-
 ```{r}
 y_obs <- mydata[ -nrow(mydata) , 4 ] # exclude the last row, and use only the 4th column
 y_obs <- as.numeric(y_obs==1)        # make it numeric
@@ -317,6 +292,7 @@ output = jags.samples( model = model.smpl,
                        n.iter = n.iter, 
                        thin = n.thin,
                        )
+save.image(file="BernoulliRegressionModelVS.RData") 
 ```
 
 Check the names of the variables sampled  

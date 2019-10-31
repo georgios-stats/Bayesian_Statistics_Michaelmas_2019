@@ -6,12 +6,12 @@ output:
   html_notebook: 
     number_sections: true
   word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
     number_sections: true
-  pdf_document: default
 ---
-[Back to the main document](./main.nb.html)
+[Back to README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
 
 ```{r, results="hide"}
 rm(list=ls())
@@ -300,6 +300,7 @@ output = jags.samples( model = model.smpl,          # the model
                        n.iter = n.iter,               # size of sample
                        thin = n.thin,
                        )
+save.image(file="BernoulliRegressionModel.RData") 
 ```
  
 Check the names of the variables sampled  
@@ -823,29 +824,21 @@ So yes, I would...
 
 In fact:  After the Challenger Space Shuttle 61-I accident  on 1/28/86, a commission (the Rogers Commission) was appointed by President R. Reagan to find the cause. The Rogers Commission concluded that "A careful analysis of the flight history of 0-ring performance would have revealed the correlation of 0-ring damage in low temperature" (PC1, p. 148).
 
-## Comments... {-}
 
-We use only the temperature as an input variable, but we ignored the Leak check pressure about which we have information...  
 
-+ Does the variable Leak check pressure affect the O-ring statue?
+##  Comments... {-}
 
-+ If does, shall we possibly include pressure in the model as a main effect 
-\begin{align*}
-p(t;\beta) 
-=&
-\frac{\exp(\beta_0+\beta_1 t+\beta_2 s)}{1+\exp(\beta_0+\beta_1 t+\beta_2 s)} 
-\end{align*}
-or maybe we could include the iteration as well 
+In the analysis above, we judged that the temperature affects the occurance of a defective O-ring. Actually, does this happen?
 
-\begin{align*}
-p(t;\beta) 
-=&
-\frac{\exp(\beta_0+\beta_1 t+\beta_2 s+\beta_3 ts)}{1+\exp(\beta_0+\beta_1 t+\beta_2 s+\beta_3 ts)}
-\end{align*}
-??? but which model is the ***'best'*** one???
+It would be interesting to actually infer if the occurance of a defective O-ring is affected by the leak check pressure as well. How could you possibly address this?
 
-This is the so called 'Variable Selection' or 'Model Comparison' problem.  
+It would be interesting to actually infer if the effect of temperature on the occurance of a defective O-ring changes at different values of leak check pressure (aka if temperature and  leak check pressure interact in a manner). How could you possibly address this?
 
+If you have finished this handout, you can proceed to the next [Bernoulli regression model -variable selection].
+
+### ... your answer {-}
+
+Below try to address the task by creating R chunks, and running them, and adding comments to the document.
 
 
 

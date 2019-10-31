@@ -1584,7 +1584,7 @@ $(document).ready(function () {
 </div>
 
 
-<p><a href="./main.nb.html">Back to the main document</a></p>
+<p><a href="http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html">Back to README</a></p>
 <pre class="r"><code>rm(list=ls())</code></pre>
 <hr />
 <p><strong><em>Aim</em></strong></p>
@@ -1653,7 +1653,8 @@ $(document).ready(function () {
 library(knitr)
 library(kableExtra)</code></pre>
 <pre class="r"><code># load the data
-mydata &lt;- read.csv(&quot;./challenger_data.csv&quot;)
+#mydata &lt;- read.csv(&quot;./challenger_data.csv&quot;)
+mydata &lt;- read.csv(&quot;https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/challenger_data.csv&quot;)
 # print data 
 ## (that&#39;s a sophisticated command with fancy output, feel free to ignore it)
 kable(mydata)%&gt;%
@@ -1777,7 +1778,8 @@ data.bayes &lt;- list(y = y_obs,
 output = jags.samples( model= model.smpl,          # the model
                        variable.names= c(&quot;p&quot;),    # names of variables to be sampled
                        n.iter = N                # size of sample
-                       )</code></pre>
+                       )
+save.image(file=&quot;BernoulliModel.RData&quot;) </code></pre>
 <p>Check the names of the variables sampled</p>
 <ul>
 <li>use <code>names {base}</code></li>
@@ -2041,6 +2043,16 @@ b_{n}= &amp; b_{0}+n-n\bar{y}
 <p>Below try to address the task by creating R chunks, and running them, and adding comments to the document.</p>
 <pre class="r"><code># write your R code</code></pre>
 </div>
+</div>
+<div id="discussion" class="section level1">
+<h1><span class="header-section-number">10</span> Discussion</h1>
+<p>Now, it is January 27, 1986, and you take part in the 3-hour teleconference with people from Morton Thiokol, Marshall space flight center, and Kennedy space center.</p>
+<p>The forcast says that tommorrow the temperature too frosty. This is a bit unusual in the area and NASA people wonder if temperature can cause problems.</p>
+<p>You perform the aforesaid statistical analysis and you find that the predictive probability in the next flight that there will be at least a defective O ring is less than <span class="math inline">\(0.5\)</span>.</p>
+<p>You report your findinds, and the next day, January 28, 1986 explodes due to the presence of a defective O-ring component.</p>
+<p>What did it go wrong with your aforesaid analysis?</p>
+<p>How could you possibly do your analysis so that it can succesfully sugest you that the next flight (the one on January 28, 1986) will be a disaster if it is preformed?</p>
+<p>If you have finished this handout, you can proceed tot he next [Bernoulli regression model].</p>
 </div>
 
 

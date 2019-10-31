@@ -1584,7 +1584,7 @@ $(document).ready(function () {
 </div>
 
 
-<p><a href="./main.nb.html">Back to the main document</a></p>
+<p><a href="http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html">Back to README</a></p>
 <pre class="r"><code>rm(list=ls())</code></pre>
 <hr />
 <p><strong><em>Aim</em></strong></p>
@@ -1655,7 +1655,8 @@ $(document).ready(function () {
 library(knitr)
 library(kableExtra)</code></pre>
 <pre class="r"><code># load the data
-mydata &lt;- read.csv(&quot;./challenger_data.csv&quot;)
+#mydata &lt;- read.csv(&quot;./challenger_data.csv&quot;)
+mydata &lt;- read.csv(&quot;https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/challenger_data.csv&quot;)
 # print data 
 ## (that&#39;s a sophisticated command with fancy output, feel free to ignore it)
 kable(mydata)%&gt;%
@@ -1809,7 +1810,8 @@ output = jags.samples( model = model.smpl,          # the model
                        variable.names = c(&quot;beta&quot;),    # names of variables to be sampled
                        n.iter = n.iter,               # size of sample
                        thin = n.thin,
-                       )</code></pre>
+                       )
+save.image(file=&quot;BernoulliRegressionModel.RData&quot;) </code></pre>
 <p>Check the names of the variables sampled</p>
 <ul>
 <li>use <code>names {base}</code></li>
@@ -2028,6 +2030,17 @@ f(y_{n+1}=c|y_{1:n};t=31)
 <p>The forcast says that tommorrow the temperature will be <span class="math inline">\(31\)</span>F at lunch time. This is too frosty… and rare temperature for the area.</p>
 <p>Would you cancel the lunch of the Space Shuttle 61-I on 1/28/86?</p>
 <div id="your-answer-9" class="section level3 unnumbered">
+<h3>… your answer</h3>
+<p>Below try to address the task by creating R chunks, and running them, and adding comments to the document.</p>
+</div>
+</div>
+<div id="comments" class="section level2 unnumbered">
+<h2>Comments…</h2>
+<p>In the analysis above, we judged that the temperature affects the occurance of a defective O-ring. Actually, does this happen?</p>
+<p>It would be interesting to actually infer if the occurance of a defective O-ring is affected by the leak check pressure as well. How could you possibly address this?</p>
+<p>It would be interesting to actually infer if the effect of temperature on the occurance of a defective O-ring changes at different values of leak check pressure (aka if temperature and leak check pressure interact in a manner). How could you possibly address this?</p>
+<p>If you have finished this handout, you can proceed to the next [Bernoulli regression model -variable selection].</p>
+<div id="your-answer-10" class="section level3 unnumbered">
 <h3>… your answer</h3>
 <p>Below try to address the task by creating R chunks, and running them, and adding comments to the document.</p>
 </div>
