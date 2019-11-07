@@ -162,25 +162,9 @@ b_0=\begin{pmatrix}0.0\\ 0.0 \end{pmatrix}  \text{,    and    }  B_0=\begin{pmat
 
 # Task
 
-Write the JAGS program implementing the hierarchical model above, in order to generate a sample of size $N=100000$ from the posterior distribution $$\beta^{(j)}\sim\pi(\beta|y_{1:n})\  ,\  \  j=1,...,N.$$.
 
-Analysis using the rjags package proceeds in steps: 
-
-1. Load the library `rjags`  
-
-2. Create an input script, for rjags, containing the Bayesian hierarchical model  
-
-3. Create an input list, for jags, containing the data and fixed  parameters of the model  
-
-    + use `list {base}`
-
-4. Creates an object of class “jags”. To do this you need to read the model file by using the `jags.model{rjags}` function.
-
-    + use `jags.model{rjags}`
-
-5. Generate a posterior sample. To do this you need to  extract samples from the model object using the coda.samples function. 
-
-    + use `update{rjags}`  ;  `coda.samples{rjags}`
+We write the JAGS program implementing the hierarchical model above, in order to generate a sample of size $N=100000$ from the posterior distribution $$\beta^{(j)}\sim\pi(\beta|y_{1:n})\  ,\  \  j=1,...,N.$$.
+ 
 
 
 ### ... your answer {-}
@@ -293,7 +277,7 @@ We need to pay attention on two flaqs:
 
 ```{r, results="hide"}
 N = 10^5      # the size of the sample we ll gona get
-n.thin = 10^3     # the thining (improving) the sample quality
+n.thin = 10^2     # the thining (improving) the sample quality
 n.iter = N * n.thin # the number of the total iterations performed
 output = jags.samples( model = model.smpl,          # the model
                        variable.names = c("beta"),    # names of variables to be sampled
@@ -335,13 +319,13 @@ beta.smpl <-output$beta
 
 # Task 
 
-Extract the sample drawn from the posterior distribution $$\beta^{(j)}\sim\pi(\beta|y_{1:n})\  \  j=1,...,N$$ and print the trace plot of the sample. 
+Print the trace plot of the sample drawn from the posterior distribution $$\beta^{(j)}\sim\pi(\beta|y_{1:n})\  \  j=1,...,N$$ 
 
 Use functions:  
     
 + `plot {graphics}`.
 
-Snapshot from Tem 2:  
+A glimpse into Term 2 Bayesian statistics:  
 
 + A good quality sample for the purposes of Monte Carlo integration is the one whose trace plot looks completely uncorelated.  
     + e.g. like the independence assumption in the siple linear regression in SC2.  

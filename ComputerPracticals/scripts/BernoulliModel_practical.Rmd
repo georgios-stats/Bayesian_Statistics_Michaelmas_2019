@@ -73,9 +73,9 @@ Students are not required to learn by heart any of the concepts discussed
 
 # Application: Challenger O-ring {-}
 
-On January 28, 1986, a routine launch was anticipated for the Challenger space shuttle. Seventy-three seconds into the flight, disaster happened: the shuttle broke apart, killing all seven crew members on board. [Here is the video](https://youtu.be/fSTrmJtHLFU?t=99). The Rogers commission concluded that the Challenger accident was caused by gas leak through the 6 O-ring joints of the shuttle. Essentially the presence of distressed O-ring joints was the crusial factor that caused the explosion. 
+On January 28, 1986, a routine launch was anticipated for the Challenger space shuttle. Seventy-three seconds into the flight, disaster happened: the shuttle broke apart, killing all seven crew members on board. [Here is the video](https://youtu.be/fSTrmJtHLFU?t=99). The Rogers commission concluded that the Challenger accident was caused by gas leak through the 6 O-ring joints of the shuttle. Essentially the presence of distressed O-ring joints was the crucial factor that caused the explosion. 
 
-[Dalal, Fowlkes and Hoadley (1989)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1989.10478858) analysed a dataset that contains the presence of   distressed O-rings, the temperature in the platform, and the leal check pressure  for 23 previous shuttle flights. The the data-set is provided below, where in column *Defective.O.rings*, (1) stands for presence of distressed O-rings, and (0) for absence, while the rest columns are self explained. 
+[Dalal, Fowlkes and Hoadley (1989)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1989.10478858) analysed a dataset that contains the presence of   distressed O-rings, the temperature in the platform, and the leak check pressure  for 23 previous shuttle flights. The the data-set is provided below, where in column *Defective.O.rings*, (1) stands for presence of distressed O-rings, and (0) for absence, while the rest of the columns are self explained. 
 
 
 ```{r, results="hide"}
@@ -123,30 +123,11 @@ with hyper-parameter values $a_0=1.0$, $b_0=1.0$.
 
 # Task
 
-Write the RJAGS program implementing the hierarchical model above, in order a sample of size $N=100000$ from the posterior distribution  $$p^{(j)}\sim\pi(p|y_{1:n})\  ,\  \  j=1,...,N.$$
-
-Analysis using the rjags package proceeds in steps: 
-
-1. Load the library `rjags`  
-
-2. Create an input script, for rjags, containing the Bayesian hierarchical model  
-
-3. Create an input list, for jags, containing the data and fixed  parameters of the model  
-
-    + use `list {base}`
-
-4. Creates an object of class “jags”. To do this you need to read the model file by using the `jags.model{rjags}` function.
-
-    + use `jags.model{rjags}`
-
-5. Generate a posterior sample. To do this you need to  extract samples from the model object using the jags.samples function. 
-
-    + use `update{rjags}`  ;  `jags.samples{rjags}`
-
+We write a RJAGS program implementing the hierarchical model above, in order to generate a sample of size $n=100000$ from the posterior distribution  $$p^{(j)}\sim\pi(p|y_{1:n})\  ,\  \  j=1,...,n.$$
 
 ### ... your answer {-}
 
-Below try to address the task by creating R chunks, and running them, and adding comments to the document.
+For now I am doing it for you.
 
 ***step 1***
 
@@ -250,7 +231,7 @@ We need to pay attention on two flaqs:
 
 <!-- + the `thin`: the thining interval -->
 
-+ the `variable.names`: it specifies the names of the random variables correspondign to the posterior samples I am interested in generating   
++ the `variable.names`: it specifies the names of the random variables corresponding to the posterior samples I am interested in generating   
 
 
 
@@ -279,7 +260,7 @@ Check the dimensions of each of the variables sampled
 dim( output$p )
 # the first dimension is the numbers of columns of the variable
 # the second dimention is the size of the sample drawn
-# the thirs dimention is the number of the sub-samples drawn (in our case it is just 1)
+# the third dimension is the number of the sub-samples drawn (in our case it is just 1)
 ```
 
 Copy the sample of each variable in a vector with a more friendly name...
@@ -293,16 +274,16 @@ pr.smpl <-output$p
 
 # Task 
 
-Extract the sample drawn from the posterior distribution $$p^{(j)}\sim\pi(p|y_{1:n})\  \  j=1,...,N$$ and print the trace plot of the sample. 
+Print the trace plot of the sample drawn from the posterior distribution $$p^{(j)}\sim\pi(p|y_{1:n})\  \  j=1,...,N$$. 
 
 Use functions:  
     
 + `plot {graphics}`.
 
-Snapshot from Tem 2:  
+A glimpse forward into Term 2 of Bayesian stats:  
 
-+ A good quality sample for the purposes of Monte Carlo integration is the one whose trace plot looks completely uncorelated.  
-    + e.g. like the independence assumption in the siple linear regression in SC2.  
++ A good quality sample for the purposes of Monte Carlo integration is the one whose trace plot looks completely uncorrelated.  
+    + e.g. like the independence assumption of the residuals in the simple linear regression in SC2.  
 
 + To improve the quality of the sample, you can go back to the sampling stem and play with the flaq values of `n.iter` and `thin` in `jags.samples{rjags}`.  
 
@@ -344,13 +325,7 @@ b_{n}= & b_{0}+n-n\bar{y}.
 
 
 
-<!-- which is  -->
-<!-- $$ -->
-<!-- F_{\pi}(p\le c|y_{1:n}) -->
-<!-- = -->
-<!-- \int_0^c\frac{1}{B(a_n,b_n)} p^{a_n-1}(1-p)^{a_n-1} \text{1}(p\in [0,1])\text{d}p -->
-<!-- $$ -->
-by printing them on the same plot.  
+Print them on the same plot.  
 
 
 Use functions:  
@@ -374,13 +349,15 @@ Below try to address the task by creating R chunks, and running them, and adding
 
 # Task
 
-+ Compute and plot the MC approximation for the posterior distribution density of $p|y_{1:n}$ as a histogram
++ Compute and plot the MC approximation for the posterior distribution density of $p|y_{1:n}$ as a histogram 
+    + use the function `hist {graphics}` provided from R.
+    
+    + Just for your information, the mathematical formula of a histogram estimator is
 $$
 \pi(p|y_{1:n}) \approx \frac{1}{2\epsilon}\frac{1}{N}\sum_{j=1}^{N} \text{1}\left(p^{(j)}\in (p-\epsilon,p+\epsilon]\right) \  \text{for small }\epsilon
 $$ 
-for $p\in (0,1)$,   
+for $p\in (0,1)$,   however, you do not need to code it. Just use  the function `hist {graphics}`
 
-    + use the function `hist {graphics}` provided from R, instead... no need for you to choose the optimal $\epsilon$ value.  
 
 + Compute and plot the exact the posterior distribution density of $p|y_{1:n}$ which is the PDF of 
 \[
@@ -455,11 +432,7 @@ $$
 Q_{0.025}(p|y_{1:n})\  ,\  Q_{0.975}(p|y_{1:n})
 ]
 $$
-where $Q_{\alpha}(p|y_{1:n})$ 
-<!-- $$ -->
-<!-- Q_{\alpha}(p|y_{1:n}) = F_{p}^{-1}(\alpha|y_{1:n}) -->
-<!-- $$ -->
-is the $\alpha$-th quantile of the posterior distribution of $p$  
+where $Q_{\alpha}(p|y_{1:n})$  is the $\alpha$-th quantile of the posterior distribution of $p$  
 
 + compute the exact $95$% posterior equal tail credible interval of the frequency parameter $p$ is   
 $$
@@ -467,11 +440,7 @@ $$
 Q_{0.025}(p|y_{1:n})\  ,\  Q_{0.975}(p|y_{1:n})
 ]
 $$
-where $Q_{\alpha}(p|y_{1:n})$ 
-<!-- $$ -->
-<!-- Q_{\alpha}(p|y_{1:n}) = F_{p}^{-1}(\alpha|y_{1:n}) -->
-<!-- $$ -->
-is the $\alpha$-th quantile of the posterior distribution of $p$ which is   
+where $Q_{\alpha}(p|y_{1:n})$ is the $\alpha$-th quantile of the posterior distribution of $p$ which is   
 $$
 p\sim \text{Beta}(a_{n},b_{n})
 $$

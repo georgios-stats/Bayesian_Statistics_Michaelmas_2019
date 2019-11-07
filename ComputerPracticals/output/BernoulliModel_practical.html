@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)" />
@@ -236,7 +237,7 @@ display: none;
 padding: 0 4px 0 4px;
 }
 .pagedtable .even {
-background-color: #fcfcfc;
+background-color: rgba(140, 140, 140, 0.1);
 }
 .pagedtable-padding-col {
 display: none;
@@ -1526,9 +1527,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -1542,7 +1541,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1553,22 +1551,80 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -1578,8 +1634,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Bernoulli model with conjugate priors</h1>
-<h3 class="subtitle"><em>Case study: Space shuttle Challenger disaster</em></h3>
-<h4 class="author"><em>Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)</em></h4>
+<h3 class="subtitle">Case study: Space shuttle Challenger disaster</h3>
+<h4 class="author">Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)</h4>
 
 </div>
 
@@ -1647,8 +1703,8 @@ $(document).ready(function () {
 <hr />
 <div id="application-challenger-o-ring" class="section level1 unnumbered">
 <h1>Application: Challenger O-ring</h1>
-<p>On January 28, 1986, a routine launch was anticipated for the Challenger space shuttle. Seventy-three seconds into the flight, disaster happened: the shuttle broke apart, killing all seven crew members on board. <a href="https://youtu.be/fSTrmJtHLFU?t=99">Here is the video</a>. The Rogers commission concluded that the Challenger accident was caused by gas leak through the 6 O-ring joints of the shuttle. Essentially the presence of distressed O-ring joints was the crusial factor that caused the explosion.</p>
-<p><a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1989.10478858">Dalal, Fowlkes and Hoadley (1989)</a> analysed a dataset that contains the presence of distressed O-rings, the temperature in the platform, and the leal check pressure for 23 previous shuttle flights. The the data-set is provided below, where in column <em>Defective.O.rings</em>, (1) stands for presence of distressed O-rings, and (0) for absence, while the rest columns are self explained.</p>
+<p>On January 28, 1986, a routine launch was anticipated for the Challenger space shuttle. Seventy-three seconds into the flight, disaster happened: the shuttle broke apart, killing all seven crew members on board. <a href="https://youtu.be/fSTrmJtHLFU?t=99">Here is the video</a>. The Rogers commission concluded that the Challenger accident was caused by gas leak through the 6 O-ring joints of the shuttle. Essentially the presence of distressed O-ring joints was the crucial factor that caused the explosion.</p>
+<p><a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1989.10478858">Dalal, Fowlkes and Hoadley (1989)</a> analysed a dataset that contains the presence of distressed O-rings, the temperature in the platform, and the leak check pressure for 23 previous shuttle flights. The the data-set is provided below, where in column <em>Defective.O.rings</em>, (1) stands for presence of distressed O-rings, and (0) for absence, while the rest of the columns are self explained.</p>
 <pre class="r"><code># Load R package for printing
 library(knitr)
 library(kableExtra)</code></pre>
@@ -1656,7 +1712,7 @@ library(kableExtra)</code></pre>
 #mydata &lt;- read.csv(&quot;./challenger_data.csv&quot;)
 mydata &lt;- read.csv(&quot;https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/challenger_data.csv&quot;)
 # print data 
-## (that&#39;s a sophisticated command with fancy output, feel free to ignore it)
+## (that's a sophisticated command with fancy output, feel free to ignore it)
 kable(mydata)%&gt;%
   kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;))</code></pre>
 <p>Here,</p>
@@ -1682,27 +1738,10 @@ p\sim &amp; \text{Beta}(a_0,b_0) ,
 </div>
 <div id="task" class="section level1">
 <h1><span class="header-section-number">1</span> Task</h1>
-<p>Write the RJAGS program implementing the hierarchical model above, in order a sample of size <span class="math inline">\(N=100000\)</span> from the posterior distribution <span class="math display">\[p^{(j)}\sim\pi(p|y_{1:n})\  ,\  \  j=1,...,N.\]</span></p>
-<p>Analysis using the rjags package proceeds in steps:</p>
-<ol style="list-style-type: decimal">
-<li><p>Load the library <code>rjags</code></p></li>
-<li><p>Create an input script, for rjags, containing the Bayesian hierarchical model</p></li>
-<li><p>Create an input list, for jags, containing the data and fixed parameters of the model</p>
-<ul>
-<li>use <code>list {base}</code></li>
-</ul></li>
-<li><p>Creates an object of class “jags”. To do this you need to read the model file by using the <code>jags.model{rjags}</code> function.</p>
-<ul>
-<li>use <code>jags.model{rjags}</code></li>
-</ul></li>
-<li><p>Generate a posterior sample. To do this you need to extract samples from the model object using the jags.samples function.</p>
-<ul>
-<li>use <code>update{rjags}</code> ; <code>jags.samples{rjags}</code></li>
-</ul></li>
-</ol>
+<p>We write a RJAGS program implementing the hierarchical model above, in order to generate a sample of size <span class="math inline">\(n=100000\)</span> from the posterior distribution <span class="math display">\[p^{(j)}\sim\pi(p|y_{1:n})\  ,\  \  j=1,...,n.\]</span></p>
 <div id="your-answer" class="section level3 unnumbered">
 <h3>… your answer</h3>
-<p>Below try to address the task by creating R chunks, and running them, and adding comments to the document.</p>
+<p>For now I am doing it for you.</p>
 <p><strong><em>step 1</em></strong></p>
 <p>Load the library</p>
 <pre class="r"><code># Load rjags
@@ -1772,7 +1811,7 @@ data.bayes &lt;- list(y = y_obs,
 </ul>
 <!-- + the `thin`: the thining interval -->
 <ul>
-<li>the <code>variable.names</code>: it specifies the names of the random variables correspondign to the posterior samples I am interested in generating</li>
+<li>the <code>variable.names</code>: it specifies the names of the random variables corresponding to the posterior samples I am interested in generating</li>
 </ul>
 <pre class="r"><code>N = 10000      # the size of the sample we ll gonna get
 output = jags.samples( model= model.smpl,          # the model
@@ -1795,7 +1834,7 @@ save.image(file=&quot;BernoulliModel.RData&quot;) </code></pre>
 ##         1     10000         1</code></pre>
 <pre class="r"><code># the first dimension is the numbers of columns of the variable
 # the second dimention is the size of the sample drawn
-# the thirs dimention is the number of the sub-samples drawn (in our case it is just 1)</code></pre>
+# the third dimension is the number of the sub-samples drawn (in our case it is just 1)</code></pre>
 <p>Copy the sample of each variable in a vector with a more friendly name…</p>
 <pre class="r"><code>pr.smpl &lt;-output$p</code></pre>
 <hr />
@@ -1803,16 +1842,16 @@ save.image(file=&quot;BernoulliModel.RData&quot;) </code></pre>
 </div>
 <div id="task-1" class="section level1">
 <h1><span class="header-section-number">2</span> Task</h1>
-<p>Extract the sample drawn from the posterior distribution <span class="math display">\[p^{(j)}\sim\pi(p|y_{1:n})\  \  j=1,...,N\]</span> and print the trace plot of the sample.</p>
+<p>Print the trace plot of the sample drawn from the posterior distribution <span class="math display">\[p^{(j)}\sim\pi(p|y_{1:n})\  \  j=1,...,N\]</span>.</p>
 <p>Use functions:</p>
 <ul>
 <li><code>plot {graphics}</code>.</li>
 </ul>
-<p>Snapshot from Tem 2:</p>
+<p>A glimpse forward into Term 2 of Bayesian stats:</p>
 <ul>
-<li>A good quality sample for the purposes of Monte Carlo integration is the one whose trace plot looks completely uncorelated.
+<li>A good quality sample for the purposes of Monte Carlo integration is the one whose trace plot looks completely uncorrelated.
 <ul>
-<li>e.g. like the independence assumption in the siple linear regression in SC2.</li>
+<li>e.g. like the independence assumption of the residuals in the simple linear regression in SC2.</li>
 </ul></li>
 <li>To improve the quality of the sample, you can go back to the sampling stem and play with the flaq values of <code>n.iter</code> and <code>thin</code> in <code>jags.samples{rjags}</code>.</li>
 </ul>
@@ -1839,13 +1878,7 @@ a_{n}= &amp; a_{0}+n\bar{y}\\
 b_{n}= &amp; b_{0}+n-n\bar{y}.
 \end{align*}\]</span></p></li>
 </ul>
-<!-- which is  -->
-<!-- $$ -->
-<!-- F_{\pi}(p\le c|y_{1:n}) -->
-<!-- = -->
-<!-- \int_0^c\frac{1}{B(a_n,b_n)} p^{a_n-1}(1-p)^{a_n-1} \text{1}(p\in [0,1])\text{d}p -->
-<!-- $$ -->
-<p>by printing them on the same plot.</p>
+<p>Print them on the same plot.</p>
 <p>Use functions:</p>
 <ul>
 <li><code>lines {graphics}</code></li>
@@ -1860,19 +1893,20 @@ b_{n}= &amp; b_{0}+n-n\bar{y}.
 <div id="task-3" class="section level1">
 <h1><span class="header-section-number">4</span> Task</h1>
 <ul>
-<li><p>Compute and plot the MC approximation for the posterior distribution density of <span class="math inline">\(p|y_{1:n}\)</span> as a histogram <span class="math display">\[
-\pi(p|y_{1:n}) \approx \frac{1}{2\epsilon}\frac{1}{N}\sum_{j=1}^{N} \text{1}\left(p^{(j)}\in (p-\epsilon,p+\epsilon]\right) \  \text{for small }\epsilon
-\]</span> for <span class="math inline">\(p\in (0,1)\)</span>,</p>
+<li>Compute and plot the MC approximation for the posterior distribution density of <span class="math inline">\(p|y_{1:n}\)</span> as a histogram
 <ul>
-<li>use the function <code>hist {graphics}</code> provided from R, instead… no need for you to choose the optimal <span class="math inline">\(\epsilon\)</span> value.</li>
+<li><p>use the function <code>hist {graphics}</code> provided from R.</p></li>
+<li><p>Just for your information, the mathematical formula of a histogram estimator is <span class="math display">\[
+\pi(p|y_{1:n}) \approx \frac{1}{2\epsilon}\frac{1}{N}\sum_{j=1}^{N} \text{1}\left(p^{(j)}\in (p-\epsilon,p+\epsilon]\right) \  \text{for small }\epsilon
+\]</span> for <span class="math inline">\(p\in (0,1)\)</span>, however, you do not need to code it. Just use the function <code>hist {graphics}</code></p></li>
 </ul></li>
-<li><p>Compute and plot the exact the posterior distribution density of <span class="math inline">\(p|y_{1:n}\)</span> which is the PDF of <span class="math display">\[
+<li>Compute and plot the exact the posterior distribution density of <span class="math inline">\(p|y_{1:n}\)</span> which is the PDF of <span class="math display">\[
 p|y_{1:n}\sim\text{Beta}(a_{n},b_{n})
 \]</span> where<br />
 <span class="math display">\[\begin{align*}
 a_{n}= &amp; a_{0}+n\bar{y}\\
 b_{n}= &amp; b_{0}+n-n\bar{y}.
-\end{align*}\]</span></p></li>
+\end{align*}\]</span></li>
 </ul>
 <p>Use functions:</p>
 <ul>
@@ -1919,13 +1953,13 @@ b_{n}= &amp; b_{0}+n-n\bar{y}
 [
 Q_{0.025}(p|y_{1:n})\  ,\  Q_{0.975}(p|y_{1:n})
 ]
-\]</span> where <span class="math inline">\(Q_{\alpha}(p|y_{1:n})\)</span> <!-- $$ --> <!-- Q_{\alpha}(p|y_{1:n}) = F_{p}^{-1}(\alpha|y_{1:n}) --> <!-- $$ --> is the <span class="math inline">\(\alpha\)</span>-th quantile of the posterior distribution of <span class="math inline">\(p\)</span></p></li>
+\]</span> where <span class="math inline">\(Q_{\alpha}(p|y_{1:n})\)</span> is the <span class="math inline">\(\alpha\)</span>-th quantile of the posterior distribution of <span class="math inline">\(p\)</span></p></li>
 <li><p>compute the exact <span class="math inline">\(95\)</span>% posterior equal tail credible interval of the frequency parameter <span class="math inline">\(p\)</span> is<br />
 <span class="math display">\[
 [
 Q_{0.025}(p|y_{1:n})\  ,\  Q_{0.975}(p|y_{1:n})
 ]
-\]</span> where <span class="math inline">\(Q_{\alpha}(p|y_{1:n})\)</span> <!-- $$ --> <!-- Q_{\alpha}(p|y_{1:n}) = F_{p}^{-1}(\alpha|y_{1:n}) --> <!-- $$ --> is the <span class="math inline">\(\alpha\)</span>-th quantile of the posterior distribution of <span class="math inline">\(p\)</span> which is<br />
+\]</span> where <span class="math inline">\(Q_{\alpha}(p|y_{1:n})\)</span> is the <span class="math inline">\(\alpha\)</span>-th quantile of the posterior distribution of <span class="math inline">\(p\)</span> which is<br />
 <span class="math display">\[
 p\sim \text{Beta}(a_{n},b_{n})
 \]</span> where <span class="math display">\[\begin{align*}
@@ -2072,6 +2106,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

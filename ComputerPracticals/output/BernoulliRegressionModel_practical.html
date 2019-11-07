@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)" />
@@ -236,7 +237,7 @@ display: none;
 padding: 0 4px 0 4px;
 }
 .pagedtable .even {
-background-color: #fcfcfc;
+background-color: rgba(140, 140, 140, 0.1);
 }
 .pagedtable-padding-col {
 display: none;
@@ -1526,9 +1527,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -1542,7 +1541,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1553,22 +1551,80 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -1578,8 +1634,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Bernoulli regression model</h1>
-<h3 class="subtitle"><em>Case study: Space shuttle Challenger disaster</em></h3>
-<h4 class="author"><em>Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)</em></h4>
+<h3 class="subtitle">Case study: Space shuttle Challenger disaster</h3>
+<h4 class="author">Georgios P. Karagiannis @ MATH3341/4031 Bayesian statistics III/IV (practical implementation)</h4>
 
 </div>
 
@@ -1658,7 +1714,7 @@ library(kableExtra)</code></pre>
 #mydata &lt;- read.csv(&quot;./challenger_data.csv&quot;)
 mydata &lt;- read.csv(&quot;https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/challenger_data.csv&quot;)
 # print data 
-## (that&#39;s a sophisticated command with fancy output, feel free to ignore it)
+## (that's a sophisticated command with fancy output, feel free to ignore it)
 kable(mydata)%&gt;%
   kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;))</code></pre>
 <p>On the night of January 27, 1986, the night before the space shuttle Challenger accident, there was a three-hour teleconference among people at Morton Thiokol, Marshall Space Flight Center, and Kennedy Space Center. The discussion focused on the forecast of a 31F temperature for launch time the next morning, and the effect of low temperature on 0-ring performance.</p>
@@ -1710,24 +1766,7 @@ b_0=\begin{pmatrix}0.0\\ 0.0 \end{pmatrix}  \text{,    and    }  B_0=\begin{pmat
 </div>
 <div id="task" class="section level1">
 <h1><span class="header-section-number">1</span> Task</h1>
-<p>Write the JAGS program implementing the hierarchical model above, in order to generate a sample of size <span class="math inline">\(N=100000\)</span> from the posterior distribution <span class="math display">\[\beta^{(j)}\sim\pi(\beta|y_{1:n})\  ,\  \  j=1,...,N.\]</span>.</p>
-<p>Analysis using the rjags package proceeds in steps:</p>
-<ol style="list-style-type: decimal">
-<li><p>Load the library <code>rjags</code></p></li>
-<li><p>Create an input script, for rjags, containing the Bayesian hierarchical model</p></li>
-<li><p>Create an input list, for jags, containing the data and fixed parameters of the model</p>
-<ul>
-<li>use <code>list {base}</code></li>
-</ul></li>
-<li><p>Creates an object of class “jags”. To do this you need to read the model file by using the <code>jags.model{rjags}</code> function.</p>
-<ul>
-<li>use <code>jags.model{rjags}</code></li>
-</ul></li>
-<li><p>Generate a posterior sample. To do this you need to extract samples from the model object using the coda.samples function.</p>
-<ul>
-<li>use <code>update{rjags}</code> ; <code>coda.samples{rjags}</code></li>
-</ul></li>
-</ol>
+<p>We write the JAGS program implementing the hierarchical model above, in order to generate a sample of size <span class="math inline">\(N=100000\)</span> from the posterior distribution <span class="math display">\[\beta^{(j)}\sim\pi(\beta|y_{1:n})\  ,\  \  j=1,...,N.\]</span>.</p>
 <div id="your-answer" class="section level3 unnumbered">
 <h3>… your answer</h3>
 <p>This task has already been addressed for you</p>
@@ -1804,7 +1843,7 @@ data.bayes &lt;- list(y = y_obs,
 <li><p>the <code>thin</code>: the thining interval (use <code>thin=1</code> for now). It makes the algorithm to return only every <code>thin</code>-th sample value from the total sample sequence generated. <strong>Ask your instructor about it</strong>.</p></li>
 </ul>
 <pre class="r"><code>N = 10^5      # the size of the sample we ll gona get
-n.thin = 10^3     # the thining (improving) the sample quality
+n.thin = 10^2     # the thining (improving) the sample quality
 n.iter = N * n.thin # the number of the total iterations performed
 output = jags.samples( model = model.smpl,          # the model
                        variable.names = c(&quot;beta&quot;),    # names of variables to be sampled
@@ -1835,12 +1874,12 @@ save.image(file=&quot;BernoulliRegressionModel.RData&quot;) </code></pre>
 </div>
 <div id="task-1" class="section level1">
 <h1><span class="header-section-number">2</span> Task</h1>
-<p>Extract the sample drawn from the posterior distribution <span class="math display">\[\beta^{(j)}\sim\pi(\beta|y_{1:n})\  \  j=1,...,N\]</span> and print the trace plot of the sample.</p>
+<p>Print the trace plot of the sample drawn from the posterior distribution <span class="math display">\[\beta^{(j)}\sim\pi(\beta|y_{1:n})\  \  j=1,...,N\]</span></p>
 <p>Use functions:</p>
 <ul>
 <li><code>plot {graphics}</code>.</li>
 </ul>
-<p>Snapshot from Tem 2:</p>
+<p>A glimpse into Term 2 Bayesian statistics:</p>
 <ul>
 <li>A good quality sample for the purposes of Monte Carlo integration is the one whose trace plot looks completely uncorelated.
 <ul>
@@ -1861,18 +1900,18 @@ save.image(file=&quot;BernoulliRegressionModel.RData&quot;) </code></pre>
 <span class="math display">\[\begin{align*}
 \beta_{1} 
 &amp;= 
-\frac{\log\left(\frac{p(t&#39;)}{1-p(t&#39;)}\right)-\log\left(\frac{p(t;\beta)}{1-p(t;\beta)}\right)}
-{t&#39;-t}
+\frac{\log\left(\frac{p(t')}{1-p(t')}\right)-\log\left(\frac{p(t;\beta)}{1-p(t;\beta)}\right)}
+{t'-t}
 \end{align*}\]</span> by properly rearanging the the link function <span class="math inline">\(\log(\frac{p}{1-p})=\beta_0+\beta_1 t\)</span> considered.</p>
 <p>Hence the parameter <span class="math inline">\(\beta_1\)</span> can be interpreted as:</p>
 <ul>
 <li><p>the rate of change of the odds of a defective O-ring (in log scale) with respect to the temperature</p>
 <ul>
-<li>this is can be seen as <span class="math inline">\(t&#39;-t\rightarrow 0\)</span></li>
+<li>this is can be seen as <span class="math inline">\(t'-t\rightarrow 0\)</span></li>
 </ul></li>
 <li><p>the change of the odds of a defective O-ring (in log scale) if the temperature increase for <span class="math inline">\(1\)</span> unit</p>
 <ul>
-<li>this can be seen as <span class="math inline">\(t&#39;-t = 1\)</span></li>
+<li>this can be seen as <span class="math inline">\(t'-t = 1\)</span></li>
 </ul></li>
 </ul>
 <p>So:</p>
@@ -2064,6 +2103,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -149,7 +149,7 @@ Here, we just set:
 
 # Task
 
-1. Write the Stan program to draw a sample from the posterior distribution of the   parameters $\mu$, and $\sigma^2$     
+1. Write the rjags program to draw a sample from the posterior distribution of the   parameters $\mu$, and $\sigma^2$     
 
 2. Generate a sample of size $N=1000$ from the posterior distribution of the parameters.  
 
@@ -165,6 +165,10 @@ library("rjags")
 ```
 
 Create an input script, for rjags, containing the Bayesian hierarchical model  
+1. Write the Stan program to draw a sample from the posterior distribution of the   parameters $\mu$, and $\sigma^2$     
+
+2. Generate a sample of size $N=1000$ from the posterior distribution of the parameters.  
+
 
 ```{r}
 hierarhicalmodel <- "
@@ -235,7 +239,6 @@ Use
 
 + `jags.samples{rjags}`  
 
-<!-- Function jags.samples initially generates a sample sequence of `n.iter` values, but it returns as a sample only every  `thin` sample value from the initial sample sequence. Hence the sample that it returns has size $N = $ `n.iter` $\times$ `thin`.  -->
 
 We need to pay attention on two flaqs:  
 
@@ -304,9 +307,7 @@ plot(sigma2.smpl,
      ylab = "sigma2"
      )
 ```
-***Very Important***
 
-To exptract the sample from the output of `stan{rstan}` you need to use the function `extract{rstan}`, as in ***step 3***.
 
 
 # Task  

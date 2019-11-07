@@ -139,7 +139,7 @@ Here, we just set:
 
 # Task
 
-1. Write the Stan program to draw a sample from the posterior distribution of the   parameters $\mu$, and $\sigma^2$     
+1. Write the rjags program to draw a sample from the posterior distribution of the   parameters $\mu$, and $\sigma^2$     
 
 2. Generate a sample of size $N=1000$ from the posterior distribution of the parameters.  
 
