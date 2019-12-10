@@ -7,7 +7,7 @@ rm(list=ls())
 
 
 comp_sufficient_stats <- function (y, X) {
-
+  
   n <- dim(X)[1]
   
   d <- dim(X)[2]
@@ -22,7 +22,7 @@ comp_sufficient_stats <- function (y, X) {
 }
 
 comp_V_post <- function (y, X, V_prior) {
-    
+  
   sufficient_stats <- comp_sufficient_stats(y, X)
   
   XtX <- sufficient_stats$XtX
@@ -64,11 +64,11 @@ comp_lam_post <- function (y, X, mu_prior, V_prior, a_prior, lam_prior) {
   YtY <- sufficient_stats$YtY
   
   V_post <- comp_V_post(y, X, V_prior)
-
+  
   mu_post <- comp_mu_post(y, X, mu_prior, V_prior, a_prior, lam_prior)
   
   S <- sum(mu_prior * solve(V_prior,mu_prior)) 
-
+  
   S <- S -sum(mu_post * solve(V_post, mu_post))
   
   S <- S + YtY
@@ -114,14 +114,14 @@ comp_margimal_model_posterior_prob <-function(y, X__all,
                                               mu_prior_all, V_prior_all, a_prior_all, lam_prior_all,
                                               Available_models,
                                               marginal_model_prior) {
-    
-
+  
+  
   K_size <- length(Available_models)
   
   margimal_model_posterior_prob <- matrix(rep(0.0, length.out=K_size), K_size)
   
   for (i in 1:K_size) {
-        
+    
     k <- Available_models[[i]]
     
     margimal_model_prior_k <- marginal_model_prior[i]
@@ -144,23 +144,23 @@ comp_margimal_model_posterior_prob <-function(y, X__all,
     
     margimal_model_posterior_prob[i] <- comp_cond_likel(y, X_k, 
                                                         mu_prior_k, 
-                                                     V_prior_k, 
-                                                     a_prior_k, 
-                                                     lam_prior_k)*margimal_model_prior_k
+                                                        V_prior_k, 
+                                                        a_prior_k, 
+                                                        lam_prior_k)*margimal_model_prior_k
   }
   
   margimal_model_posterior_prob <- margimal_model_posterior_prob/sum(margimal_model_posterior_prob)
 }
-    
-    
-    
+
+
+
 
 
 
 
 
 comp_Bayes_factor <- function(y, X0, mu_prior0, V_prior0, a_prior0, lam_prior0,
-                     X1, mu_prior1, V_prior1, a_prior1, lam_prior1) {
+                              X1, mu_prior1, V_prior1, a_prior1, lam_prior1) {
   
   cond_likel_0 <- comp_cond_likel(y, X0, mu_prior0, V_prior0, a_prior0, lam_prior0)
   
@@ -181,9 +181,9 @@ airquality_na.omit <- na.omit(airquality)
 y = airquality_na.omit$Ozone
 
 X_full = cbind( rep(1,length(y)), 
-           airquality_na.omit$Solar.R, 
-           airquality_na.omit$Wind, 
-           airquality_na.omit$Temp)
+                airquality_na.omit$Solar.R, 
+                airquality_na.omit$Wind, 
+                airquality_na.omit$Temp)
 #standardise
 X_full[,-1] <- scale(X_full[,-1])
 
@@ -192,13 +192,13 @@ X_full[,-1] <- scale(X_full[,-1])
 # MODELS
 
 Available_models <- list (M0 = c(1),
-                         M1 = c(1,2),
-                         M2 = c(1,3),
-                         M3 = c(1,4),
-                         M4 = c(1,2,3),
-                         M5 = c(1,2,4),
-                         M6 = c(1,3,4),
-                         M7 = c(1,2,3,4)
+                          M1 = c(1,2),
+                          M2 = c(1,3),
+                          M3 = c(1,4),
+                          M4 = c(1,2,3),
+                          M5 = c(1,2,4),
+                          M6 = c(1,3,4),
+                          M7 = c(1,2,3,4)
 )
 
 
@@ -227,7 +227,13 @@ for (i in 1:size_K) {
 
 size_K <- length(Available_models) 
 
-marginal_model_prior <- rep (1 / (2^size_K) , size_K )
+marginal_model_prior <- rep (NaN , size_K )
+
+
+for (i in 1:size_K) {
+  marginal_model_prior[i] <- 1/ size_K
+}
+
 
 
 for (i in 1:size_K) {
@@ -235,7 +241,7 @@ for (i in 1:size_K) {
   n <- length( y )
   
   d <- length(Available_models[[i]] )
-
+  
   if (i == 1) {
     
     mu_prior_all <- list ( matrix(rep(0, d ), 1, d ) )
@@ -246,7 +252,7 @@ for (i in 1:size_K) {
     
     lam_prior_all <- list ( 1.0 )
     
-     
+    
   } else {
     
     mu_prior_all[[i]] <- list ( matrix(rep(0, d), 1, d) )
@@ -264,27 +270,63 @@ for (i in 1:size_K) {
 # PLOT THE MARGINAL MODEL POSTERIRO PROBABILITY
 
 margimal_model_posterior_prob<- comp_margimal_model_posterior_prob(y, X_all, 
-                                                                  mu_prior_all, 
-                                                                  V_prior_all, 
-                                                                  a_prior_all, 
-                                                                  lam_prior_all,
-                                                                  Available_models,
-                                                                  marginal_model_prior)
+                                                                   mu_prior_all, 
+                                                                   V_prior_all, 
+                                                                   a_prior_all, 
+                                                                   lam_prior_all,
+                                                                   Available_models,
+                                                                   marginal_model_prior)
 
 
 
 # PLOT THE MARGINAL MODEL POSTERIRO PROBABILITY AND THE INDIVIDUAL Y ~ X_j SCATERPLOTS
 
-par( mfrow=c(2,2)  )
-barplot( t(margimal_model_posterior_prob), 
-        names.arg=c('M0','M1','M2','M3','M4','M5','M6','M7'),
-        ylab = 'Prob',
-        xlab = 'Competing models',
-        main = 'Marginal model posterior probabilities'
-)
+par( mfrow=c(2,3)  )
 for ( j in 2:4) plot(X_full[,j],y, ylab = 'y', xlab =  paste('X_',toString(j)))
+barplot( t(marginal_model_prior), 
+         names.arg=c('M0','M1','M2','M3','M4','M5','M6','M7'),
+         ylab = 'Prob',
+         xlab = 'Competing models',
+         main = 'Marginal model prior probabilities',
+         ylim = c(0,1)
+)
+barplot( t(margimal_model_posterior_prob), 
+         names.arg=c('M0','M1','M2','M3','M4','M5','M6','M7'),
+         ylab = 'Prob',
+         xlab = 'Competing models',
+         main = 'Marginal model posterior probabilities',
+         ylim = c(0,1)
+)
 
 
+
+# Print me on pdf
+for ( j in 2:4) 
+{
+  pdf(paste('./airquality',as.character(j),'.pdf'))
+  plot(X_full[,j],y, ylab = 'y', xlab =  paste('X_',toString(j)))
+  dev.off() 
+}
+j = j+1
+pdf(paste('./airquality',as.character(j),'.pdf'))
+barplot( t(margimal_model_posterior_prob), 
+         names.arg=c('M0','M1','M2','M3','M4','M5','M6','M7'),
+         ylab = 'Prob',
+         xlab = 'Competing models',
+         main = 'Marginal model posterior probabilities',
+         ylim = c(0,1)
+)
+dev.off() 
+j = j+1
+pdf(paste('./airquality',as.character(j),'.pdf'))
+barplot( t(marginal_model_prior), 
+         names.arg=c('M0','M1','M2','M3','M4','M5','M6','M7'),
+         ylab = 'Prob',
+         xlab = 'Competing models',
+         main = 'Marginal model prior probabilities',
+         ylim = c(0,1)
+)
+dev.off() 
 
 
 

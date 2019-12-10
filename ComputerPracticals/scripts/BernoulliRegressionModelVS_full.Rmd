@@ -183,9 +183,9 @@ p(x_{i};\mathscr{M},\beta_\mathscr{M})
 (1-\mathscr{M}_j)\text{1}_{0}(\beta_j)+\mathscr{M}_j\text{N}(\beta_j|\mu_0,\sigma^2_0), \  \  j=1,...,d \\
 & \\
 \mathscr{M}
-&= (\mathscr{M}_1,...,\mathscr{M}_d  ) \\
+&= (\gamma_1,...,\gamma_d  ) \\
 & \\
-\mathscr{M}_j 
+\gamma_j 
 &\sim 
 \text{Bernoulli}(\varpi_0), \  \  j=1,...,d
 \end{cases}
