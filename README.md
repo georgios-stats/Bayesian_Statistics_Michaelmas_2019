@@ -7,6 +7,10 @@ About:
 
 This repository contains the teaching material for the module MATH3341/4031 Bayesian statistics III/IV.
 
+Description.pdf
+
+-   ILOs, sylabus, and bibliography
+
 It contains 4 main folders: 
 
 -   'ComputerPractical' which contains the material for your computer practicals
@@ -16,6 +20,8 @@ It contains 4 main folders:
 -   'LectureHandouts' which contains the material used in your lectures and problem classes
 
 -   'Shiny_applets' which contains the source code of the web applets used in the lectures.
+
+-   'HandoutsSupplementary' which is obsolete
 
 ------------------------------------------------------------------------
 
