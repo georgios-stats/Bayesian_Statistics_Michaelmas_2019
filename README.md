@@ -36,7 +36,9 @@ This repository contains the teaching material for the module MATH3341/4031 Baye
 
 Ways:
 
-1. You can use the program 'git' (<https://git-scm.com/>):
+1. You can click the green button 'Clone or download' and download it as a zip file
+
+2. You can use the program 'git' (<https://git-scm.com/>):
     
     -   in windows/linux: 
     
@@ -53,8 +55,6 @@ Ways:
     ... then run:
 
     -   git clone https://github.com/georgios-stats/Bayesian_Statistics.git
-
-2. You can click the green button 'Clone or download' and download it as a zip file
 
 3. You can use rstudio:
 
