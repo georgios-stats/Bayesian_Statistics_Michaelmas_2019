@@ -2,8 +2,7 @@
 
 ------------------------------------------------------------------------
 
-About:
-======
+# About:
 
 This repository contains the teaching material for the module MATH3341/4031 Bayesian statistics III/IV.
 
@@ -30,10 +29,10 @@ This repository contains the teaching material for the module MATH3341/4031 Baye
 
 ------------------------------------------------------------------------
 
-How to download:
-===============
+# How to download:
 
-###To download the whole repository
+
+### To download the whole repository
 
 Ways:
 
@@ -69,7 +68,7 @@ Ways:
     
     3.  Hit *Create a Project*
 
-###To download a specific folder only
+### To download a specific folder only
 
 Ways:
 
@@ -99,7 +98,7 @@ Ways:
         echo "ComputerPracticals/*" >> .git/info/sparse-checkout  
         git pull origin master*
 
-###To download a specific file
+### To download a specific file
 
 1. You can just navigate to the file from the browser and download it.
 
