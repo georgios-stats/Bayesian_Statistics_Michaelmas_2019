@@ -7,61 +7,104 @@ About:
 
 This repository contains the teaching material for the module MATH3341/4031 Bayesian statistics III/IV.
 
-Description.pdf
+-   '[Description.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/Description.pdf)' contains the ILOs, sylabus, and bibliography
 
--   ILOs, sylabus, and bibliography
+***Lectures and Problem classes***
 
-It contains 4 main folders: 
+-   '[LectureHandouts](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/LectureHandouts)' folder contains the material used in your lectures and problem classes
 
--   'ComputerPractical' which contains the material for your computer practicals
+***Computer practicals classes***
 
--   'Homework' which contains the material used for your practice at home
+-   '[ComputerPractical](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals)' folder contains the material for your computer practicals
 
--   'LectureHandouts' which contains the material used in your lectures and problem classes
+***Homework***
 
--   'Shiny_applets' which contains the source code of the web applets used in the lectures.
+-   '[Homework](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Homework)' folder contains the material used for your practice at home
 
--   'HandoutsSupplementary' which is obsolete
+***Web-applets***
+
+-   '[Shiny_applets](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Shiny_applets)' folder contains the source code of the web applets used in the lectures.
+
+
+
 
 ------------------------------------------------------------------------
 
 How to download:
 ===============
 
-As a pre-requisite, to use the command 'git' you need to download and install the software git from 'https://git-scm.com/':
+###To download the whole repository
 
--   in windows/linux: 
+Ways:
 
-    download and install git from https://git-scm.com/
+1. You can use the program 'git' (<https://git-scm.com/>):
+    
+    -   in windows/linux: 
+    
+        download and install git from https://git-scm.com/
+    
+    -   in Debian linux run in the terminal: 
+    
+        sudo apt-get install git
+    
+    -   in Red Hat linux run in the terminal: 
+    
+        sudo yum install git
+    
+    ... then run:
 
--   in Debian linux run in the terminal: 
+    -   git clone https://github.com/georgios-stats/Bayesian_Statistics.git
 
-    sudo apt-get install git
+2. You can click the green button 'Clone or download' and download it as a zip file
 
--   in Red Hat linux run in the terminal: 
+3. You can use rstudio:
 
-    sudo yum install git
+    1.  Go to File &gt; New Project &gt; Version Control &gt; Git
+    
+    2.  In the section *Repository URL* write
+        
+        -   <https://github.com/georgios-stats/Bayesian_Statistics.git>
+        
+        -   … and complete the rest as you wish
+    
+    3.  Hit *Create a Project*
 
-To download all the repository you can run:
+###To download a specific folder only
 
--   git clone https://github.com/georgios-stats/Bayesian_Statistics.git
+Ways:
 
-or
+1. You can use the GitZip add-on for Firefox available [HERE](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=2ahUKEwias52xjd3nAhXPUs0KHeXHCEUQFjACegQIAhAB&url=https%3A%2F%2Faddons.mozilla.org%2Fen-US%2Ffirefox%2Faddon%2Fgitzip%2F&usg=AOvVaw37servrJ29tuNcx9dIQDqy) or the Chrome add-on GitZip available [HERE](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwias52xjd3nAhXPUs0KHeXHCEUQFjABegQIARAB&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fgitzip-for-github%2Fffabmkklhbepgcgfonabamgnfafbdlkn%3Fhl%3Den&usg=AOvVaw1Pn3VXuXz1Fphl7dsPEhDS)
 
--   click the green button 'Clone or download' and download it as a zip file
+    1. In install [Firefox GitZip add-on](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=2ahUKEwias52xjd3nAhXPUs0KHeXHCEUQFjACegQIAhAB&url=https%3A%2F%2Faddons.mozilla.org%2Fen-US%2Ffirefox%2Faddon%2Fgitzip%2F&usg=AOvVaw37servrJ29tuNcx9dIQDqy) or the [Chrome GitZip add-on](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwias52xjd3nAhXPUs0KHeXHCEUQFjABegQIARAB&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fgitzip-for-github%2Fffabmkklhbepgcgfonabamgnfafbdlkn%3Fhl%3Den&usg=AOvVaw1Pn3VXuXz1Fphl7dsPEhDS)  
 
-To download a specific folder only, e.g. the 'ComputerPractical', you can run in the terminal the following:
+    2. Double click on the items you need.  
+    
+    3. Click download button at bottom-right.  
+    
+    4. See the progress dashboard and wait for browser trigger download.  
+    
+    5. Get the ZIP file.  
 
-        mkdir Bayesian_Statistics
-        cd Bayesian_Statistics
-        git init
-        git remote add -f origin git remote add -f origin
-        git remote add -f origin https://github.com/georgios-stats/Bayesian_Statistics.git
-        git config core.sparseCheckout true
-        echo "./ComputerPracticals" >> .git/info/sparse-checkout
-        git pull origin master
+2. You can use 'git' (<https://git-scm.com/>). 
 
-To download a specific file, you can just navigate to the file from the browser and download it.
+    E.g., assume you wish to download the sub-folder 'ComputerPractical':
+
+    -   run in the terminal the following:
+        
+        *mkdir Bayesian_Statistics  
+        cd Bayesian_Statistics  
+        git init  
+        git remote add -f origin https://github.com/georgios-stats/Bayesian_Statistics.git  
+        git config core.sparseCheckout true  
+        echo "ComputerPracticals/*" >> .git/info/sparse-checkout  
+        git pull origin master*
+
+###To download a specific file
+
+1. You can just navigate to the file from the browser and download it.
+
+2. You can use the GitZip add-on for Firefox available [HERE](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=2ahUKEwias52xjd3nAhXPUs0KHeXHCEUQFjACegQIAhAB&url=https%3A%2F%2Faddons.mozilla.org%2Fen-US%2Ffirefox%2Faddon%2Fgitzip%2F&usg=AOvVaw37servrJ29tuNcx9dIQDqy) or the Chrome add-on GitZip available [HERE](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwias52xjd3nAhXPUs0KHeXHCEUQFjABegQIARAB&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fgitzip-for-github%2Fffabmkklhbepgcgfonabamgnfafbdlkn%3Fhl%3Den&usg=AOvVaw1Pn3VXuXz1Fphl7dsPEhDS)
+
 
 ------------------------------------------------------------------------
 
