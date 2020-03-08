@@ -7,8 +7,6 @@ Here is a list of interactive shiny applications related that can be used to und
 
 You can click on the following links:  
 
-+ For the demo regarding the sensitivity / spacificity   
-  * <https://georgios-stats.shinyapps.io/demo_biostatistics_bayes/>
 
 + For the demo presenting standard distributions  
   * <https://georgios-stats.shinyapps.io/demo_distributions/>    
@@ -59,8 +57,6 @@ In order to download, edit, run the Web Applets to your computer, do the followi
   3. In the section "Repository URL" type: 
       * https://github.com/georgios-stats/Shiny_applets.git    
   4. Then you can run the applications either by clicking and running each 'name'.Rmd script in the demo_'name', or by running the commands: 
-      * For the demo presenting sensitivity / specificity
-          * rmarkdown::run("./demo_biostatistics_bayes/demo_biostatistics_bayes.Rmd")
       * For the demo presenting standard univariate distributions
           * rmarkdown::run("./demo_distributions/demo_distributions.Rmd")
       * For the demo presenting standard multivariate distributions
