@@ -1,6 +1,6 @@
 ### Intro
 
-- Interview with Dennis Lindley about Bayesian Statistics as a concept, available below: 
+- Interview with Dennis Lindley discussing about Bayesian Statistics: 
 
      [![Interview with Dennis Lindley](https://img.youtube.com/vi/cgclGi8yEu4/0.jpg)](https://www.youtube.com/watch?v=cgclGi8yEu4)
 
@@ -19,7 +19,7 @@
     
 -   [02.StandardDistributions.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/02.StandardDistributions.pdf):
 
-    Standard distributions: Inverted Gamma, multivariate Normal (Gaussian) distribution, multivariate Student T
+    Revision: Standard distributions: Inverted Gamma, multivariate Normal (Gaussian) distribution, multivariate Student T
     
 -   [03.BayesianModel.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/03.BayesianModel.pdf):
 
