@@ -2,7 +2,7 @@
 
 - Interview with Dennis Lindley about Bayesian Statistics as a concept, available below: 
 
-     [![Interview with Dennis Lindley](https://www.youtube.com/watch?v=cgclGi8yEu4/0.jpg)](https://www.youtube.com/watch?v=cgclGi8yEu4)
+     [![Interview with Dennis Lindley](https://img.youtube.com/vi/cgclGi8yEu4/0.jpg)](https://www.youtube.com/watch?v=cgclGi8yEu4)
 
 
 ------------------------------------------------------------------------
