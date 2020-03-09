@@ -1,8 +1,4 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+
 # Shiny applets
 
 Here is a list of interactive shiny applications related that can be used to understand as a suplamentary material. 
