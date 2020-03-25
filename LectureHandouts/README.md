@@ -3,7 +3,7 @@
 - Tony O'Hagan interviews Dennis Lindley for the Royal Statistical Society's Bayes 250 Conference held in June 2013:  
 Topics: Bayesian stats foundations, subjectivism, inference; How it Bayesain stats were developed.
 
-     [![Interview with Dennis Lindley](https://img.youtube.com/vi/cgclGi8yEu4/0.jpg | width=100)](https://www.youtube.com/watch?v=cgclGi8yEu4)
+     [<img src="https://img.youtube.com/vi/cgclGi8yEu4/0.jpg" alt="drawing" width="100"/>](https://www.youtube.com/watch?v=cgclGi8yEu4)
 
 - Jim Berger is interviewed about Bayesian inference:  
 Topics: Bayesian inference, its uncertainty quantification applications, comparisons against Frequentists.
