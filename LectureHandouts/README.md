@@ -4,7 +4,6 @@
 
      [![Interview with Dennis Lindley](https://img.youtube.com/vi/cgclGi8yEu4/0.jpg)](https://www.youtube.com/watch?v=cgclGi8yEu4)
 
-<<<<<<< HEAD
     Topics: Bayesian stats foundations, subjectivism, inference; How it Bayesain stats were developed.
 
 - Jim Berger is interviewed about Bayesian inference:  
@@ -13,9 +12,6 @@
 
     Topics: Bayesian inference, its uncertainty quantification applications, comparisons against Frequentists
 
-
-=======
->>>>>>> f823bc770b89ebfaf8f13f36849cfc23afe9ce44
 ------------------------------------------------------------------------
 
 ### Lecture handouts
