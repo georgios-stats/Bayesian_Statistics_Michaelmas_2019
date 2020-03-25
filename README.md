@@ -4,7 +4,7 @@
 
 ------------------------------------------------------------------------
 
-# About:
+### Description:
 
 This repository contains the teaching material for the module MATH3341/4031 Bayesian statistics III/IV.
 
