@@ -30,15 +30,15 @@
     
 -   [02.StandardDistributions.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/02.StandardDistributions.pdf):
 
-    Revision: Standard distributions: Inverted Gamma, multivariate Normal (Gaussian) distribution, multivariate Student T
+    Revision: Mixture/compound distribution, and the distributions inverted Gamma, multivariate Normal (Gaussian) distribution, multivariate Student T
     
 -   [03.BayesianModel.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/03.BayesianModel.pdf):
 
-    The Bayesian paradigm, and subjective probability
+    Interpretations of probability, constructions of subjective probability, the Bayesian paradigm, sequential use of Bayes theorem, prior model
 
 -   [04.Exchangeability.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/04.Exchangeability.pdf):
 
-    Exchangeability
+    Exchangeability, and connections to the Bayesian paradigm
  
 -   [05.SufficiencyExponentialFamily.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/05.SufficiencyExponentialFamily.pdf):
 
@@ -46,15 +46,15 @@
 
 -   [06.ConjugatePriors.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/06.ConjugatePriors.pdf):
 
-    Conjugate & semi-conjugate priors
+    Conjugate prios, and semi-conjugate priors
 
 -   [07.MixturePriors.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/07.MixturePriors.pdf):
 
-    Mixture priors 
+    (Finite) Mixture priors 
 
 -   [08.LaplaceJeffreysPriors.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/08.LaplaceJeffreysPriors.pdf):
 
-    Non-infornative priors, Jeffreys' priors 
+    Non-infornative priors, Laplace priors,  Jeffreys' priors 
 
 -   [09.MaximumEtropyPriorElicitation.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/09.MaximumEtropyPriorElicitation.pdf):
 
@@ -62,7 +62,7 @@
 
 -   [10.DecisionTheorySetUp.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/10.DecisionTheorySetUp.pdf):
 
-    Elements of decision theory
+    Some elements of decision theory, risk, Bayesian risk, posterior expected risk, Bayes rule, Genaralised Bayes rule, admisibility
 
 -   [11.PointEstimation.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/11.PointEstimation.pdf):
 
@@ -98,7 +98,7 @@
 
 -   [17.AsymptoticPosterior.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/17.AsymptoticPosterior.pdf):
 
-    Asymptotic behavior of the posterior
+    Asymptotic behavior of the posterior (descrete and continuous case)
 
 ------------------------------------------------------------------------
 
@@ -108,11 +108,11 @@
 
 -   [ProblemClass_1.complete.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/ProblemClass_1.complete.pdf)  &   [ProblemClass_1.questions.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/ProblemClass_1.questions.pdf):
 
-    Problem class 1; Nuisance parameters
+    Problem class 1; Nuisance parameters, and exercises
 
 -   [ProblemClass_2.complete.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/ProblemClass_2.complete.pdf) &  [ProblemClass_2.questions.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/ProblemClass_2.questions.pdf):
 
-    Problem class 2; Priors and inference
+    Problem class 2; Priors and inference exercises
 
 ------------------------------------------------------------------------
 

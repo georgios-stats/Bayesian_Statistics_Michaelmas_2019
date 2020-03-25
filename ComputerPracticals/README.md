@@ -1,6 +1,3 @@
-[Back to
-README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
-
 ------------------------------------------------------------------------
 
 # Details about computer practicals
