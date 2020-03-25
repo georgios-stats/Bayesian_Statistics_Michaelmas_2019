@@ -6,7 +6,7 @@
 
 ### Introductory videos
 
-- ***Tony O'Hagan interviews Dennis Lindley about Bayesian Stats @RSS:***  
+- ***Dennis Lindley is interviewed by Tony O'Hagan about Bayesian Stats @RSS:***  
 ***Topics:*** Bayesian stats foundations, subjectivism, inference; How it Bayesain stats were developed.
 
      [<img src="https://img.youtube.com/vi/cgclGi8yEu4/0.jpg" alt="drawing" width="100"/>](https://www.youtube.com/watch?v=cgclGi8yEu4)
