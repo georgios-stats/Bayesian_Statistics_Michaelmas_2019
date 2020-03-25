@@ -2,11 +2,11 @@
 
 # Details
 
+This repository contains the teaching material for the module ***MATH3341/4031 Bayesian statistics III/IV*** in Michaelmas term in 2019 @ Durham University.
+
 ------------------------------------------------------------------------
 
-### Description:
-
-This repository contains the teaching material for the module MATH3341/4031 Bayesian statistics III/IV.
+### Description
 
 -   '[Description.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/Description.pdf)' contains the ILOs, sylabus, and bibliography
 
