@@ -1,4 +1,6 @@
+------------------------------------------------------------------------
 
+# Details about exercise material
 
 ------------------------------------------------------------------------
 
@@ -6,9 +8,7 @@
 
 -   All the exercises
 
-    [ExerciseSheet.complete.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/Homework/ExerciseSheet.complete.pdf) & [ExerciseSheet.questions.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/Homework/ExerciseSheet.questions.pdf):
-
-
+    [ExerciseSheet.complete.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/Homework/ExerciseSheet.complete.pdf) & [ExerciseSheet.questions.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/Homework/ExerciseSheet.questions.pdf)
 
 ------------------------------------------------------------------------
 

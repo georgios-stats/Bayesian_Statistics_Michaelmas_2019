@@ -1,3 +1,9 @@
+------------------------------------------------------------------------
+
+# Details about lecture material
+
+------------------------------------------------------------------------
+
 ### Introductory videos
 
 - ***Tony O'Hagan interviews Dennis Lindley about Bayesian Stats @RSS:***  

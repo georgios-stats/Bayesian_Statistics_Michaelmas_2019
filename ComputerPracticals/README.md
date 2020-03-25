@@ -3,7 +3,11 @@ README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian
 
 ------------------------------------------------------------------------
 
-# Aim
+# Details about computer practicals
+
+------------------------------------------------------------------------
+
+## Aim
 
 
 The handout aims to familiarise students with the statistical package
@@ -20,7 +24,7 @@ Students will be able to:
 
 ------------------------------------------------------------------------
 
-# Preview:
+## Preview:
 
 
 -   [README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
@@ -58,7 +62,7 @@ Students will be able to:
 
 ------------------------------------------------------------------------
 
-# Reference list
+## Reference list
 
 
 *The material below is not examinable material, but it contains
@@ -88,7 +92,7 @@ concepts introdced.*
 
 ------------------------------------------------------------------------
 
-# Setting up the computing environment
+## Setting up the computing environment
 
 
 ### CIS computers 
@@ -147,7 +151,7 @@ Briefly, you need to do the following:
 
 ------------------------------------------------------------------------
 
-# How to download
+## How to download
 
 
 To download the whole repository, run rstudio, and do the following
