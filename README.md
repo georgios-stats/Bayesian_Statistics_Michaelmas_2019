@@ -12,19 +12,19 @@ This repository contains the teaching material for the module MATH3341/4031 Baye
 
 ### Lectures and Problem classes
 
--   '[LectureHandouts](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/LectureHandouts)' folder contains the material used in your lectures and problem classes
+-   '[LectureHandouts](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/LectureHandouts#details-about-lecture-material)' folder contains the material used in your lectures and problem classes
 
 ### Computer practicals classes
 
--   '[ComputerPractical](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals)' folder contains the material for your computer practicals
+-   '[ComputerPractical](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#details-about-computer-practicals)' folder contains the material for your computer practicals
 
 ### Homework
 
--   '[Homework](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Homework)' folder contains the material used for your practice at home
+-   '[Homework](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Homework#details-about-exercise-material)' folder contains the material used for your practice at home
 
 ### Web-applets
 
--   '[Shiny_applets](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Shiny_applets)' folder contains the source code of the web applets used in the lectures.
+-   '[Shiny_applets](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Shiny_applets#shiny-applets)' folder contains the source code of the web applets used in the lectures.
 
 
 ### Introductory videos
