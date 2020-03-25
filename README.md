@@ -8,24 +8,22 @@ This repository contains the teaching material for the module MATH3341/4031 Baye
 
 -   '[Description.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/Description.pdf)' contains the ILOs, sylabus, and bibliography
 
-***Lectures and Problem classes***
+### Lectures and Problem classes
 
 -   '[LectureHandouts](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/LectureHandouts)' folder contains the material used in your lectures and problem classes
 
-***Computer practicals classes***
+### Computer practicals classes
 
 -   '[ComputerPractical](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals)' folder contains the material for your computer practicals
 
-***Homework***
+### Homework
 
 -   '[Homework](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Homework)' folder contains the material used for your practice at home
 
-***Web-applets***
+### Web-applets
 
 -   '[Shiny_applets](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Shiny_applets)' folder contains the source code of the web applets used in the lectures.
 
-
-------------------------------------------------------------------------
 
 ### Intro
 
