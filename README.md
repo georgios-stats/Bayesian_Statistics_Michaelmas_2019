@@ -25,11 +25,21 @@ This repository contains the teaching material for the module MATH3341/4031 Baye
 -   '[Shiny_applets](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Shiny_applets)' folder contains the source code of the web applets used in the lectures.
 
 
-
-
 ------------------------------------------------------------------------
 
+### Intro
 
+- ***Tony O'Hagan interviews Dennis Lindley about Bayesian Stats @RSS:***  
+***Topics:*** Bayesian stats foundations, subjectivism, inference; How it Bayesain stats were developed.
+
+     [<img src="https://img.youtube.com/vi/cgclGi8yEu4/0.jpg" alt="drawing" width="100"/>](https://www.youtube.com/watch?v=cgclGi8yEu4)
+
+- ***Jim Berger is interviewed about Bayesian inference @Duke University:***  
+***Topics:*** Bayesian inference, its uncertainty quantification applications, comparisons against Frequentists.
+
+     [<img src="https://img.youtube.com/vi/3eZ5yg6g_Fc/0.jpg" alt="drawing" width="100"/>](https://www.youtube.com/watch?v=3eZ5yg6g_Fc)
+
+------------------------------------------------------------------------
 
 # How to download:
 
