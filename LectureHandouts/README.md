@@ -1,9 +1,16 @@
 ### Intro
 
-- Interview with Dennis Lindley discussing about Bayesian Statistics: 
+- Tony O'Hagan interviews Dennis Lindley for the Royal Statistical Society's Bayes 250 Conference held in June 2013: 
 
-     [![Interview with Dennis Lindley](https://img.youtube.com/vi/cgclGi8yEu4/0.jpg)](https://www.youtube.com/watch?v=cgclGi8yEu4)
+     [![Interview with Dennis Lindley](https://img.youtube.com/vi/cgclGi8yEu4/0.jpg =250x)](https://www.youtube.com/watch?v=cgclGi8yEu4)
 
+    Topics: Bayesian stats foundations, subjectivism, inference; How it Bayesain stats were developed.
+
+- Jim Berger is interviewed about Bayesian inference:  
+
+     [![Interview with Jim Berger](https://img.youtube.com/vi/3eZ5yg6g_Fc/0.jpg =250x)](https://www.youtube.com/watch?v=3eZ5yg6g_Fc)
+
+    Topics: Bayesian inference, its uncertainty quantification applications, comparisons against Frequentists
 
 ------------------------------------------------------------------------
 
