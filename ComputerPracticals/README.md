@@ -1,8 +1,3 @@
-[Back to
-README](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#details-about-computer-practicals)
-
-------------------------------------------------------------------------
-
 Aim
 ===
 
