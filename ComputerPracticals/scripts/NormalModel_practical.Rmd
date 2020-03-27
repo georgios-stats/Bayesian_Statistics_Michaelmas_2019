@@ -11,7 +11,7 @@ output:
     number_sections: true
   pdf_document: default
 ---
-[Back to README](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#details-about-computer-practicals)
+[Back to README](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#aim)
 
 
 
@@ -77,7 +77,7 @@ Richard DeVeaux owned a Nissan Maxima for 8 years. Being a statistician, He reco
 
 **General scientific question:**
 
-```{r, results='hold'}
+```{r}
 # load the data
 #mydata <- read.csv("./nissan.csv")
 mydata <- read.csv("https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/nissan.csv")

@@ -9,7 +9,7 @@ output:
     df_print: paged
   pdf_document: default
 ---
-[Back to README](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#details-about-computer-practicals)
+[Back to README](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#aim)
 
 ***Aim***
 
