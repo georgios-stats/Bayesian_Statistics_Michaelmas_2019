@@ -11,7 +11,7 @@ output:
     number_sections: true
   pdf_document: default
 ---
-[Back to README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
+[Back to README](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#details-about-computer-practicals)
 
 ```{r, results="hide"}
 rm(list=ls())

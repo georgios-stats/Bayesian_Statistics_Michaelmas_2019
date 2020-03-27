@@ -1,13 +1,12 @@
+[Back to
+README](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#details-about-computer-practicals)
+
 ------------------------------------------------------------------------
 
-# Details about computer practicals
+Aim
+===
 
-------------------------------------------------------------------------
-
-## Aim
-
-
-The handout aims to familiarise students with the statistical package
+The handout aims at familiarising students with the statistical package
 RJAGS, and with more ‘sophisticated’ Bayesian hierarchical models than
 those in the Lecture handouts.
 
@@ -21,10 +20,8 @@ Students will be able to:
 
 ------------------------------------------------------------------------
 
-## Preview:
-
-
--   [README](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/README.nb.html)
+Preview:
+========
 
 -   [Monte Carlo approximation: An intoduction for practical use in
     R](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/MCapproximators.nb.html)
@@ -59,8 +56,8 @@ Students will be able to:
 
 ------------------------------------------------------------------------
 
-## Reference list
-
+Reference list
+==============
 
 *The material below is not examinable material, but it contains
 references that students can follow if they want to further explore the
@@ -89,18 +86,23 @@ concepts introdced.*
 
 ------------------------------------------------------------------------
 
-## Setting up the computing environment
+Setting up the computing environment
+====================================
 
-
-### CIS computers 
+### CIS computers
 
 From AppHub, load the modules:
 
-1.  LaTex (wait until the window pops-up)
+1.  Google Chrome
 
-2.  rstudio
+2.  LaTex
 
-### Your personal computers 
+3.  rstudio
+
+### Your personal computers (Do not do it on CIS computers)
+
+There is not need to do this in CIS computers as the required foftware
+is (supposed to be) properly installed.
 
 The instructions below are at your own risk…
 
@@ -127,31 +129,31 @@ Briefly, you need to do the following:
 3.  Install the latest Rstudio (recommended)
     -   Any OS: Download it from here:
         <https://www.rstudio.com/products/rstudio/download/>
-4.  Install JAGS
-    -   Details for installing JAGS can be found in:
-        
-        -   <http://mcmc-jags.sourceforge.net/>
-        
-        -   <https://cran.r-project.org/web/packages/rjags/INSTALL>
-    
-    
-    -   Briefly:
-        
-        1.  Uninstall any existing RJAGS if possible. In R terminal run:  
-            `> remove.packages("rjags")`  
-            `> if (file.exists(".RData")) file.remove(".RData")`
-        
-        2.  Restart R
-        
-        3.  Install RJAGS. In R terminal run:  
-            `> install.packages("rjags", repos = "https://cloud.r-project.org/", dependencies = TRUE)`
 
-------------------------------------------------------------------------
+### Install of JAGS
 
-## How to download
+For any OS:
 
+Details for installing JAGS can be found in:
 
-To download the whole repository, run rstudio, and do the following
+-   <http://mcmc-jags.sourceforge.net/>
+
+-   <https://cran.r-project.org/web/packages/rjags/INSTALL>
+
+Briefly:
+
+1.  Uninstall any existing RJAGS if possible. In R terminal run:  
+    `> remove.packages("rjags")`  
+    `> if (file.exists(".RData")) file.remove(".RData")`
+
+2.  Restart R
+
+3.  Install RJAGS. In R terminal run:  
+    `> install.packages("rjags", repos = "https://cloud.r-project.org/", dependencies = TRUE)`
+
+### This handout
+
+To download this handout, run rstudio, and do the following
 
 1.  Go to File &gt; New Project &gt; Version Control &gt; Git
 
@@ -161,26 +163,9 @@ To download the whole repository, run rstudio, and do the following
 
 -   … and complete the rest as you wish
 
-3.  Hit *Create a Project*
+1.  Hit *Create a Project*
 
-    ... this handout is in folder *Bayesian_Statistics/ComputerPracticals/scripts*.
-
-To download the Computer practical folder only
-
-1. Download [Firefox add-on GitZip](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=2ahUKEwias52xjd3nAhXPUs0KHeXHCEUQFjACegQIAhAB&url=https%3A%2F%2Faddons.mozilla.org%2Fen-US%2Ffirefox%2Faddon%2Fgitzip%2F&usg=AOvVaw37servrJ29tuNcx9dIQDqy) or [Chrome add-on GitZip](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwias52xjd3nAhXPUs0KHeXHCEUQFjABegQIARAB&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fgitzip-for-github%2Fffabmkklhbepgcgfonabamgnfafbdlkn%3Fhl%3Den&usg=AOvVaw1Pn3VXuXz1Fphl7dsPEhDS), and use it as:
-
-3. Double click on the folder 'ComputerPractical' in GitHub public repos page. 
-
-4. Click download button at bottom-right.
-
-5. See the progress dashboard and wait for browser trigger download.
-
-6. Get the ZIP file.
-
-7. Un-Zip the file, and run the *.Rmd files with rstudio.
-
-
-
-
+…this will download some material of the course. This handout is in
+folder *PracticalHandout*.
 
 .
