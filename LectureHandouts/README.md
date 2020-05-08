@@ -114,11 +114,15 @@
 
     Problem class 2; Priors and inference exercises
 
+... Problem class exercises are appended in the Exercise sheet
+
 ------------------------------------------------------------------------
 
 ### Revision
 
--   coming soon
+-   [Revision.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/Revision.pdf):  
+
+... Revision exercises are appended in the Exercise sheet
 
 ------------------------------------------------------------------------
 
