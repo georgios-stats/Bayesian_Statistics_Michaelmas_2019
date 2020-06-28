@@ -41,10 +41,27 @@ This repository contains the teaching material for the module ***MATH3341/4031 B
 
 ------------------------------------------------------------------------
 
-# How to download:
+# How to download and use it:
 
+### How to download and use it in Rstudio cloud 
 
-### To download the whole repository
+1. Go to the website [ <https://rstudio.cloud> ] , if you already have an account log in, otherwise register and then log in.  
+
+2. After logging in,  
+    
+    1. go to Projects tab, 
+    
+    2. click on the *v* next to the *New Project* button to expand the pop-up menu list  
+    
+    3. click on the choice *New Project from Git Repo*  
+    
+    4. in the *URL of your Git repository* section insert the link: 
+        
+        <https://github.com/georgios-stats/Bayesian_Statistics.git> 
+
+    ... this will gonna download the whole Bayesian learning teaching material. You can navigate to the material.  
+
+### How to download the whole repository
 
 Ways:
 
@@ -82,7 +99,7 @@ Ways:
     
     3.  Hit *Create a Project*
 
-### To download a specific folder only
+### How to download a specific folder only
 
 Ways:
 
@@ -112,7 +129,7 @@ Ways:
         echo "ComputerPracticals/*" >> .git/info/sparse-checkout  
         git pull origin master*
 
-### To download a specific file
+### How to download a specific file
 
 1. You can just navigate to the file from the browser and download it.
 

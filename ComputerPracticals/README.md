@@ -128,7 +128,49 @@ Briefly, you need to do the following:
     -   Any OS: Download it from here:
         <https://www.rstudio.com/products/rstudio/download/>
 
-### Install of JAGS
+### How to download and use it in Rstudio cloud 
+
+1. Go to the website [ <https://rstudio.cloud> ] , if you already have an account log in, otherwise register and then log in.  
+
+2. After logging in,  
+    
+    1. go to Projects tab, 
+    
+    2. click on the *v* next to the *New Project* button to expand the pop-up menu list  
+    
+    3. click on the choice *New Project from Git Repo*  
+    
+    4. in the *URL of your Git repository* section insert the link: 
+        
+        <https://github.com/georgios-stats/Bayesian_Statistics.git> 
+        
+        ... this will gonna download the whole Bayesian learning teaching material.  
+    
+    5. In R terminal run  
+        
+        setwd('./ComputerPracticals/scripts/') # to set your working directory  
+        
+        ... and click on the suitable *.Rmd* file in the *'./ComputerPracticals/scripts/'* directory.  
+
+### How to download and use it in Rstudio on your computer
+
+To download this handout, run rstudio, and do the following
+
+1.  Go to File &gt; New Project &gt; Version Control &gt; Git
+
+2.  In the section *Repository URL* write
+    
+    + <https://github.com/georgios-stats/Bayesian_Statistics.git>
+    
+    + ... and complete the rest as you wish
+
+3.  Hit *Create a Project*
+
+…this will download some material of the course. This handout is in
+folder *PracticalHandout*.
+
+
+### How to install of JAGS
 
 For any OS:
 
@@ -149,21 +191,5 @@ Briefly:
 3.  Install RJAGS. In R terminal run:  
     `> install.packages("rjags", repos = "https://cloud.r-project.org/", dependencies = TRUE)`
 
-### This handout
-
-To download this handout, run rstudio, and do the following
-
-1.  Go to File &gt; New Project &gt; Version Control &gt; Git
-
-2.  In the section *Repository URL* write
-
--   <https://github.com/georgios-stats/Bayesian_Statistics.git>
-
--   … and complete the rest as you wish
-
-1.  Hit *Create a Project*
-
-…this will download some material of the course. This handout is in
-folder *PracticalHandout*.
 
 .
