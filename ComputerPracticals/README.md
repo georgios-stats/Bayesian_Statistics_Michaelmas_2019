@@ -41,6 +41,9 @@ Preview:
     -   [Bernoulli regression model -variable selection
         (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BernoulliRegressionModelVS_full.nb.html)
 
+    -   [Normal Mixture model
+        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BayesianNormalMixtureModel.nb.html)
+
 -   Exercises for practise :
 
     -   [Normal model
