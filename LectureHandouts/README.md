@@ -72,7 +72,7 @@
 
     Credible sets 
 
--   [13.HypothesisTests.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/14.LindleyParadox.pdf):
+-   [13.HypothesisTests.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/LectureHandouts/13.HypothesisTests.pdf):
 
     Hypothesis tests 
 
