@@ -88,7 +88,7 @@ For simplicity, let's assume that all groups are Normally distributed but with d
 
 ```{r}
 # load the data
-mydata <- scan('https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/enz.dat')
+mydata <- scan('https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/Normal_Mixture_model/enz.dat')
 y_obs <- mydata
 ```
 

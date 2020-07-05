@@ -93,7 +93,7 @@ library(kableExtra)
 ```{r}
 # load the data
 #mydata <- read.csv("./challenger_data.csv")
-mydata <- read.csv("https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/scripts/challenger_data.csv")
+mydata <- read.csv("https://raw.githubusercontent.com/georgios-stats/Bayesian_Statistics/master/ComputerPracticals/Bernoulli_regression_model_variable_selection/challenger_data.csv")
 # print data 
 ## (that's a sophisticated command with fancy output, feel free to ignore it)
 kable(mydata)%>%
