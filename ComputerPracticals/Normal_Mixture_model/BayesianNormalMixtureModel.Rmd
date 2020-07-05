@@ -465,8 +465,7 @@ barplot (fclass_est,
 ```
 
 
-
-Well, they all look prety random. That's cool!
+.  
 
 ---
 
