@@ -19,38 +19,38 @@ Preview:
 ========
 
 -   [Monte Carlo approximation: An intoduction for practical use in
-    R](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/MCapproximators.nb.html)
+    R](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Monte_Carlo_approximation/MCapproximators.nb.html)
 
 -   Case study: Space shuttle Challenger disaster
 
     -   [Bernoulli model with conjugate priors
-        (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BernoulliModel_practical.nb.html)
+        (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Bernoulli_model_with_conjugate_priors/BernoulliModel_practical.nb.html)
 
     -   [Bernoulli model with conjugate priors
-        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BernoulliModel_full.nb.html)
+        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Bernoulli_model_with_conjugate_priors/BernoulliModel_full.nb.html)
 
     -   [Bernoulli regression model
-        (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BernoulliRegressionModel_practical.nb.html)
+        (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Bernoulli_regression_model/BernoulliRegressionModel_practical.nb.html)
 
     -   [Bernoulli regression model
-        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BernoulliRegressionModel_full.nb.html)
+        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Bernoulli_regression_model/BernoulliRegressionModel_full.nb.html)
 
     -   [Bernoulli regression model -variable selection
-        (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BernoulliRegressionModelVS_practical.nb.html)
+        (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Bernoulli_regression_model_variable_selection/BernoulliRegressionModelVS_practical.nb.html)
 
     -   [Bernoulli regression model -variable selection
-        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BernoulliRegressionModelVS_full.nb.html)
+        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Bernoulli_regression_model_variable_selection/BernoulliRegressionModelVS_full.nb.html)
 
     -   [Normal Mixture model
-        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/BayesianNormalMixtureModel.nb.html)
+        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Normal_Mixture_model/BayesianNormalMixtureModel.nb.html)
 
 -   Exercises for practise :
 
     -   [Normal model
-        (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/NormalModel_practical.nb.html)
+        (questions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Normal_model_with_conjugate_priors/NormalModel_practical.nb.html)
 
     -   [Normal model
-        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/output/NormalModel_full.nb.html)
+        (solutions)](http://htmlpreview.github.io/?https://github.com/georgios-stats/Bayesian_Statistics/blob/master/ComputerPracticals/Normal_model_with_conjugate_priors/NormalModel_full.nb.html)
 
 ------------------------------------------------------------------------
 
@@ -148,9 +148,9 @@ Briefly, you need to do the following:
     
     5. In R terminal run  
         
-        setwd('./ComputerPracticals/scripts/') # to set your working directory  
+        setwd('./ComputerPracticals/Bernoulli_model_with_conjugate_priors/') # to set your working directory  
         
-        ... and click on the suitable *.Rmd* file in the *'./ComputerPracticals/scripts/'* directory.  
+        ... and click on the suitable *.Rmd* file in the *'./ComputerPracticals/Bernoulli_model_with_conjugate_priors/'* directory.  
 
 ### How to download and use it in Rstudio on your computer
 
