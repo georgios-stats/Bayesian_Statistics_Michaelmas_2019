@@ -1,6 +1,10 @@
 # --------------------------------------------------------------------------------
 #   
 #   Copyright 2019 Georgios Karagiannis
+#
+# georgios.karagiannis@durham.ac.uk 
+# Assistant Professor 
+# Department of Mathematical Sciences, Durham University, Durham,  UK 
 # 
 # This file is part of Bayesian_Statistics (MATH3341/4031 Bayesian Statistics III/IV)
 # which is the material of the course (MATH3341/4031 Bayesian Statistics III/IV)
