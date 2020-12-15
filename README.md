@@ -6,7 +6,7 @@
 <!-- Assistant Professor -->
 <!-- Department of Mathematical Sciences, Durham University, Durham,  UK  -->
 
-<!-- This file is part of Bayesian_Statistics (MATH3341/4031 Bayesian Statistics III/IV) -->
+<!-- This file is part of Bayesian_Statistics_Michaelmas_2019 (MATH3341/4031 Bayesian Statistics III/IV) -->
 <!-- which is the material of the course (MATH3341/4031 Bayesian Statistics III/IV) -->
 <!-- taught by Georgios P. Katagiannis in the Department of Mathematical Sciences   -->
 <!-- in the University of Durham  in Michaelmas term in 2019 -->
@@ -36,23 +36,23 @@ This repository contains the teaching material for the module ***MATH3341/4031 B
 
 ### Description
 
--   '[Description.pdf](https://github.com/georgios-stats/Bayesian_Statistics/blob/master/Description.pdf)' contains the ILOs, sylabus, and bibliography
+-   '[Description.pdf](https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019/blob/master/Description.pdf)' contains the ILOs, sylabus, and bibliography
 
 ### Lectures and Problem classes
 
--   '[LectureHandouts](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/LectureHandouts#details-about-lecture-material)' folder contains the material used in your lectures and problem classes
+-   '[LectureHandouts](https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019/tree/master/LectureHandouts#details-about-lecture-material)' folder contains the material used in your lectures and problem classes
 
 ### Computer practicals classes
 
--   '[ComputerPractical](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/ComputerPracticals#details-about-computer-practicals)' folder contains the material for your computer practicals
+-   '[ComputerPractical](https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019/tree/master/ComputerPracticals#details-about-computer-practicals)' folder contains the material for your computer practicals
 
 ### Homework
 
--   '[Homework](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Homework#details-about-exercise-material)' folder contains the material used for your practice at home
+-   '[Homework](https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019/tree/master/Homework#details-about-exercise-material)' folder contains the material used for your practice at home
 
 ### Web-applets
 
--   '[Shiny_applets](https://github.com/georgios-stats/Bayesian_Statistics/tree/master/Shiny_applets#shiny-applets)' folder contains the source code of the web applets used in the lectures.
+-   '[Shiny_applets](https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019/tree/master/Shiny_applets#shiny-applets)' folder contains the source code of the web applets used in the lectures.
 
 
 ### Introductory videos
@@ -85,7 +85,7 @@ This repository contains the teaching material for the module ***MATH3341/4031 B
     
     4. in the *URL of your Git repository* section insert the link: 
         
-        <https://github.com/georgios-stats/Bayesian_Statistics.git> 
+        <https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019.git> 
 
     ... this will gonna download the whole Bayesian learning teaching material. You can navigate to the material.  
 
@@ -93,7 +93,7 @@ This repository contains the teaching material for the module ***MATH3341/4031 B
 
 Ways:
 
-1. You can click [[HERE](https://github.com/georgios-stats/Bayesian_Statistics/archive/master.zip)].
+1. You can click [[HERE](https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019/archive/master.zip)].
 
 2. You can click the green button 'Clone or download' and download it as a zip file
 
@@ -113,7 +113,7 @@ Ways:
     
     ... then run:
 
-    -   git clone https://github.com/georgios-stats/Bayesian_Statistics.git
+    -   git clone https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019.git
 
 4. You can use rstudio:
 
@@ -121,7 +121,7 @@ Ways:
     
     2.  In the section *Repository URL* write
         
-        -   <https://github.com/georgios-stats/Bayesian_Statistics.git>
+        -   <https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019.git>
         
         -   … and complete the rest as you wish
     
@@ -149,10 +149,10 @@ Ways:
 
     -   run in the terminal the following:
         
-        *mkdir Bayesian_Statistics  
-        cd Bayesian_Statistics  
+        *mkdir Bayesian_Statistics_Michaelmas_2019  
+        cd Bayesian_Statistics_Michaelmas_2019  
         git init  
-        git remote add -f origin https://github.com/georgios-stats/Bayesian_Statistics.git  
+        git remote add -f origin https://github.com/georgios-stats/Bayesian_Statistics_Michaelmas_2019.git  
         git config core.sparseCheckout true  
         echo "ComputerPracticals/*" >> .git/info/sparse-checkout  
         git pull origin master*
